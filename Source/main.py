@@ -2,7 +2,7 @@ import tpot2
 import sklearn.metrics
 import sklearn
 import argparse
-import Source.utils as utils
+import utils
 import sys
 
 def main():
