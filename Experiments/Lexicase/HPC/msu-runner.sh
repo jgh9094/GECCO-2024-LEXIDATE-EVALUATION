@@ -4,7 +4,7 @@
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=24
 #SBATCH -t 00:10:00
-#SBATCH --mem=20G
+#SBATCH --mem=40G
 #SBATCH --job-name=tpot2
 
 module load Conda/3
