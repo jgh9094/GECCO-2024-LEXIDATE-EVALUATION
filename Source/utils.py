@@ -46,6 +46,7 @@ def GetEstimatorParams(n_jobs, scheme):
         'generations' : 100,
         'n_jobs':n_jobs,
         'survival_selector' :None,
+        'max_size': 10,
 
         # offspring variation params
         'mutate_probability': 1.0,
