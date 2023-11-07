@@ -58,7 +58,7 @@ def GetEstimatorParams(n_jobs, scheme):
         'preprocessing':False,
         'classification' : True,
         'verbose':5,
-        'max_eval_time_seconds':None,
+        'max_eval_time_seconds':np.inf,
         'random_state': None,
 
         # pipeline dictionaries
