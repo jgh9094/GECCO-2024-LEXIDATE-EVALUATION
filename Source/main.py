@@ -15,7 +15,7 @@ def main():
     # number of total replicates for each experiment
     parser.add_argument("-r", "--num_reps", default=1, required=False, nargs='?')
     # number of total replicates for each experiment
-    parser.add_argument("-s", "--sel_scheme", default=0, required=False, nargs='?')
+    parser.add_argument("-ss", "--sel_scheme", default=0, required=False, nargs='?')
     schemes = ['lexicase','tournament','nsga-ii','random']
 
     args = parser.parse_args()
