@@ -76,7 +76,7 @@ def GetEstimatorParams(n_jobs, scheme):
     elif scheme is 'random':
         params.update({'parent_selector': tpot2.selectors.random_selector})
     else:
-        sys.exit('INVALID SCHEME TO RUN')
+        sys.exit('UTILS: INVALID SCHEME TO RUN')
 
     return params
 
