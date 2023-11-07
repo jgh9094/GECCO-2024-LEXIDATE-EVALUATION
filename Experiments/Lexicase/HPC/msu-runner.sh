@@ -7,6 +7,7 @@
 #SBATCH --mem=10G
 #SBATCH --job-name=tpot2
 
+module load Conda/3
 conda activate tpot2-env
 pip install -e ../../../tpot2/
 
