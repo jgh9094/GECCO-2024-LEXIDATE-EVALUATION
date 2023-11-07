@@ -54,7 +54,7 @@ def GetEstimatorParams(n_jobs, scheme):
         'mutate_then_crossover_probability': 0.0,
 
         # estimator params
-        'memory_limit':None,
+        'memory_limit':"10GB",
         'preprocessing':False,
         'classification' : True,
         'verbose':5,
