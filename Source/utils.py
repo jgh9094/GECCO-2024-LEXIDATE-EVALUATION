@@ -161,10 +161,8 @@ def loop_through_tasks(scheme, task_id_lists, save_dir, num_reps, n_jobs):
         for run in range(num_reps):
             seed = run
             save_folder = f"{save_dir}/{scheme}/{taskid}/{seed}"
-            time.sleep(random.random()*5)
-            if not os.path.exists(save_folder):
-                os.makedirs(save_folder)
-            else:
+            # time.sleep(random.random()*5)
+            if os.path.exists(save_folder):
                 continue
 
             print('WORKING ON:',save_folder)
@@ -218,6 +216,8 @@ def loop_through_tasks(scheme, task_id_lists, save_dir, num_reps, n_jobs):
                 all_scores["selection"] = scheme
                 all_scores["duration"] = duration
                 all_scores["seed"] = seed
+
+                os.makedirs(save_folder)
 
                 if type(est) is tpot2.TPOTClassifier or type(est) is tpot2.TPOTEstimator or type(est) is  tpot2.TPOTEstimatorSteadyState:
                     with open(f"{save_folder}/evaluated_individuals.pkl", "wb") as f:
