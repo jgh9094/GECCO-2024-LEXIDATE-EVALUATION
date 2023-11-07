@@ -12,7 +12,7 @@ conda activate tpot2-env
 pip install -e ../../../tpot2/
 
 srun -u python ../../../Source/main.py \
---n_jobs 48 \
+--n_jobs 24 \
 --savepath ../Results/ \
 --num_reps 10 \
 --sel_scheme 0 \
