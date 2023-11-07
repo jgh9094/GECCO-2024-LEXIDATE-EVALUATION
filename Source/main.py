@@ -24,7 +24,7 @@ def main():
     num_reps = int(args.num_reps)
 
     if int(args.sel_scheme) < 0 or len(schemes) <= int(args.sel_scheme):
-        sys.exit('INVALID SCHEME TO RUN')
+        sys.exit('MAIN: INVALID SCHEME TO RUN')
     scheme = [int(args.sel_scheme)]
 
 
