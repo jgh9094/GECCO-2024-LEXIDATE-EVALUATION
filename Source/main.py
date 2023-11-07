@@ -23,7 +23,7 @@ def main():
     save_dir = args.savepath
     num_reps = int(args.num_reps)
 
-    if int(args.sel_scheme) < 0 and len(schemes) <= int(args.sel_scheme):
+    if int(args.sel_scheme) < 0 or len(schemes) <= int(args.sel_scheme):
         sys.exit('INVALID SCHEME TO RUN')
     scheme = [int(args.sel_scheme)]
 
