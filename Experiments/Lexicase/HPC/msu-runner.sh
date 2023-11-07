@@ -11,7 +11,7 @@ module load Conda/3
 conda activate tpot2-env
 pip install -e ../../../tpot2/
 
-srun -u python ../../../Source/main.py \
+srun -u python $HOME/Repos/GECCO-2024-TPOT2-Selection-Objectives/Source/main.py \
 --n_jobs 24 \
 --savepath ../Results/ \
 --num_reps 10 \
