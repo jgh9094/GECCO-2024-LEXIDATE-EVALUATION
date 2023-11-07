@@ -3,7 +3,7 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=48
-#SBATCH -t 110:00:00
+#SBATCH -t 1:00:00
 #SBATCH --mem=0
 #SBATCH --job-name=tpot2
 #SBATCH -p defq
