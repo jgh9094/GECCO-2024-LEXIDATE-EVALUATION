@@ -25,7 +25,7 @@ def main():
 
     if int(args.sel_scheme) < 0 or len(schemes) <= int(args.sel_scheme):
         sys.exit('MAIN: INVALID SCHEME TO RUN')
-    scheme = [int(args.sel_scheme)]
+    scheme = schemes[int(args.sel_scheme)]
 
 
     # task_id_lists = [359990, 360112, 189354, 7593, 189843, 273, 359960, 189836, 75127, 168796, 167181, 75193, 168794, 189871, 189873, 189874, 189908, 189909,]
