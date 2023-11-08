@@ -55,7 +55,7 @@ def GetEstimatorParams(n_jobs, scheme):
         'mutate_then_crossover_probability': 0.0,
 
         # estimator params
-        'memory_limit':"20GB",
+        'memory_limit':"25GB",
         'preprocessing':False,
         'classification' : True,
         'verbose':5,
@@ -183,7 +183,7 @@ def loop_through_tasks(scheme, task_id_lists, save_dir, num_reps, n_jobs):
                 else:
                     X_learn, X_select, y_learn, y_select = sklearn.model_selection.train_test_split(X_train, y_train, train_size=1.0-selection_portion, test_size=selection_portion, random_state=None)
 
-                print('X_train:',X_learn.shape,'|','y_train:',y_learn.shape)
+                print('X_learn:',X_learn.shape,'|','y_learn:',y_learn.shape)
                 print('X_select:',X_select.shape,'|','y_select:',y_select.shape)
 
                 # create custom objective function
