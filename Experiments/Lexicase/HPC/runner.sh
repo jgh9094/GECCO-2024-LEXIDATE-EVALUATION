@@ -15,6 +15,8 @@ source /home/hernandezj45/anaconda3/etc/profile.d/conda.sh
 conda activate tpot2-env
 pip install -e ../../../tpot2/
 
+echo 'HELLO WORLD'
+
 python ../../../Source/main.py \
 --n_jobs 10 \
 --savepath ../Results/ \
