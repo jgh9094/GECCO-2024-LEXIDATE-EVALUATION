@@ -46,7 +46,7 @@ def GetEstimatorParams(n_jobs, scheme):
         'generations' : 100,
         'n_jobs':n_jobs,
         'survival_selector' :None,
-        'max_size': 10,
+        'max_size': 7,
 
         # offspring variation params
         'mutate_probability': 1.0,
@@ -59,7 +59,7 @@ def GetEstimatorParams(n_jobs, scheme):
         'preprocessing':False,
         'classification' : True,
         'verbose':5,
-        'max_eval_time_seconds':60*60,
+        'max_eval_time_seconds':60*10,
         'random_state': None,
 
         # pipeline dictionaries
@@ -197,6 +197,7 @@ def loop_through_tasks(scheme, task_id_lists, save_dir, num_reps, n_jobs):
 
                 print("ESTIMATOR FITTING")
                 est = tpot2.TPOTEstimator(**est_params)
+                print("ESTIMATOR FITTING COMPLETE")
 
                 start = time.time()
                 est.fit(X_train, y_train)
