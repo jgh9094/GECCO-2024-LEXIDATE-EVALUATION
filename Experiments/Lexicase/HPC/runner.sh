@@ -16,8 +16,6 @@ source /home/hernandezj45/anaconda3/etc/profile.d/conda.sh
 conda activate tpot2-env
 pip install -e /home/hernandezj45/Repos/GECCO-2024-TPOT2-Selection-Objectives/tpot2/
 
-echo 'HELLO WORLD'
-
 python /home/hernandezj45/Repos/GECCO-2024-TPOT2-Selection-Objectives/Source/main.py \
 --n_jobs 10 \
 --savepath /home/hernandezj45/Repos/GECCO-2024-TPOT2-Selection-Objectives/Experiments/Lexicase/Results/ \
