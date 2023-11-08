@@ -68,13 +68,13 @@ def GetEstimatorParams(n_jobs, scheme):
         'leaf_config_dict': ["arithmetic_transformer","transformers","selectors","passthrough","feature_set_selector"]
         }
 
-    if scheme is 'lexicase':
+    if scheme == 'lexicase':
         params.update({'parent_selector': tpot2.selectors.lexicase_selection})
-    elif scheme is 'tournament':
+    elif scheme == 'tournament':
         params.update({'parent_selector': tpot2.selectors.tournament_selection})
-    elif scheme is 'nsga-ii':
+    elif scheme == 'nsga-ii':
         params.update({'parent_selector': tpot2.selectors.survival_select_NSGA2})
-    elif scheme is 'random':
+    elif scheme == 'random':
         params.update({'parent_selector': tpot2.selectors.random_selector})
     else:
         sys.exit('UTILS: INVALID SCHEME TO RUN')
