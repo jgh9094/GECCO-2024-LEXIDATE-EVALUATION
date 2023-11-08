@@ -18,6 +18,6 @@ pip install -e /home/hernandezj45/Repos/GECCO-2024-TPOT2-Selection-Objectives/tp
 
 python /home/hernandezj45/Repos/GECCO-2024-TPOT2-Selection-Objectives/Source/main.py \
 --n_jobs 10 \
---savepath /home/hernandezj45/Repos/GECCO-2024-TPOT2-Selection-Objectives/Experiments/Lexicase/Results/ \
+--savepath /home/hernandezj45/Repos/GECCO-2024-TPOT2-Selection-Objectives/Experiments/Lexicase/Results \
 --num_reps 10 \
 --sel_scheme 0 \
