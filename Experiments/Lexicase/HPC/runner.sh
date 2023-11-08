@@ -17,7 +17,7 @@ conda activate tpot2-env
 pip install -e /home/hernandezj45/Repos/GECCO-2024-TPOT2-Selection-Objectives/tpot2/
 
 python /home/hernandezj45/Repos/GECCO-2024-TPOT2-Selection-Objectives/Source/main.py \
---n_jobs 10 \
+--n_jobs 20 \
 --savepath /home/hernandezj45/Repos/GECCO-2024-TPOT2-Selection-Objectives/Experiments/Lexicase/Results \
 --num_reps 10 \
 --sel_scheme 0 \
