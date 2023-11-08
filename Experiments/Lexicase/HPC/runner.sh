@@ -2,7 +2,7 @@
 
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=10
+#SBATCH --cpus-per-task=20
 #SBATCH -t 100:00:00
 #SBATCH --mem=0
 #SBATCH --job-name=jgh-lex
