@@ -8,17 +8,16 @@
 #SBATCH --job-name=jgh-lex
 #SBATCH -p defq,moore
 #SBATCH --exclude=esplhpc-cp040
-
 #SBATCH -o ./logs/output.%j.out # STDOUT
 
 source /home/hernandezj45/anaconda3/etc/profile.d/conda.sh
 conda activate tpot2-env
-pip install -e ../../../tpot2/
+pip install -e /home/hernandezj45/Repos/GECCO-2024-TPOT2-Selection-Objectives/tpot2/
 
 echo 'HELLO WORLD'
 
-srun -u python ../../../Source/main.py \
+python /home/hernandezj45/Repos/GECCO-2024-TPOT2-Selection-Objectives/Source/main.py \
 --n_jobs 10 \
---savepath ../Results/ \
+--savepath /home/hernandezj45/Repos/GECCO-2024-TPOT2-Selection-Objectives/Experiments/Lexicase/Results/ \
 --num_reps 10 \
 --sel_scheme 0 \
