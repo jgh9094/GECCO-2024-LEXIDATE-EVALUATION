@@ -191,9 +191,9 @@ def loop_through_tasks(scheme, task_id_lists, save_dir, num_reps, n_jobs):
                 select_objective.__name__ = 'sel-obj'
                 est_params.update({'selection_objectives_functions': [select_objective],'selection_objective_functions_weights': [1] * (len(X_select))})
 
-                print('PARAMS DICTIONARY:')
-                for k,v in est_params.items():
-                    print(k,':',v)
+                # print('PARAMS DICTIONARY:')
+                # for k,v in est_params.items():
+                #     print(k,':',v)
 
                 print("ESTIMATOR FITTING")
                 est = tpot2.TPOTEstimator(**est_params)
