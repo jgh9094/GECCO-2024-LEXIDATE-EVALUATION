@@ -17,7 +17,7 @@ pip install -e ../../../tpot2/
 
 echo 'HELLO WORLD'
 
-python ../../../Source/main.py \
+srun -u python ../../../Source/main.py \
 --n_jobs 10 \
 --savepath ../Results/ \
 --num_reps 10 \
