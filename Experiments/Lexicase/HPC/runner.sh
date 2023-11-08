@@ -8,7 +8,9 @@
 #SBATCH --job-name=jgh-lex
 #SBATCH -p defq,moore
 #SBATCH --exclude=esplhpc-cp040
-#SBATCH -o ./logs/output.%j.out # STDOUT
+#SBATCH -o ./out_tpot_entire
+#SBATCH -e ./err_tpot_entire
+
 
 source /home/hernandezj45/anaconda3/etc/profile.d/conda.sh
 conda activate tpot2-env
