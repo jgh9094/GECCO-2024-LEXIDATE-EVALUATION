@@ -218,17 +218,20 @@ def loop_through_tasks(scheme, task_id_lists, save_dir, num_reps, n_jobs):
                 all_scores["duration"] = duration
                 all_scores["seed"] = seed
 
+                print('CREATING SAVE FOLDER')
                 os.makedirs(save_folder)
 
+                print('SAVING: EVALUATION_INDIVIDUALS.PKL')
                 if type(est) is tpot2.TPOTClassifier or type(est) is tpot2.TPOTEstimator or type(est) is  tpot2.TPOTEstimatorSteadyState:
                     with open(f"{save_folder}/evaluated_individuals.pkl", "wb") as f:
                         pickle.dump(est.evaluated_individuals, f)
 
-
+                print('SAVING:FITTED_PIPELINES.PKL')
                 with open(f"{save_folder}/fitted_pipeline.pkl", "wb") as f:
                     pickle.dump(est.fitted_pipeline_, f)
 
 
+                print('SAVING:SCORES.PKL')
                 with open(f"{save_folder}/scores.pkl", "wb") as f:
                     pickle.dump(all_scores, f)
 
