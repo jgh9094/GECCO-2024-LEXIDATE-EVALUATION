@@ -15,7 +15,7 @@ source /home/hernandezj45/anaconda3/etc/profile.d/conda.sh
 conda activate tpot2-env
 pip install -e ../../../tpot2/
 
-python ../../../Source/main.py \
+srun -u python ../../../Source/main.py \
 --n_jobs 10 \
 --savepath ../Results/ \
 --num_reps 10 \
