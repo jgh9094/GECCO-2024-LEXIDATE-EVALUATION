@@ -42,7 +42,7 @@ def GetEstimatorParams(n_jobs, scheme):
         'other_objective_functions_weights':[],
 
         # evolutionary algorithm params
-        'population_size' : 10,
+        'population_size' : 50,
         'generations' : 100,
         'n_jobs':n_jobs,
         'survival_selector' :None,
