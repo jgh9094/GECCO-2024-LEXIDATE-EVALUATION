@@ -160,7 +160,7 @@ def loop_through_tasks(scheme, task_id_lists, save_dir, num_reps, n_jobs):
     for taskid in task_id_lists:
         for run in range(num_reps):
             seed = run
-            save_folder = f"{save_dir}/{scheme}/{taskid}/{seed}"
+            save_folder = f"{save_dir}/{taskid}-{seed}"
             # time.sleep(random.random()*5)
             if os.path.exists(save_folder):
                 continue
@@ -235,7 +235,7 @@ def loop_through_tasks(scheme, task_id_lists, save_dir, num_reps, n_jobs):
                 with open(f"{save_folder}/scores.pkl", "wb") as f:
                     pickle.dump(all_scores, f)
 
-                return
+                # return
             except Exception as e:
                 trace =  traceback.format_exc()
                 pipeline_failure_dict = {"taskid": taskid, "selection": scheme, "seed": seed, "error": str(e), "trace": trace}
@@ -247,6 +247,6 @@ def loop_through_tasks(scheme, task_id_lists, save_dir, num_reps, n_jobs):
                 with open(f"{save_folder}/failed.pkl", "wb") as f:
                     pickle.dump(pipeline_failure_dict, f)
 
-                return
+                # return
 
     print("all finished")
