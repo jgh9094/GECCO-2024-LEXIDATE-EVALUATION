@@ -42,11 +42,11 @@ def GetEstimatorParams(n_jobs, scheme):
         'other_objective_functions_weights':[],
 
         # evolutionary algorithm params
-        'population_size' : 50,
+        'population_size' : 10,
         'generations' : 100,
         'n_jobs':n_jobs,
         'survival_selector' :None,
-        'max_size': 7,
+        'max_size': 5,
 
         # offspring variation params
         'mutate_probability': 1.0,
@@ -55,11 +55,11 @@ def GetEstimatorParams(n_jobs, scheme):
         'mutate_then_crossover_probability': 0.0,
 
         # estimator params
-        'memory_limit':"25GB",
+        'memory_limit':"10GB",
         'preprocessing':False,
         'classification' : True,
         'verbose':5,
-        'max_eval_time_seconds':60*5,
+        'max_eval_time_seconds':60*30,
         'random_state': None,
 
         # pipeline dictionaries
@@ -190,10 +190,6 @@ def loop_through_tasks(scheme, task_id_lists, save_dir, num_reps, n_jobs):
                 select_objective = partial(SelectionObjectives,X=X_learn,y=y_learn,X_select=X_select,y_select=y_select,classification=classification)
                 select_objective.__name__ = 'sel-obj'
                 est_params.update({'selection_objectives_functions': [select_objective],'selection_objective_functions_weights': [1] * (len(X_select))})
-
-                # print('PARAMS DICTIONARY:')
-                # for k,v in est_params.items():
-                #     print(k,':',v)
 
                 est = tpot2.TPOTEstimator(**est_params)
 
