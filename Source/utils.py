@@ -195,12 +195,12 @@ def loop_through_tasks(scheme, task_id_lists, save_dir, num_reps, n_jobs):
                 # for k,v in est_params.items():
                 #     print(k,':',v)
 
-                print("ESTIMATOR FITTING")
                 est = tpot2.TPOTEstimator(**est_params)
-                print("ESTIMATOR FITTING COMPLETE")
 
                 start = time.time()
+                print("ESTIMATOR FITTING")
                 est.fit(X_train, y_train)
+                print("ESTIMATOR FITTING COMPLETE")
                 duration = time.time() - start
 
                 train_score = score(est, X_train, y_train)
