@@ -231,6 +231,10 @@ def loop_through_tasks(scheme, task_id_lists, save_dir, num_reps, n_jobs):
                 with open(f"{save_folder}/scores.pkl", "wb") as f:
                     pickle.dump(all_scores, f)
 
+                print('SAVING: DATA.CSV')
+                with open(f"{save_folder}/data.pkl", "wb") as f:
+                    pickle.dump(est._evolver_instance.data_df, f)
+
                 # return
             except Exception as e:
                 trace =  traceback.format_exc()
