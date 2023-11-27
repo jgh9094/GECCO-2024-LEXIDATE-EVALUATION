@@ -2,7 +2,7 @@
 
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=20
+#SBATCH --cpus-per-task=16
 #SBATCH -t 240:00:00
 #SBATCH --mem=0
 #SBATCH --job-name=jgh-ran
@@ -16,7 +16,7 @@ conda activate tpot2-env
 pip install -e /home/hernandezj45/Repos/GECCO-2024-TPOT2-Selection-Objectives/tpot2/
 
 python /home/hernandezj45/Repos/GECCO-2024-TPOT2-Selection-Objectives/Source/main.py \
---n_jobs 20 \
+--n_jobs 16 \
 --savepath /home/hernandezj45/Repos/GECCO-2024-TPOT2-Selection-Objectives/Experiments/Random/Results \
 --num_reps 10 \
 --sel_scheme 3 \
