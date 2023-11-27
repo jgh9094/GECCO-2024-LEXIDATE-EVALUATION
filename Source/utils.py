@@ -9,12 +9,10 @@ import traceback
 import dill as pickle
 import os
 import time
-#import tpot
 import openml
 import tpot2
 import numpy as np
 import time
-import random
 import sklearn.model_selection
 import sys
 from functools import partial
@@ -55,7 +53,7 @@ def GetEstimatorParams(n_jobs, scheme):
         'mutate_then_crossover_probability': 0.0,
 
         # estimator params
-        'memory_limit':"35GB",
+        'memory_limit':"50GB",
         'preprocessing':False,
         'classification' : True,
         'verbose':5,
