@@ -19,4 +19,4 @@ python /home/hernandezj45/Repos/GECCO-2024-TPOT2-Selection-Objectives/Source/mai
 --n_jobs 16 \
 --savepath /home/hernandezj45/Repos/GECCO-2024-TPOT2-Selection-Objectives/Experiments/Random/Results \
 --num_reps 10 \
---sel_scheme 3 \
+--sel_scheme 2 \
