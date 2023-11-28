@@ -70,8 +70,6 @@ def GetEstimatorParams(n_jobs, scheme):
         params.update({'parent_selector': tpot2.selectors.lexicase_selection})
     elif scheme == 'tournament':
         params.update({'parent_selector': tpot2.selectors.tournament_selection})
-    elif scheme == 'nsga-ii':
-        params.update({'parent_selector': tpot2.selectors.survival_select_NSGA2})
     elif scheme == 'random':
         params.update({'parent_selector': tpot2.selectors.random_selector})
     else:
@@ -104,6 +102,16 @@ def score(est, X, y):
             "balanced_accuracy": this_balanced_accuracy_score,
             "logloss": this_logloss,
     }
+
+def SchemeSeedOffset(scheme):
+    if scheme == 'lexicase':
+        return 0
+    elif scheme == 'tournament':
+        return 500
+    elif scheme == 'random':
+        return 1000
+    else:
+        sys.exit('UTILS: INVALID SCHEME TO RUN')
 
 #https://github.com/automl/ASKL2.0_experiments/blob/84a9c0b3af8f7ac6e2a003d4dea5e6dce97d4315/experiment_scripts/utils.py
 def load_task(task_id, preprocess=True):
@@ -154,7 +162,7 @@ def loop_through_tasks(scheme, task_id_lists, save_dir, num_reps, n_jobs):
     # what scheme are we doing?
     est_params = GetEstimatorParams(n_jobs,scheme)
     classification = True
-    seed = 0
+    seed = SchemeSeedOffset(scheme)
 
     for taskid in task_id_lists:
         for run in range(num_reps):
