@@ -154,13 +154,13 @@ def loop_through_tasks(scheme, task_id_lists, save_dir, num_reps, n_jobs):
     # what scheme are we doing?
     est_params = GetEstimatorParams(n_jobs,scheme)
     classification = True
+    seed = 0
 
     for taskid in task_id_lists:
         for run in range(num_reps):
-            seed = run
             save_folder = f"{save_dir}/{taskid}-{seed}"
-            # time.sleep(random.random()*5)
             if os.path.exists(save_folder):
+                seed += 1
                 continue
 
             print('WORKING ON:',save_folder)
@@ -188,6 +188,7 @@ def loop_through_tasks(scheme, task_id_lists, save_dir, num_reps, n_jobs):
                 select_objective = partial(SelectionObjectives,X=X_learn,y=y_learn,X_select=X_select,y_select=y_select,classification=classification)
                 select_objective.__name__ = 'sel-obj'
                 est_params.update({'selection_objectives_functions': [select_objective],'selection_objective_functions_weights': [1] * (len(X_select))})
+                est_params.update({'random_state': seed})
 
                 est = tpot2.TPOTEstimator(**est_params)
 
@@ -195,6 +196,7 @@ def loop_through_tasks(scheme, task_id_lists, save_dir, num_reps, n_jobs):
                 print("ESTIMATOR FITTING")
                 est.fit(X_train, y_train)
                 print("ESTIMATOR FITTING COMPLETE")
+                print('SEED:', seed)
                 duration = time.time() - start
 
                 train_score = score(est, X_train, y_train)
@@ -247,5 +249,7 @@ def loop_through_tasks(scheme, task_id_lists, save_dir, num_reps, n_jobs):
                     pickle.dump(pipeline_failure_dict, f)
 
                 # return
+
+        seed += 1
 
     print("all finished")
