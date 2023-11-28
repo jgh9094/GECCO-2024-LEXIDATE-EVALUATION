@@ -202,9 +202,9 @@ def loop_through_tasks(scheme, task_id_lists, save_dir, num_reps, n_jobs):
 
                 start = time.time()
                 print("ESTIMATOR FITTING")
+                print('SEED:', seed)
                 est.fit(X_train, y_train)
                 print("ESTIMATOR FITTING COMPLETE")
-                print('SEED:', seed)
                 duration = time.time() - start
 
                 train_score = score(est, X_train, y_train)
