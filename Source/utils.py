@@ -175,7 +175,7 @@ def loop_through_tasks(scheme, task_id_lists, save_dir, num_reps, n_jobs):
 
             try:
 
-                est_params.update({'cv': sklearn.model_selection.StratifiedKFold(n_splits=10, shuffle=True, random_state=None)})
+                est_params.update({'cv': sklearn.model_selection.StratifiedKFold(n_splits=10, shuffle=True, random_state=seed)})
                 print("LOADING DATA")
                 X_train, y_train, X_test, y_test = load_task(taskid, preprocess=True)
 
