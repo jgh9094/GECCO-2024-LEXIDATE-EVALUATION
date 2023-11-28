@@ -235,6 +235,7 @@ def loop_through_tasks(scheme, task_id_lists, save_dir, num_reps, n_jobs):
 
                 # return
             except Exception as e:
+                os.makedirs(save_folder)
                 trace =  traceback.format_exc()
                 pipeline_failure_dict = {"taskid": taskid, "selection": scheme, "seed": seed, "error": str(e), "trace": trace}
                 print("failed on ")
