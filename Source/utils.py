@@ -258,6 +258,6 @@ def loop_through_tasks(scheme, task_id_lists, save_dir, num_reps, n_jobs):
 
                 # return
 
-        seed += 1
+            seed += 1
 
     print("all finished")
