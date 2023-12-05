@@ -34,14 +34,14 @@ def GetEstimatorParams(n_jobs, scheme):
     # return dictionary based on selection scheme we are using
     params = {
         # evaluation criteria
-        'scorers': ['neg_log_loss','roc_auc_ovo',tpot2.objectives.complexity_scorer],
-        'scorers_weights':[1,1,-1],
+        'scorers': ['neg_log_loss','roc_auc_ovo','accuracy',tpot2.objectives.complexity_scorer],
+        'scorers_weights':[1,1.1,-1],
         'other_objective_functions':[],
         'other_objective_functions_weights':[],
 
         # evolutionary algorithm params
-        'population_size' : 50,
-        'generations' : 100,
+        'population_size' : 64,
+        'generations' : 256,
         'n_jobs':n_jobs,
         'survival_selector' :None,
         'max_size': 5,
@@ -177,9 +177,6 @@ def loop_through_tasks(scheme, task_id_lists, save_dir, num_reps, n_jobs):
                 est_params.update({'cv': sklearn.model_selection.StratifiedKFold(n_splits=10, shuffle=True, random_state=seed)})
                 print("LOADING DATA")
                 X_train, y_train, X_test, y_test = load_task(taskid, preprocess=True)
-
-                # selection objectives
-                print('SELECTION OBJECTIVES')
 
                 # split data according to traning and testing type
                 selection_portion = 0.1
