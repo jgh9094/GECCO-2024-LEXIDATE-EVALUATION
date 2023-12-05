@@ -4,8 +4,9 @@
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=24
 #SBATCH -t 240:00:00
-#SBATCH --mem=0
+#SBATCH --mem=1000GB
 #SBATCH --job-name=jgh-tor
+#SBATCH --exclusive
 #SBATCH -p defq,moore
 #SBATCH --exclude=esplhpc-cp040
 
