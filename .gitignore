@@ -2,3 +2,4 @@ Experiments/*/Results
 Experiments/*/HPC/slurm-*
 Experiments/*/HPC/data
 Source/debug.py
+Source/runner.sh
