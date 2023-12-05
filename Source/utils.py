@@ -35,7 +35,7 @@ def GetEstimatorParams(n_jobs, scheme):
     params = {
         # evaluation criteria
         'scorers': ['neg_log_loss','roc_auc_ovo','accuracy',tpot2.objectives.complexity_scorer],
-        'scorers_weights':[1,1.1,-1],
+        'scorers_weights':[1,1,1,-1],
         'other_objective_functions':[],
         'other_objective_functions_weights':[],
 
