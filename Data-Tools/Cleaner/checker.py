@@ -5,6 +5,16 @@ import pickle as pkl
 
 GENERATIONS = 256
 
+def SchemeSeedOffset(scheme):
+    if scheme == 0:
+        return 0
+    elif scheme == 1:
+        return 500
+    elif scheme == 2:
+        return 1000
+    else:
+        sys.exit('UTILS: INVALID SCHEME TO RUN')
+
 def main():
     # read in arguements
     parser = argparse.ArgumentParser()
@@ -19,6 +29,7 @@ def main():
     data_dir = args.data_dir
     num_reps = int(args.num_reps)
     scheme = int(args.scheme)
+    seed = SchemeSeedOffset(scheme=scheme)
 
     selection_dir = ['/Lexicase/Results/','/Tournament/Results/','/Random/Results/'][scheme]
     print('SELECTION DIR:',selection_dir)
@@ -31,10 +42,11 @@ def main():
     for task_pos, task in enumerate(task_id_lists):
         task_limit = False
         for rep in range(num_reps):
-            dir = data_dir + selection_dir + str(task) + '-' + str(rep) + '/'
+            dir = data_dir + selection_dir + str(task) + '-' + str(rep + seed + (task_pos * num_reps)) + '/'
 
-            # check if we made it to this new task at all
-            if rep == 0 and (os.path.isdir(dir) is False):
+            # whats the lastest folder we made it to
+            if os.path.isdir(dir) is False:
+                print('REPS:',dir)
                 task_limit = True
                 break
 
