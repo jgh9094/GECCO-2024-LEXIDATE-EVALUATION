@@ -1,5 +1,5 @@
 #!/bin/bash
-########## Define Resources Needed with SBATCH Lines ##########
+
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
@@ -33,13 +33,13 @@ SELECTION_SCHEME_RANDOM=3
 
 # what are we checking
 
-if [ ${SLURM_ARRAY_TASK_ID} -eq ${SELECTION__SCHEME__TRUN__MIN} ] ; then
+if [ ${SLURM_ARRAY_TASK_ID} -eq ${SELECTION_SCHEME_LEXICASE} ] ; then
   SELECTION=0
 
-elif [ ${SLURM_ARRAY_TASK_ID} -eq ${SELECTION__SCHEME__TOUR__MIN} ] ; then
+elif [ ${SLURM_ARRAY_TASK_ID} -eq ${SELECTION_SCHEME_TOURNAMENT} ] ; then
   SELECTION=1
 
-elif [ ${SLURM_ARRAY_TASK_ID} -eq ${SELECTION__SCHEME__FITG__MIN} ] ; then
+elif [ ${SLURM_ARRAY_TASK_ID} -eq ${SELECTION_SCHEME_RANDOM} ] ; then
   SELECTION=2
 
 else
@@ -53,4 +53,4 @@ NUM_REPS=10
 python /home/hernandezj45/Repos/GECCO-2024-TPOT2-Selection-Objectives/Data-Tools/Cleaner/checker.py \
 --data_dir ${DATA_DIR} \
 --num_reps ${NUM_REPS} \
---scheme ${SELECTION}
+--scheme ${SELECTION} \
