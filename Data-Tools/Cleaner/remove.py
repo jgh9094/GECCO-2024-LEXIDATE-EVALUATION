@@ -54,7 +54,7 @@ def main():
             failed_pkl = dir + 'failed.pkl'
             if os.path.exists(failed_pkl):
                 print(dir,': FAILED.PKL')
-                # shutil.rmtree(dir)
+                shutil.rmtree(dir)
 
 
         if task_limit:
@@ -63,4 +63,4 @@ def main():
 
 if __name__ == '__main__':
     main()
-    print('FINISHED CHECKING RUNS')
+    print('FINISHED REMOVING RUN DIRS')
