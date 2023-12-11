@@ -53,11 +53,12 @@ def GetEstimatorParams(n_jobs, scheme):
         'mutate_then_crossover_probability': 0.0,
 
         # estimator params
-        'memory_limit':"50GB",
+        'memory_limit':0,
         'preprocessing':False,
         'classification' : True,
         'verbose':5,
-        'max_eval_time_seconds':60*60,
+        'max_eval_time_seconds':60*60*60,
+        'max_time_seconds': float("inf"),
 
         # pipeline dictionaries
         'root_config_dict': "classifiers",
