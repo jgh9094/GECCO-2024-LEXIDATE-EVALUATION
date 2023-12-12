@@ -2,7 +2,7 @@ import tpot2
 import sklearn.metrics
 import sklearn
 import argparse
-import utils
+import utils_base
 import sys
 
 def main():
@@ -31,7 +31,7 @@ def main():
     # task_id_lists = [359990, 360112, 189354, 7593, 189843, 273, 359960, 189836, 75127, 168796, 167181, 75193, 168794, 189871, 189873, 189874, 189908, 189909,]
     task_id_lists = [167104, 167184, 167168, 167161, 167185, 189905, 167152, 167181, 189906, 189862, 167149, 189865, 167190, 189861, 189872, 168794, 189871, 168796, 168797, 75097, 126026, 189909, 126029, 126025, 75105, 168793, 189874, 167201, 189908, 189860, 168792, 167083, 167200, 168798, 189873, 189866, 75127, 75193]
 
-    utils.loop_through_tasks(scheme, task_id_lists, save_dir, num_reps, n_jobs)
+    utils_base.loop_through_tasks(scheme, task_id_lists, save_dir, num_reps, n_jobs)
 
 
 if __name__ == '__main__':
