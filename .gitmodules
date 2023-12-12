@@ -2,3 +2,8 @@
 	path = tpot2
 	url = https://github.com/jgh9094/tpot2.git
 	branch = selection-objectives
+
+[submodule "tpot2-base"]
+	path = tpot2-base
+	url = https://github.com/jgh9094/tpot2.git
+	branch = selection-objectives-base
