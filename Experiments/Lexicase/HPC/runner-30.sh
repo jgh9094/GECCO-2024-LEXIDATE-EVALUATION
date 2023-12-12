@@ -11,7 +11,7 @@
 #SBATCH --exclude=esplhpc-cp040
 
 SAVE_DIR=/home/hernandezj45/Repos/GECCO-2024-TPOT2-Selection-Objectives/Results/30/Lexicase
-mkdir ${SAVE_DIR}
+mkdir -p ${SAVE_DIR}
 
 source /home/hernandezj45/anaconda3/etc/profile.d/conda.sh
 conda activate tpot2-env-3.9
