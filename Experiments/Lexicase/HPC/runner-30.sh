@@ -19,7 +19,7 @@ mkdir -p ${DATA_DIR}
 
 python /home/hernandezj45/Repos/GECCO-2024-TPOT2-Selection-Objectives/Source/main-sel-obj.py \
 --n_jobs 48 \
---savepath ${SAVE_DIR} \
+--savepath ${DATA_DIR} \
 --num_reps 10 \
 --sel_scheme 0 \
 --proportion .30 \
