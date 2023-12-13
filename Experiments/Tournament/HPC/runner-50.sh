@@ -10,12 +10,12 @@
 #SBATCH -p defq,moore
 #SBATCH --exclude=esplhpc-cp040
 
-SAVE_DIR=/home/hernandezj45/Repos/GECCO-2024-TPOT2-Selection-Objectives/Results/50/Tournament
-mkdir -p ${SAVE_DIR}
-
 source /home/hernandezj45/anaconda3/etc/profile.d/conda.sh
 conda activate tpot2-env-3.9
 pip install -e /home/hernandezj45/Repos/GECCO-2024-TPOT2-Selection-Objectives/tpot2/
+
+SAVE_DIR=/home/hernandezj45/Repos/GECCO-2024-TPOT2-Selection-Objectives/Results_1/50/Tournament
+mkdir -p ${SAVE_DIR}
 
 python /home/hernandezj45/Repos/GECCO-2024-TPOT2-Selection-Objectives/Source/main-sel-obj.py \
 --n_jobs 48 \

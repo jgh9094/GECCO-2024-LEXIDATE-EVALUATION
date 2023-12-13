@@ -27,8 +27,8 @@ def GetEstimatorParams(n_jobs):
         'other_objective_functions_weights':[],
 
         # evolutionary algorithm params
-        'population_size' : 64,
-        'generations' : 256,
+        'population_size' : 48,
+        'generations' : 200,
         'n_jobs':n_jobs,
         'max_size': 5,
 
@@ -47,7 +47,7 @@ def GetEstimatorParams(n_jobs):
         'preprocessing':False,
         'classification' : True,
         'verbose':5,
-        'max_eval_time_seconds':60*60*60,
+        'max_eval_time_seconds':60*30,
         'max_time_seconds': float("inf"),
 
         # pipeline dictionaries
