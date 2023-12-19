@@ -7,3 +7,7 @@
 	path = tpot2-base
 	url = https://github.com/jgh9094/tpot2.git
 	branch = selection-objectives-base
+[submodule "tpot2-sel-obj"]
+	path = tpot2-sel-obj
+	url = https://github.com/jgh9094/tpot2.git
+	branch = selection-objectives
