@@ -2,26 +2,19 @@ import openml
 import tpot2
 import sklearn.metrics
 import sklearn
-from sklearn.metrics import (roc_auc_score, roc_curve, precision_score, auc, recall_score, precision_recall_curve, \
-                             roc_auc_score, accuracy_score, balanced_accuracy_score, f1_score, log_loss,
-                             f1_score)
+from sklearn.metrics import (roc_auc_score, log_loss)
 import traceback
 import dill as pickle
 import os
 import time
-import openml
-import tpot2
 import numpy as np
-import time
 import sklearn.model_selection
-import sys
 from functools import partial
 
 # generate scores for selection schemes to use
 def SelectionObjectives(est,X,y,X_select,y_select,classification):
     # fit model
     est.fit(X,y)
-    scores = []
 
     if classification:
         return list(est.predict(X_select) == y_select)
@@ -30,21 +23,32 @@ def SelectionObjectives(est,X,y,X_select,y_select,classification):
         # regression: wanna minimize the distance between them
         return list(np.absolute(y_select - est.predict(X_select)))
 
-def GetEstimatorParams(n_jobs, scheme):
+# generate scores for selection schemes to use
+def SelectionObjectivesAccuracy(est,X,y,X_select,y_select,classification):
+    # fit model
+    est.fit(X,y)
+
+    if classification:
+        return [float(sum(list(est.predict(X_select) == y_select))) / float(len(y_select))]
+
+    else:
+        # regression: wanna minimize the distance between them
+        return list(np.absolute(y_select - est.predict(X_select)))
+
+def GetEstimatorParams(n_jobs):
     # return dictionary based on selection scheme we are using
     params = {
         # evaluation criteria
-        'scorers': ['neg_log_loss','roc_auc_ovo','accuracy',tpot2.objectives.complexity_scorer],
-        'scorers_weights':[1,1,1,-1],
-        'other_objective_functions':[],
-        'other_objective_functions_weights':[],
+        'scorers': [tpot2.objectives.complexity_scorer],
+        'scorers_weights':[-1],
 
         # evolutionary algorithm params
         'population_size' : 48,
         'generations' : 200,
         'n_jobs':n_jobs,
         'survival_selector' :None,
-        'max_size': 5,
+        'max_size': 10,
+        'parent_selector': tpot2.selectors.lexicase_selection,
 
         # offspring variation params
         'mutate_probability': 1.0,
@@ -63,17 +67,8 @@ def GetEstimatorParams(n_jobs, scheme):
         # pipeline dictionaries
         'root_config_dict': "classifiers",
         'inner_config_dict': ["arithmetic_transformer","transformers","selectors","passthrough"],
-        'leaf_config_dict': ["arithmetic_transformer","transformers","selectors","passthrough","feature_set_selector"]
+        'leaf_config_dict': ["arithmetic_transformer","transformers","selectors","passthrough"]
         }
-
-    if scheme == 'lexicase':
-        params.update({'parent_selector': tpot2.selectors.lexicase_selection})
-    elif scheme == 'tournament':
-        params.update({'parent_selector': tpot2.selectors.tournament_selection})
-    elif scheme == 'random':
-        params.update({'parent_selector': tpot2.selectors.random_selector})
-    else:
-        sys.exit('UTILS: INVALID SCHEME TO RUN')
 
     return params
 
@@ -150,18 +145,20 @@ def load_task(task_id, preprocess=True):
 
 def loop_through_tasks(scheme, task_id_lists, save_dir, num_reps, n_jobs,proportion, seed_offset):
     # what scheme are we doing?
-    est_params = GetEstimatorParams(n_jobs,scheme)
+    est_params = GetEstimatorParams(n_jobs)
     classification = True
     seed = seed_offset
 
     for taskid in task_id_lists:
         for run in range(num_reps):
             save_folder = f"{save_dir}/{taskid}-{seed}"
-            if os.path.exists(save_folder):
+            if not os.path.exists(save_folder):
+                print('CREATING FOLDER:', save_folder)
+                os.makedirs(save_folder)
+            else:
                 seed += 1
                 continue
 
-            print('WORKING ON:',save_folder)
             print('PROPORTION:',proportion)
 
             try:
@@ -186,12 +183,17 @@ def loop_through_tasks(scheme, task_id_lists, save_dir, num_reps, n_jobs,proport
                 est_params.update({'selection_objectives_functions': [select_objective],'selection_objective_functions_weights': [1] * (len(X_select))})
                 est_params.update({'random_state': seed})
 
+                # raw accuracy to filter population in the end
+                select_objective_acc = partial(SelectionObjectivesAccuracy,X=X_learn,y=y_learn,X_select=X_select,y_select=y_select,classification=classification)
+                select_objective_acc.__name__ = 'obj-acc'
+                est_params.update({'other_objective_functions': [select_objective_acc],'other_objective_functions_weights': [2]})
+
                 est = tpot2.TPOTEstimator(**est_params)
 
                 start = time.time()
                 print("ESTIMATOR FITTING")
                 print('SEED:', seed)
-                est.fit(X_train, y_train)
+                est.fit(X_learn, y_learn, X_train, y_train)
                 print("ESTIMATOR FITTING COMPLETE")
                 duration = time.time() - start
 
@@ -209,9 +211,6 @@ def loop_through_tasks(scheme, task_id_lists, save_dir, num_reps, n_jobs,proport
                 all_scores["selection"] = scheme
                 all_scores["duration"] = duration
                 all_scores["seed"] = seed
-
-                print('CREATING SAVE FOLDER')
-                os.makedirs(save_folder)
 
                 print('SAVING: EVALUATION_INDIVIDUALS.PKL')
                 if type(est) is tpot2.TPOTClassifier or type(est) is tpot2.TPOTEstimator or type(est) is  tpot2.TPOTEstimatorSteadyState:
@@ -231,9 +230,7 @@ def loop_through_tasks(scheme, task_id_lists, save_dir, num_reps, n_jobs,proport
                 with open(f"{save_folder}/data.pkl", "wb") as f:
                     pickle.dump(est._evolver_instance.data_df, f)
 
-                # return
             except Exception as e:
-                os.makedirs(save_folder)
                 trace =  traceback.format_exc()
                 pipeline_failure_dict = {"taskid": taskid, "selection": scheme, "seed": seed, "error": str(e), "trace": trace}
                 print("failed on ")
@@ -244,7 +241,6 @@ def loop_through_tasks(scheme, task_id_lists, save_dir, num_reps, n_jobs,proport
                 with open(f"{save_folder}/failed.pkl", "wb") as f:
                     pickle.dump(pipeline_failure_dict, f)
 
-                # return
 
             seed += 1
 
