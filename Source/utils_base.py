@@ -2,27 +2,20 @@ import openml
 import tpot2
 import sklearn.metrics
 import sklearn
-from sklearn.metrics import (roc_auc_score, roc_curve, precision_score, auc, recall_score, precision_recall_curve, \
-                             roc_auc_score, accuracy_score, balanced_accuracy_score, f1_score, log_loss,
-                             f1_score)
+from sklearn.metrics import (roc_auc_score, log_loss)
 import traceback
 import dill as pickle
 import os
 import time
-import openml
-import tpot2
 import numpy as np
-import time
 import sklearn.model_selection
-import sys
-from functools import partial
 
 def GetEstimatorParams(n_jobs):
     # return dictionary based on selection scheme we are using
     params = {
         # evaluation criteria
-        'scorers': ['neg_log_loss','roc_auc_ovo','accuracy',tpot2.objectives.complexity_scorer],
-        'scorers_weights':[1,1,1,-1],
+        'scorers': ['accuracy',tpot2.objectives.complexity_scorer],
+        'scorers_weights':[1,-1],
         'other_objective_functions':[],
         'other_objective_functions_weights':[],
 
@@ -30,7 +23,7 @@ def GetEstimatorParams(n_jobs):
         'population_size' : 48,
         'generations' : 200,
         'n_jobs':n_jobs,
-        'max_size': 5,
+        'max_size': 10,
 
         # offspring variation params
         'mutate_probability': 1.0,
@@ -53,7 +46,7 @@ def GetEstimatorParams(n_jobs):
         # pipeline dictionaries
         'root_config_dict': "classifiers",
         'inner_config_dict': ["arithmetic_transformer","transformers","selectors","passthrough"],
-        'leaf_config_dict': ["arithmetic_transformer","transformers","selectors","passthrough","feature_set_selector"]
+        'leaf_config_dict': ["arithmetic_transformer","transformers","selectors","passthrough"]
         }
 
     return params
@@ -130,19 +123,19 @@ def load_task(task_id, preprocess=True):
     return X_train, y_train, X_test, y_test
 
 def loop_through_tasks(scheme, task_id_lists, save_dir, num_reps, n_jobs):
-    # what scheme are we doing?
+    
     est_params = GetEstimatorParams(n_jobs)
-    classification = True
-    seed = 1500
+    seed = 0
 
     for taskid in task_id_lists:
         for run in range(num_reps):
             save_folder = f"{save_dir}/{taskid}-{seed}"
-            if os.path.exists(save_folder):
+            if not os.path.exists(save_folder):
+                print('CREATING FOLDER:', save_folder)
+                os.makedirs(save_folder)
+            else:
                 seed += 1
                 continue
-
-            print('WORKING ON:',save_folder)
 
             try:
 
@@ -175,9 +168,6 @@ def loop_through_tasks(scheme, task_id_lists, save_dir, num_reps, n_jobs):
                 all_scores["duration"] = duration
                 all_scores["seed"] = seed
 
-                print('CREATING SAVE FOLDER')
-                os.makedirs(save_folder)
-
                 print('SAVING: EVALUATION_INDIVIDUALS.PKL')
                 if type(est) is tpot2.TPOTClassifier or type(est) is tpot2.TPOTEstimator or type(est) is  tpot2.TPOTEstimatorSteadyState:
                     with open(f"{save_folder}/evaluated_individuals.pkl", "wb") as f:
@@ -196,9 +186,7 @@ def loop_through_tasks(scheme, task_id_lists, save_dir, num_reps, n_jobs):
                 with open(f"{save_folder}/data.pkl", "wb") as f:
                     pickle.dump(est._evolver_instance.data_df, f)
 
-                # return
             except Exception as e:
-                os.makedirs(save_folder)
                 trace =  traceback.format_exc()
                 pipeline_failure_dict = {"taskid": taskid, "selection": scheme, "seed": seed, "error": str(e), "trace": trace}
                 print("failed on ")
@@ -208,8 +196,6 @@ def loop_through_tasks(scheme, task_id_lists, save_dir, num_reps, n_jobs):
 
                 with open(f"{save_folder}/failed.pkl", "wb") as f:
                     pickle.dump(pipeline_failure_dict, f)
-
-                # return
 
             seed += 1
 
