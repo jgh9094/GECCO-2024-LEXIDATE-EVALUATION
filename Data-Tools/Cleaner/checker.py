@@ -9,11 +9,11 @@ def ExperimentDir(exp):
     if exp == 0:
         return 'Base/'
     elif exp == 1:
-        return '10/'
+        return '10/Lexicase/'
     elif exp == 2:
-        return '30/'
+        return '30/Lexicase/'
     elif exp == 3:
-        return '50/'
+        return '50/Lexicase/'
     else:
         sys.exit('UTILS: INVALID EXPERIMENT DIR TO FIND')
 
