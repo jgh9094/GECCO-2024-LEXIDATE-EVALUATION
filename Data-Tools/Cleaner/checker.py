@@ -7,7 +7,7 @@ GENERATIONS = 256
 
 def ExperimentDir(exp):
     if exp == 0:
-        return 'BASE/'
+        return 'Base/'
     elif exp == 1:
         return '10/'
     elif exp == 2:
