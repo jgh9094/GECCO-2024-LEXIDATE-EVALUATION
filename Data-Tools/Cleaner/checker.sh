@@ -59,7 +59,7 @@ fi
 NUM_REPS=30
 
 python /home/hernandezj45/Repos/GECCO-2024-TPOT2-Selection-Objectives/Data-Tools/Cleaner/checker.py \
---d ${DATA_DIR} \
---r ${NUM_REPS} \
---s ${SEED} \
---e ${EXPERIMENT} \
+-d ${DATA_DIR} \
+-r ${NUM_REPS} \
+-s ${SEED} \
+-e ${EXPERIMENT} \
