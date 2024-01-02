@@ -49,7 +49,7 @@ def main():
 
             print(dir)
 
-            # whats the lastest folder we made it to
+            # last folder we made it to
             if os.path.isdir(dir) is False:
                 print('REPS:',dir)
                 task_limit = True
@@ -58,10 +58,14 @@ def main():
             # check if data file exists
             data_pkl = dir + 'data.pkl'
             failed_pkl = dir + 'failed.pkl'
+            evaluated_pkl = dir + 'evaluated_individuals.pkl'
+            scores_pkl = dir + 'scores.pkl'
+            fitted_pkl = dir + 'fitted_pipeline.pkl'
 
-            if os.path.exists(failed_pkl):
-                print(dir,': FAILED.PKL')
-                FAILED_FILES.append(dir)
+            # folder is empty
+            if os.path.exists(failed_pkl) is False and os.path.exists(data_pkl) is False and os.path.exists(evaluated_pkl) is False and \
+                os.path.exists(scores_pkl) is False and os.path.exists(fitted_pkl) is False:
+                print(dir,': IN PROGRESS')
                 continue
 
 
