@@ -68,6 +68,11 @@ def main():
                 print(dir,': IN PROGRESS')
                 continue
 
+            # failed runs
+            if os.path.exists(failed_pkl):
+                print(dir,': FAILED.PKL')
+                FAILED_FILES.append(dir)
+                continue
 
             # check if data csv reached generation expectation and not empty
             df = pkl.load(open(data_pkl,'rb'))
