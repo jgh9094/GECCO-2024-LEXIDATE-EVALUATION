@@ -46,10 +46,10 @@ elif [ ${SLURM_ARRAY_TASK_ID} -eq ${SELECTION_SCHEME_LEX_30} ] ; then
   EXPERIMENT=2
   SEED=2400
 
-elif [ ${SLURM_ARRAY_TASK_ID} -eq ${SELECTION_SCHEME_LEX_30} ] ; then
+elif [ ${SLURM_ARRAY_TASK_ID} -eq ${SELECTION_SCHEME_LEX_50} ] ; then
   EXPERIMENT=3
   SEED=3600
-  
+
 else
   echo "${SEED} from ${PROBLEM} failed to launch" >> /home/hernandezj45/Repos/GECCO-2024-TPOT2-Selection-Objectives/Experiments/failtolaunch.txt
 fi
@@ -59,7 +59,7 @@ fi
 NUM_REPS=30
 
 python /home/hernandezj45/Repos/GECCO-2024-TPOT2-Selection-Objectives/Data-Tools/Cleaner/checker.py \
---data_dir ${DATA_DIR} \
---num_reps ${NUM_REPS} \
---seed ${SEED} \
---experiment ${EXPERIMENT} \
+--d ${DATA_DIR} \
+--r ${NUM_REPS} \
+--s ${SEED} \
+--e ${EXPERIMENT} \

@@ -3,7 +3,7 @@ import argparse
 import sys
 import pickle as pkl
 
-GENERATIONS = 256
+GENERATIONS = 200
 
 def ExperimentDir(exp):
     if exp == 0:
