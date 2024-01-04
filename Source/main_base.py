@@ -1,9 +1,5 @@
-import tpot2
-import sklearn.metrics
-import sklearn
 import argparse
-import Source.utils_base as utils_base
-import sys
+import utils_base
 
 def main():
     # read in arguements
@@ -14,25 +10,18 @@ def main():
     parser.add_argument("-s", "--savepath", default="binary_results", required=False, nargs='?')
     # number of total replicates for each experiment
     parser.add_argument("-r", "--num_reps", default=1, required=False, nargs='?')
-    # number of total replicates for each experiment
-    parser.add_argument("-s", "--sel_scheme", default=0, required=False, nargs='?')
-    schemes = ['lexicase','tournament','nsga-ii','random']
 
     args = parser.parse_args()
     n_jobs = int(args.n_jobs)
     save_dir = args.savepath
     num_reps = int(args.num_reps)
+    scheme = 'lexicase'
 
-    if int(args.sel_scheme) < 0 and len(schemes) <= int(args.sel_scheme):
-        sys.exit('INVALID SCHEME TO RUN')
-    scheme = [int(args.sel_scheme)]
-
-
-    # task_id_lists = [359990, 360112, 189354, 7593, 189843, 273, 359960, 189836, 75127, 168796, 167181, 75193, 168794, 189871, 189873, 189874, 189908, 189909,]
-    task_id_lists = [359990,189874,168794,189873,189871,]
+    task_id_lists = [167104, 167184, 167168, 167161, 167185, 189905]
 
     utils_base.loop_through_tasks(scheme, task_id_lists, save_dir, num_reps, n_jobs)
 
 
 if __name__ == '__main__':
     main()
+    print('END OF MAIN')

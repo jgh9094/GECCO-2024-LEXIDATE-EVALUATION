@@ -2,50 +2,28 @@ import openml
 import tpot2
 import sklearn.metrics
 import sklearn
-from sklearn.metrics import (roc_auc_score, roc_curve, precision_score, auc, recall_score, precision_recall_curve, \
-                             roc_auc_score, accuracy_score, balanced_accuracy_score, f1_score, log_loss,
-                             f1_score)
+from sklearn.metrics import (roc_auc_score, log_loss)
 import traceback
 import dill as pickle
 import os
 import time
-#import tpot
-import openml
-import tpot2
 import numpy as np
-import time
-import random
 import sklearn.model_selection
-import sys
-from functools import partial
 
-# generate scores for selection schemes to use
-def SelectionObjectives(est,X,y,X_select,y_select,classification):
-    # fit model
-    est.fit(X,y)
-    scores = []
-
-    if classification:
-        return list(est.predict(X_select) == y_select)
-
-    else:
-        # regression: wanna minimize the distance between them
-        return list(np.absolute(y_select - est.predict(X_select)))
-
-def GetEstimatorParams(n_jobs, scheme):
+def GetEstimatorParams(n_jobs):
     # return dictionary based on selection scheme we are using
     params = {
         # evaluation criteria
-        'scorers': ['neg_log_loss','roc_auc_ovo',tpot2.objectives.complexity_scorer],
-        'scorers_weights':[1,1,-1],
+        'scorers': ['accuracy',tpot2.objectives.complexity_scorer],
+        'scorers_weights':[1,-1],
         'other_objective_functions':[],
         'other_objective_functions_weights':[],
 
         # evolutionary algorithm params
-        'population_size' : 50,
-        'generations' : 100,
+        'population_size' : 48,
+        'generations' : 200,
         'n_jobs':n_jobs,
-        'survival_selector' :None,
+        'max_size': 10,
 
         # offspring variation params
         'mutate_probability': 1.0,
@@ -53,30 +31,23 @@ def GetEstimatorParams(n_jobs, scheme):
         'crossover_then_mutate_probability': 0.0,
         'mutate_then_crossover_probability': 0.0,
 
+        # selection
+        'parent_selector': tpot2.selectors.lexicase_selection,
+        'survival_selector' :None,
+
         # estimator params
-        'memory_limit':None,
+        'memory_limit':0,
         'preprocessing':False,
         'classification' : True,
         'verbose':5,
-        'max_eval_time_seconds':None,
-        'random_state': None,
+        'max_eval_time_seconds':60*30,
+        'max_time_seconds': float("inf"),
 
         # pipeline dictionaries
         'root_config_dict': "classifiers",
         'inner_config_dict': ["arithmetic_transformer","transformers","selectors","passthrough"],
-        'leaf_config_dict': ["arithmetic_transformer","transformers","selectors","passthrough","feature_set_selector"]
+        'leaf_config_dict': ["arithmetic_transformer","transformers","selectors","passthrough"]
         }
-
-    if scheme is 'lexicase':
-        params.update({'parent_selector': tpot2.selectors.lexicase_selection})
-    elif scheme is 'tournament':
-        params.update({'parent_selector': tpot2.selectors.tournament_selection})
-    elif scheme is 'nsga-ii':
-        params.update({'parent_selector': tpot2.selectors.survival_select_NSGA2})
-    elif scheme is 'random':
-        params.update({'parent_selector': tpot2.selectors.random_selector})
-    else:
-        sys.exit('INVALID SCHEME TO RUN')
 
     return params
 
@@ -152,55 +123,34 @@ def load_task(task_id, preprocess=True):
     return X_train, y_train, X_test, y_test
 
 def loop_through_tasks(scheme, task_id_lists, save_dir, num_reps, n_jobs):
-    # what scheme are we doing?
-    est_params = GetEstimatorParams(n_jobs,scheme)
-    classification = True
+
+    est_params = GetEstimatorParams(n_jobs)
+    seed = 5000
 
     for taskid in task_id_lists:
         for run in range(num_reps):
-            seed = run
-            save_folder = f"{save_dir}/{scheme}/{taskid}/{seed}"
-            time.sleep(random.random()*5)
+            save_folder = f"{save_dir}/{seed}-{taskid}"
             if not os.path.exists(save_folder):
+                print('CREATING FOLDER:', save_folder)
                 os.makedirs(save_folder)
             else:
+                seed += 1
                 continue
-
-            print('WORKING ON:',save_folder)
 
             try:
 
-                est_params.update({'cv': sklearn.model_selection.StratifiedKFold(n_splits=10, shuffle=True, random_state=None)})
+                est_params.update({'cv': sklearn.model_selection.StratifiedKFold(n_splits=10, shuffle=True, random_state=seed)})
                 print("LOADING DATA")
                 X_train, y_train, X_test, y_test = load_task(taskid, preprocess=True)
 
-                # selection objectives
-                print('SELECTION OBJECTIVES')
-
-                # split data according to traning and testing type
-                selection_portion = 0.1
-                if classification:
-                    X_learn, X_select, y_learn, y_select = sklearn.model_selection.train_test_split(X_train, y_train, train_size=1.0-selection_portion, test_size=selection_portion, stratify=y_train, random_state=None)
-                else:
-                    X_learn, X_select, y_learn, y_select = sklearn.model_selection.train_test_split(X_train, y_train, train_size=1.0-selection_portion, test_size=selection_portion, random_state=None)
-
-                print('X_train:',X_learn.shape,'|','y_train:',y_learn.shape)
-                print('X_select:',X_select.shape,'|','y_select:',y_select.shape)
-
-                # create custom objective function
-                select_objective = partial(SelectionObjectives,X=X_learn,y=y_learn,X_select=X_select,y_select=y_select,classification=classification)
-                select_objective.__name__ = 'sel-obj'
-                est_params.update({'selection_objectives_functions': [select_objective],'selection_objective_functions_weights': [1] * (len(X_select))})
-
-                print('PARAMS DICTIONARY:')
-                for k,v in est_params.items():
-                    print(k,':',v)
-
-                print("ESTIMATOR FITTING")
-                est = tpot2.TPOTEstimator(est_params)
+                est_params.update({'random_state': seed})
+                est = tpot2.TPOTEstimator(**est_params)
 
                 start = time.time()
+                print("ESTIMATOR FITTING")
+                print('SEED:', seed)
                 est.fit(X_train, y_train)
+                print("ESTIMATOR FITTING COMPLETE")
                 duration = time.time() - start
 
                 train_score = score(est, X_train, y_train)
@@ -218,19 +168,24 @@ def loop_through_tasks(scheme, task_id_lists, save_dir, num_reps, n_jobs):
                 all_scores["duration"] = duration
                 all_scores["seed"] = seed
 
+                print('SAVING: EVALUATION_INDIVIDUALS.PKL')
                 if type(est) is tpot2.TPOTClassifier or type(est) is tpot2.TPOTEstimator or type(est) is  tpot2.TPOTEstimatorSteadyState:
                     with open(f"{save_folder}/evaluated_individuals.pkl", "wb") as f:
                         pickle.dump(est.evaluated_individuals, f)
 
-
+                print('SAVING:FITTED_PIPELINES.PKL')
                 with open(f"{save_folder}/fitted_pipeline.pkl", "wb") as f:
                     pickle.dump(est.fitted_pipeline_, f)
 
 
+                print('SAVING:SCORES.PKL')
                 with open(f"{save_folder}/scores.pkl", "wb") as f:
                     pickle.dump(all_scores, f)
 
-                return
+                print('SAVING: DATA.CSV')
+                with open(f"{save_folder}/data.pkl", "wb") as f:
+                    pickle.dump(est._evolver_instance.data_df, f)
+
             except Exception as e:
                 trace =  traceback.format_exc()
                 pipeline_failure_dict = {"taskid": taskid, "selection": scheme, "seed": seed, "error": str(e), "trace": trace}
@@ -242,6 +197,6 @@ def loop_through_tasks(scheme, task_id_lists, save_dir, num_reps, n_jobs):
                 with open(f"{save_folder}/failed.pkl", "wb") as f:
                     pickle.dump(pipeline_failure_dict, f)
 
-                return
+            seed += 1
 
     print("all finished")
