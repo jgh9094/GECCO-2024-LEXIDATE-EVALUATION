@@ -1,4 +1,0 @@
-[submodule "tpot2"]
-	path = tpot2
-	url = https://github.com/jgh9094/tpot2.git
-	branch = selection-objectives
