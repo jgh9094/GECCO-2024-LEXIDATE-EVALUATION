@@ -1,10 +1,10 @@
 Experiments/Base/slurm-*
-Experiments/Splits/10/slurm-*
-Experiments/Splits/30/slurm-*
-Experiments/Splits/50/slurm-*
-Experiments/Splits_Complexity/10/slurm-*
-Experiments/Splits_Complexity/30/slurm-*
-Experiments/Splits_Complexity/50/slurm-*
+Experiments/Splits/Hpc/10/slurm-*
+Experiments/Splits/Hpc/30/slurm-*
+Experiments/Splits/Hpc/50/slurm-*
+Experiments/Splits_Complexity/Hpc/10/slurm-*
+Experiments/Splits_Complexity/Hpc/30/slurm-*
+Experiments/Splits_Complexity/Hpc/50/slurm-*
 Source/debug.py
 Source/runner.sh
 Source/data
