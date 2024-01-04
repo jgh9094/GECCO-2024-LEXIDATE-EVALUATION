@@ -17,7 +17,7 @@ pip install -e /home/hernandezj45/Repos/GECCO-2024-TPOT2-Selection-Objectives/tp
 DATA_DIR=/home/hernandezj45/Repos/GECCO-2024-TPOT2-Selection-Objectives/Results/Base
 mkdir -p ${DATA_DIR}
 
-python /home/hernandezj45/Repos/GECCO-2024-TPOT2-Selection-Objectives/Source/main-base.py \
+python /home/hernandezj45/Repos/GECCO-2024-TPOT2-Selection-Objectives/Source/main_base.py \
 --n_jobs 48 \
 --savepath ${DATA_DIR} \
 --num_reps 40 \
