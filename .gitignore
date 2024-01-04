@@ -1,4 +1,4 @@
-Experiments/Base/slurm-*
+Experiments/Base/Hpc/slurm-*
 Experiments/Splits/Hpc/10/slurm-*
 Experiments/Splits/Hpc/30/slurm-*
 Experiments/Splits/Hpc/50/slurm-*
@@ -9,3 +9,4 @@ Source/debug.py
 Source/runner.sh
 Source/data
 Source/debug.ipynb
+Data-Tools/Vizualizer
