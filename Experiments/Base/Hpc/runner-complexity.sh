@@ -21,4 +21,4 @@ python /home/hernandezj45/Repos/GECCO-2024-TPOT2-Selection-Objectives/Source/mai
 --n_jobs 48 \
 --savepath ${DATA_DIR} \
 --num_reps 40 \
---seed_offset 5000 \
+--seed_offset 7000 \
