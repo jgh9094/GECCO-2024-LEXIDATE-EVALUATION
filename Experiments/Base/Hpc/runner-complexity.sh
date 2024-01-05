@@ -14,7 +14,7 @@ source /home/hernandezj45/anaconda3/etc/profile.d/conda.sh
 conda activate tpot2-env-3.9
 pip install -e /home/hernandezj45/Repos/GECCO-2024-TPOT2-Selection-Objectives/tpot2-base/
 
-DATA_DIR=/home/hernandezj45/Repos/GECCO-2024-TPOT2-Selection-Objectives/Results/Base
+DATA_DIR=/home/hernandezj45/Repos/GECCO-2024-TPOT2-Selection-Objectives/Results/Base_Complexity
 mkdir -p ${DATA_DIR}
 
 python /home/hernandezj45/Repos/GECCO-2024-TPOT2-Selection-Objectives/Source/main_base.py \
