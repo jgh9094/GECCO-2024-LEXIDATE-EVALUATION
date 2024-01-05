@@ -122,10 +122,10 @@ def load_task(task_id, preprocess=True):
 
     return X_train, y_train, X_test, y_test
 
-def loop_through_tasks(scheme, task_id_lists, save_dir, num_reps, n_jobs):
+def loop_through_tasks(scheme, task_id_lists, save_dir, num_reps, n_jobs, seed_offset):
 
     est_params = GetEstimatorParams(n_jobs)
-    seed = 5000
+    seed = seed_offset
 
     for taskid in task_id_lists:
         for run in range(num_reps):
