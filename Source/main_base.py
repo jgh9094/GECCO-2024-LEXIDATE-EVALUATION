@@ -7,7 +7,7 @@ def main():
     # number of threads to use during estimator evalutation
     parser.add_argument("-n", "--n_jobs", default=30,  required=False, nargs='?')
     # where to save the results/models
-    parser.add_argument("-s", "--savepath", default="binary_results", required=False, nargs='?')
+    parser.add_argument("-s", "--savepath", default="./", required=False, nargs='?')
     # number of total replicates for each experiment
     parser.add_argument("-r", "--num_reps", default=1, required=False, nargs='?')
     # seed offset
