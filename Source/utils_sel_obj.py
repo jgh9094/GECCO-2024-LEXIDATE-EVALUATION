@@ -157,7 +157,7 @@ def loop_through_tasks(scheme, task_id_lists, save_dir, num_reps, n_jobs,proport
 
     for taskid in task_id_lists:
         for run in range(num_reps):
-            save_folder = f"{save_dir}/{taskid}-{seed}"
+            save_folder = f"{save_dir}/{seed}-{taskid}"
             if not os.path.exists(save_folder):
                 print('CREATING FOLDER:', save_folder)
                 os.makedirs(save_folder)
