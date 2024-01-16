@@ -95,11 +95,11 @@ def main():
     print()
     for err in UNFINISHED_RUNS:
         print(err)
-    print('\EMPTY DIRS:')
+    print('\nEMPTY DIRS:')
     print()
     for err in EMPTY_DIRECTORIES:
         print(err)
-    print('\NONEXISTENT DIRS:')
+    print('\nNONEXISTENT DIRS:')
     print()
     for err in NOT_YET_CREATED:
         print(err)
