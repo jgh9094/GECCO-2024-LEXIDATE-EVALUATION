@@ -41,6 +41,7 @@ def main():
     FAILED_FILES = []
     EMPTY_DIRECTORIES = []
     UNFINISHED_RUNS = []
+    NOT_YET_CREATED = []
     for task_pos, task in enumerate(task_id_lists):
         task_limit = False
         for rep in range(num_reps):
@@ -48,9 +49,8 @@ def main():
 
             # last folder we made it to
             if os.path.isdir(dir) is False:
-                print('REPS:',dir)
-                task_limit = True
-                break
+                NOT_YET_CREATED.append(dir)
+                continue
 
             # check if data file exists
             data_pkl = dir + 'data.pkl'
@@ -83,10 +83,6 @@ def main():
                 UNFINISHED_RUNS.append(dir)
                 continue
 
-        if task_limit:
-            print('FINAL TASK REACHED:', task_id_lists[task_pos - 1])
-            print('TOTAL NUMBER OF TASKS DONE:', task_pos + 1)
-            break
 
     print()
     print('-'*150)
@@ -102,6 +98,10 @@ def main():
     print('\EMPTY DIRS:')
     print()
     for err in EMPTY_DIRECTORIES:
+        print(err)
+    print('\NONEXISTENT DIRS:')
+    print()
+    for err in NOT_YET_CREATED:
         print(err)
 
 
