@@ -61,6 +61,7 @@ def main():
 
             # folder is empty
             if not any(os.scandir(dir)):
+                EMPTY_DIRECTORIES.append(dir)
                 print(dir,': EMPTY')
                 continue
 
