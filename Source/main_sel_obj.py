@@ -23,7 +23,7 @@ def main():
     proportion = float(args.proportion)
     scheme = 'lexicase'
 
-    task_id_lists = [167104, 167184, 167168, 167161, 167185, 189905, 167152, 167181, 189906, 189862, 167149, 189865, 167190, 189861, 189872, 168794, 189871, 168796, 168797, 75097, 126026, 189909, 126029, 126025, 75105, 168793, 189874, 167201, 189908, 189860, 168792, 167083, 167200, 168798, 189873, 189866, 75127, 75193]
+    task_id_lists = [167104, 167184, 167168, 167161, 167185, 189905]
 
     utils_sel_obj.loop_through_tasks(scheme, task_id_lists, save_dir, num_reps, n_jobs, proportion, seed_offset)
 
