@@ -44,7 +44,7 @@ def main():
     for task_pos, task in enumerate(task_id_lists):
         task_limit = False
         for rep in range(num_reps):
-            dir = data_dir + exp_dir + str(task) + '-' + str(rep + seed + (task_pos * num_reps)) + '/'
+            dir = data_dir + exp_dir + str(rep + seed + (task_pos * num_reps)) + '-' + str(task) + '/'
 
             print(dir)
 
