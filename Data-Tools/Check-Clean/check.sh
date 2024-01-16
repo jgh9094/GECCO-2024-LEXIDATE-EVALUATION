@@ -58,7 +58,7 @@ fi
 
 NUM_REPS=40
 
-python /home/hernandezj45/Repos/GECCO-2024-TPOT2-Selection-Objectives/Data-Tools/Cleaner/checker.py \
+python /home/hernandezj45/Repos/GECCO-2024-TPOT2-Selection-Objectives/Data-Tools/Check-Clean/checker.py \
 -d ${DATA_DIR} \
 -r ${NUM_REPS} \
 -s ${SEED} \
