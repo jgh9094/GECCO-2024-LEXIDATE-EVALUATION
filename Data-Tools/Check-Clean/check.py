@@ -46,8 +46,6 @@ def main():
         for rep in range(num_reps):
             dir = data_dir + exp_dir + str(rep + seed + (task_pos * num_reps)) + '-' + str(task) + '/'
 
-            print(dir)
-
             # last folder we made it to
             if os.path.isdir(dir) is False:
                 print('REPS:',dir)
