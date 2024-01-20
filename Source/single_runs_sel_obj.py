@@ -208,13 +208,13 @@ def main():
             complexity_metric = partial(SamplingComplexity,X=X_learn,y=y_learn)
             complexity_metric.__name__ = 'complex'
             est_params.update({'other_objective_functions': [select_objective_acc,complexity_metric],'other_objective_functions_weights': [2,-1]})
-            
+
             est = tpot2.TPOTEstimator(**est_params)
 
             start = time.time()
             print("ESTIMATOR FITTING")
             print('SEED:', seed)
-            est.fit(X_train, y_train)
+            est.fit(X_learn, y_learn, X_train, y_train)
             print("ESTIMATOR FITTING COMPLETE")
             duration = time.time() - start
 
