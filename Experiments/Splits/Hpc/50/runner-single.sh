@@ -19,4 +19,4 @@ mkdir -p ${SAVE_DIR}
 
 python /home/hernandezj45/Repos/GECCO-2024-TPOT2-Selection-Objectives/Source/single_runs_sel_obj.py \
 --n_jobs 48 \
---savepath ${DATA_DIR} \
+--savepath ${SAVE_DIR} \
