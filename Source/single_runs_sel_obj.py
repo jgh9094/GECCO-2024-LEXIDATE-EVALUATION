@@ -164,9 +164,14 @@ def main():
     save_dir = args.savepath
 
     # reruns for 50/50 split
-    tasks = [167168,167161,167185,167185,167185,189905]
-    seeds = [6140  ,6141  ,6146  ,6143  ,6144  ,6145]
-    proportion = .5
+    # tasks = [167168,167161,167185,167185,167185,189905]
+    # seeds = [6140  ,6141  ,6146  ,6143  ,6144  ,6145]
+    # proportion = .5
+
+    # reruns for 70/30 split
+    tasks = [167184,167185,167185]
+    seeds = [5840,5841,5842]
+    proportion = .3
 
     scheme = 'lexicase'
     classification=True
