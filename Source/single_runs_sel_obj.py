@@ -169,14 +169,14 @@ def main():
     # proportion = .5
 
     # reruns for 70/30 split
-    # tasks = [167184,167185,167185]
-    # seeds = [5840,5841,5842]
-    # proportion = .3
+    tasks = [167184,167185,167185,167104]
+    seeds = [5840,5841,5842,5843]
+    proportion = .3
 
     # reruns for 90/10 split
-    tasks = [167168,167185,167185]
-    seeds = [5540,5541,5542]
-    proportion = .1
+    # tasks = [167168,167185,167185]
+    # seeds = [5540,5541,5542]
+    # proportion = .1
 
     scheme = 'lexicase'
     classification=True
