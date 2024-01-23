@@ -3,7 +3,7 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
-#SBATCH -t 00:00:10
+#SBATCH -t 00:10:00
 #SBATCH --mem=1GB
 #SBATCH --job-name=collect
 #SBATCH -p defq,moore
