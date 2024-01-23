@@ -174,7 +174,7 @@ def main():
     # proportion = .3
 
     # reruns for 90/10 split
-    tasks = [167168,167185,167185,5502,189905]
+    tasks = [167168,167185,167185,189905]
     seeds = [5540,5541,5542,5543]
     proportion = .1
 
