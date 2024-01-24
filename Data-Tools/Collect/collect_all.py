@@ -71,6 +71,8 @@ def Complexity():
             ACRO.append(acro)
             COMPLEXITY.append(float(tpot2.objectives.complexity_scorer(fiitted_pipeline,0,0)))
 
+    pd.DataFrame({'seed': pd.Series(SEED),'taskid': pd.Series(TASK),'acro': pd.Series(ACRO),'complexity':pd.Series(COMPLEXITY)}).to_csv(path_or_buf='./complexity.csv', index=False)
+
 def Scores():
     print('SCORES')
     # data holders
@@ -123,8 +125,8 @@ def Scores():
             OVER_TIME_DF.append(data_df)
 
 
-    final_data = pd.concat(OVER_TIME_DF)
-    final_scores = pd.concat(SCORES_DF)
+    pd.concat(OVER_TIME_DF).to_csv(path_or_buf='ot_data.csv', index=False)
+    pd.concat(SCORES_DF).to_csv(path_or_buf='scores.csv', index=False)
 
 def main():
     Scores()

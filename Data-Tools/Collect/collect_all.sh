@@ -4,7 +4,7 @@
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
 #SBATCH -t 00:10:00
-#SBATCH --mem=5GB
+#SBATCH --mem=10GB
 #SBATCH --job-name=collect
 #SBATCH -p defq,moore
 #SBATCH --exclude=esplhpc-cp040
