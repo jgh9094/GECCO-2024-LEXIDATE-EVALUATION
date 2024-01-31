@@ -38,7 +38,7 @@ def Complexity():
         dir = data_dir + cur_dir
 
         if proportion == 0.0:
-            acro = 'base'
+            acro = '10-f cv'
         elif proportion == 0.1:
             acro = '90/10'
         elif proportion == 0.3:
@@ -84,7 +84,7 @@ def Scores():
         dir = data_dir + cur_dir
 
         if proportion == 0.0:
-            acro = 'base'
+            acro = '10-f cv'
         elif proportion == 0.1:
             acro = '90/10'
         elif proportion == 0.3:
