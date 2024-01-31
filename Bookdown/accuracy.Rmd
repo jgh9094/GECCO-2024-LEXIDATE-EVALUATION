@@ -1,0 +1,86 @@
+# Accuraccy results
+
+Here we report the accuracy for **final pipeline returned from a TPOT2 run** on each OpenML task.
+40 replicates were conducted for each evaluation strategy explored.
+
+## Analysis setup
+
+```{r exp-data-setup, message=FALSE}
+library(ggplot2)
+library(cowplot)
+library(dplyr)
+library(PupillometryR)
+
+NAMES <- c("10-fold cv","90/10","70/30","50/50")
+TSIZE <- 22
+data_dir <- "./"
+task_id_lists <- c(167104, 167184, 167168, 167161, 167185, 189905)
+
+scores <- read.csv("./scores.csv", header = TRUE, stringsAsFactors = FALSE)
+scores$acro <- factor(scores$acro, levels = NAMES)
+```
+
+## Accuracy per OpenML task
+
+Accuracy of the returned pipeline from an evolutionary run.
+
+### Task 167104
+
+
+```{r task-1-plt, warning=FALSE, out.width="100%"}
+filter(scores, taskid == task_id_lists[1]) %>%
+  ggplot(., aes(x = acro, y = accuracy, color = acro,
+                fill = acro, shape = acro)) +
+  geom_flat_violin(position = position_nudge(x = 0.1, y = 0),
+                   scale = "width", alpha = 0.2, width = 1.5) +
+  geom_boxplot(color = "black", width = .08, outlier.shape = NA, alpha = 0.0,
+               size = 0.8, position = position_nudge(x = .15, y = 0)) +
+  geom_point(position = position_jitter(width = .015, height = .0001),
+             size = 2.0, alpha = 1.0) +
+  scale_y_continuous(
+    name = "Accuracy %",
+    breaks = c(.74, .78, .82, .86),
+    labels = scales::percent
+
+  ) +
+  scale_x_discrete(
+    name = "Treatment"
+  ) +
+  scale_shape_manual(values = SHAPE) +
+  scale_colour_manual(values = cb_palette, ) +
+  scale_fill_manual(values = cb_palette) +
+  ggtitle("Accuracy") +
+  p_theme
+```
+
+Summary statistics for the generation a satisfactory solution is found.
+
+```{r task-1-sum}
+performance <- filter(scores, taskid == task_id_lists[1])
+performance %>%
+  group_by(acro) %>%
+  dplyr::summarise(
+    count = n(),
+    na_cnt = sum(is.na(accuracy)),
+    min = min(accuracy, na.rm = TRUE),
+    median = median(accuracy, na.rm = TRUE),
+    mean = mean(accuracy, na.rm = TRUE),
+    max = max(accuracy, na.rm = TRUE),
+    IQR = IQR(accuracy, na.rm = TRUE)
+  )
+```
+
+Kruskal–Wallis test illustrates evidence of statistical differences.
+
+```{r task-1-kru}
+kruskal.test(accuracy ~ acro, data = performance)
+```
+
+Results for post-hoc Wilcoxon rank-sum test with a Bonferroni correction.
+
+```{r task-1-wil}
+pairwise.wilcox.test(x = performance$accuracy, g = performance$acro,
+                     p.adjust.method = "bonferroni",
+                     paired = FALSE, conf.int = FALSE, alternative = "t")
+
+```

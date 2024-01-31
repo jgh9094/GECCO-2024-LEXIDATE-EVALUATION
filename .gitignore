@@ -1,11 +1,4 @@
-Experiments/Base/Hpc/slurm-*
-Experiments/Base/Hpc/data
-Experiments/Splits/Hpc/10/slurm-*
-Experiments/Splits/Hpc/30/slurm-*
-Experiments/Splits/Hpc/50/slurm-*
-Experiments/Splits_Complexity/Hpc/10/slurm-*
-Experiments/Splits_Complexity/Hpc/30/slurm-*
-Experiments/Splits_Complexity/Hpc/50/slurm-*
+Bookdown/*.csv
 Source/debug.py
 Source/runner.sh
 Source/data
