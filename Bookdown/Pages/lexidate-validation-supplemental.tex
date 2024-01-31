@@ -925,8 +925,8 @@ Summary statistics for the generation a satisfactory solution is found.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{performance }\OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{(comps, taskid }\SpecialCharTok{==}\NormalTok{ task\_id\_lists[}\DecValTok{1}\NormalTok{])}
-\NormalTok{performance }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{complexity }\OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{(comps, taskid }\SpecialCharTok{==}\NormalTok{ task\_id\_lists[}\DecValTok{1}\NormalTok{])}
+\NormalTok{complexity }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{group\_by}\NormalTok{(acro) }\SpecialCharTok{\%\textgreater{}\%}
 \NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{summarise}\NormalTok{(}
     \AttributeTok{count =} \FunctionTok{n}\NormalTok{(),}
@@ -950,11 +950,11 @@ Summary statistics for the generation a satisfactory solution is found.
 ## 4 50/50         40      0     7  2119  6275. 37256 10039.
 \end{verbatim}
 
-Kruskal--Wallis test illustrates evidence of statistical differences.
+Kruskal--Wallis test illustrates evidence of no statistical differences.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{kruskal.test}\NormalTok{(complexity }\SpecialCharTok{\textasciitilde{}}\NormalTok{ acro, }\AttributeTok{data =}\NormalTok{ performance)}
+\FunctionTok{kruskal.test}\NormalTok{(complexity }\SpecialCharTok{\textasciitilde{}}\NormalTok{ acro, }\AttributeTok{data =}\NormalTok{ complexity)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -964,30 +964,6 @@ Kruskal--Wallis test illustrates evidence of statistical differences.
 ## 
 ## data:  complexity by acro
 ## Kruskal-Wallis chi-squared = 2.4209, df = 3, p-value = 0.4898
-\end{verbatim}
-
-Results for post-hoc Wilcoxon rank-sum test with a Bonferroni correction.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{pairwise.wilcox.test}\NormalTok{(}\AttributeTok{x =}\NormalTok{ performance}\SpecialCharTok{$}\NormalTok{complexity, }\AttributeTok{g =}\NormalTok{ performance}\SpecialCharTok{$}\NormalTok{acro,}
-                     \AttributeTok{p.adjust.method =} \StringTok{"bonferroni"}\NormalTok{,}
-                     \AttributeTok{paired =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{conf.int =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"t"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-##  Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
-## 
-## data:  performance$complexity and performance$acro 
-## 
-##       10-fold cv 90/10 70/30
-## 90/10 1.00       -     -    
-## 70/30 1.00       0.85  -    
-## 50/50 1.00       0.72  1.00 
-## 
-## P value adjustment method: bonferroni
 \end{verbatim}
 
 \hypertarget{task-167184-1}{%
@@ -1035,8 +1011,8 @@ Summary statistics for the generation a satisfactory solution is found.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{performance }\OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{(comps, taskid }\SpecialCharTok{==}\NormalTok{ task\_id\_lists[}\DecValTok{2}\NormalTok{])}
-\NormalTok{performance }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{complexity }\OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{(comps, taskid }\SpecialCharTok{==}\NormalTok{ task\_id\_lists[}\DecValTok{2}\NormalTok{])}
+\NormalTok{complexity }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{group\_by}\NormalTok{(acro) }\SpecialCharTok{\%\textgreater{}\%}
 \NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{summarise}\NormalTok{(}
     \AttributeTok{count =} \FunctionTok{n}\NormalTok{(),}
@@ -1064,7 +1040,7 @@ Kruskal--Wallis test illustrates evidence of statistical differences.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{kruskal.test}\NormalTok{(complexity }\SpecialCharTok{\textasciitilde{}}\NormalTok{ acro, }\AttributeTok{data =}\NormalTok{ performance)}
+\FunctionTok{kruskal.test}\NormalTok{(complexity }\SpecialCharTok{\textasciitilde{}}\NormalTok{ acro, }\AttributeTok{data =}\NormalTok{ complexity)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1080,9 +1056,9 @@ Results for post-hoc Wilcoxon rank-sum test with a Bonferroni correction.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{pairwise.wilcox.test}\NormalTok{(}\AttributeTok{x =}\NormalTok{ performance}\SpecialCharTok{$}\NormalTok{complexity, }\AttributeTok{g =}\NormalTok{ performance}\SpecialCharTok{$}\NormalTok{acro,}
+\FunctionTok{pairwise.wilcox.test}\NormalTok{(}\AttributeTok{x =}\NormalTok{ complexity}\SpecialCharTok{$}\NormalTok{complexity, }\AttributeTok{g =}\NormalTok{ complexity}\SpecialCharTok{$}\NormalTok{acro,}
                      \AttributeTok{p.adjust.method =} \StringTok{"bonferroni"}\NormalTok{,}
-                     \AttributeTok{paired =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{conf.int =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"t"}\NormalTok{)}
+                     \AttributeTok{paired =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{conf.int =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"l"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1090,12 +1066,12 @@ Results for post-hoc Wilcoxon rank-sum test with a Bonferroni correction.
 ## 
 ##  Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
 ## 
-## data:  performance$complexity and performance$acro 
+## data:  complexity$complexity and complexity$acro 
 ## 
 ##       10-fold cv 90/10   70/30  
-## 90/10 0.00072    -       -      
-## 70/30 0.00234    1.00000 -      
-## 50/50 0.01484    1.00000 1.00000
+## 90/10 0.00036    -       -      
+## 70/30 0.00117    1.00000 -      
+## 50/50 0.00742    1.00000 1.00000
 ## 
 ## P value adjustment method: bonferroni
 \end{verbatim}
@@ -1136,8 +1112,8 @@ Summary statistics for the generation a satisfactory solution is found.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{performance }\OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{(comps, taskid }\SpecialCharTok{==}\NormalTok{ task\_id\_lists[}\DecValTok{3}\NormalTok{])}
-\NormalTok{performance }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{complexity }\OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{(comps, taskid }\SpecialCharTok{==}\NormalTok{ task\_id\_lists[}\DecValTok{3}\NormalTok{])}
+\NormalTok{complexity }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{group\_by}\NormalTok{(acro) }\SpecialCharTok{\%\textgreater{}\%}
 \NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{summarise}\NormalTok{(}
     \AttributeTok{count =} \FunctionTok{n}\NormalTok{(),}
@@ -1161,11 +1137,11 @@ Summary statistics for the generation a satisfactory solution is found.
 ## 4 50/50         40      0   225  2140. 11399.  94975 11698.
 \end{verbatim}
 
-Kruskal--Wallis test illustrates evidence of statistical differences.
+Kruskal--Wallis test illustrates evidence of no statistical differences.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{kruskal.test}\NormalTok{(complexity }\SpecialCharTok{\textasciitilde{}}\NormalTok{ acro, }\AttributeTok{data =}\NormalTok{ performance)}
+\FunctionTok{kruskal.test}\NormalTok{(complexity }\SpecialCharTok{\textasciitilde{}}\NormalTok{ acro, }\AttributeTok{data =}\NormalTok{ complexity)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1175,30 +1151,6 @@ Kruskal--Wallis test illustrates evidence of statistical differences.
 ## 
 ## data:  complexity by acro
 ## Kruskal-Wallis chi-squared = 3.0019, df = 3, p-value = 0.3913
-\end{verbatim}
-
-Results for post-hoc Wilcoxon rank-sum test with a Bonferroni correction.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{pairwise.wilcox.test}\NormalTok{(}\AttributeTok{x =}\NormalTok{ performance}\SpecialCharTok{$}\NormalTok{complexity, }\AttributeTok{g =}\NormalTok{ performance}\SpecialCharTok{$}\NormalTok{acro,}
-                     \AttributeTok{p.adjust.method =} \StringTok{"bonferroni"}\NormalTok{,}
-                     \AttributeTok{paired =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{conf.int =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"t"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-##  Pairwise comparisons using Wilcoxon rank sum exact test 
-## 
-## data:  performance$complexity and performance$acro 
-## 
-##       10-fold cv 90/10 70/30
-## 90/10 1.00       -     -    
-## 70/30 1.00       1.00  -    
-## 50/50 1.00       1.00  0.56 
-## 
-## P value adjustment method: bonferroni
 \end{verbatim}
 
 \hypertarget{task-167161-1}{%
@@ -1246,8 +1198,8 @@ Summary statistics for the generation a satisfactory solution is found.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{performance }\OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{(comps, taskid }\SpecialCharTok{==}\NormalTok{ task\_id\_lists[}\DecValTok{4}\NormalTok{])}
-\NormalTok{performance }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{complexity }\OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{(comps, taskid }\SpecialCharTok{==}\NormalTok{ task\_id\_lists[}\DecValTok{4}\NormalTok{])}
+\NormalTok{complexity }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{group\_by}\NormalTok{(acro) }\SpecialCharTok{\%\textgreater{}\%}
 \NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{summarise}\NormalTok{(}
     \AttributeTok{count =} \FunctionTok{n}\NormalTok{(),}
@@ -1275,7 +1227,7 @@ Kruskal--Wallis test illustrates evidence of statistical differences.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{kruskal.test}\NormalTok{(complexity }\SpecialCharTok{\textasciitilde{}}\NormalTok{ acro, }\AttributeTok{data =}\NormalTok{ performance)}
+\FunctionTok{kruskal.test}\NormalTok{(complexity }\SpecialCharTok{\textasciitilde{}}\NormalTok{ acro, }\AttributeTok{data =}\NormalTok{ complexity)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1291,9 +1243,9 @@ Results for post-hoc Wilcoxon rank-sum test with a Bonferroni correction.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{pairwise.wilcox.test}\NormalTok{(}\AttributeTok{x =}\NormalTok{ performance}\SpecialCharTok{$}\NormalTok{complexity, }\AttributeTok{g =}\NormalTok{ performance}\SpecialCharTok{$}\NormalTok{acro,}
+\FunctionTok{pairwise.wilcox.test}\NormalTok{(}\AttributeTok{x =}\NormalTok{ complexity}\SpecialCharTok{$}\NormalTok{complexity, }\AttributeTok{g =}\NormalTok{ complexity}\SpecialCharTok{$}\NormalTok{acro,}
                      \AttributeTok{p.adjust.method =} \StringTok{"bonferroni"}\NormalTok{,}
-                     \AttributeTok{paired =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{conf.int =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"t"}\NormalTok{)}
+                     \AttributeTok{paired =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{conf.int =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"l"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1301,12 +1253,12 @@ Results for post-hoc Wilcoxon rank-sum test with a Bonferroni correction.
 ## 
 ##  Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
 ## 
-## data:  performance$complexity and performance$acro 
+## data:  complexity$complexity and complexity$acro 
 ## 
 ##       10-fold cv 90/10   70/30  
-## 90/10 8e-05      -       -      
-## 70/30 0.00057    0.59911 -      
-## 50/50 0.01148    0.18003 1.00000
+## 90/10 4e-05      -       -      
+## 70/30 0.00029    1.00000 -      
+## 50/50 0.00574    1.00000 1.00000
 ## 
 ## P value adjustment method: bonferroni
 \end{verbatim}
@@ -1355,8 +1307,8 @@ Summary statistics for the generation a satisfactory solution is found.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{performance }\OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{(comps, taskid }\SpecialCharTok{==}\NormalTok{ task\_id\_lists[}\DecValTok{5}\NormalTok{])}
-\NormalTok{performance }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{complexity }\OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{(comps, taskid }\SpecialCharTok{==}\NormalTok{ task\_id\_lists[}\DecValTok{5}\NormalTok{])}
+\NormalTok{complexity }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{group\_by}\NormalTok{(acro) }\SpecialCharTok{\%\textgreater{}\%}
 \NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{summarise}\NormalTok{(}
     \AttributeTok{count =} \FunctionTok{n}\NormalTok{(),}
@@ -1380,11 +1332,11 @@ Summary statistics for the generation a satisfactory solution is found.
 ## 4 50/50         40      0     4  2127  12314. 369366 1675
 \end{verbatim}
 
-Kruskal--Wallis test illustrates evidence of statistical differences.
+Kruskal--Wallis test illustrates evidence of no statistical differences.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{kruskal.test}\NormalTok{(complexity }\SpecialCharTok{\textasciitilde{}}\NormalTok{ acro, }\AttributeTok{data =}\NormalTok{ performance)}
+\FunctionTok{kruskal.test}\NormalTok{(complexity }\SpecialCharTok{\textasciitilde{}}\NormalTok{ acro, }\AttributeTok{data =}\NormalTok{ complexity)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1394,30 +1346,6 @@ Kruskal--Wallis test illustrates evidence of statistical differences.
 ## 
 ## data:  complexity by acro
 ## Kruskal-Wallis chi-squared = 3.3929, df = 3, p-value = 0.3349
-\end{verbatim}
-
-Results for post-hoc Wilcoxon rank-sum test with a Bonferroni correction.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{pairwise.wilcox.test}\NormalTok{(}\AttributeTok{x =}\NormalTok{ performance}\SpecialCharTok{$}\NormalTok{complexity, }\AttributeTok{g =}\NormalTok{ performance}\SpecialCharTok{$}\NormalTok{acro,}
-                     \AttributeTok{p.adjust.method =} \StringTok{"bonferroni"}\NormalTok{,}
-                     \AttributeTok{paired =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{conf.int =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"t"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-##  Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
-## 
-## data:  performance$complexity and performance$acro 
-## 
-##       10-fold cv 90/10 70/30
-## 90/10 1.00       -     -    
-## 70/30 1.00       1.00  -    
-## 50/50 1.00       0.17  1.00 
-## 
-## P value adjustment method: bonferroni
 \end{verbatim}
 
 \hypertarget{task-189905-1}{%
@@ -1465,8 +1393,8 @@ Summary statistics for the generation a satisfactory solution is found.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{performance }\OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{(comps, taskid }\SpecialCharTok{==}\NormalTok{ task\_id\_lists[}\DecValTok{6}\NormalTok{])}
-\NormalTok{performance }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{complexity }\OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{(comps, taskid }\SpecialCharTok{==}\NormalTok{ task\_id\_lists[}\DecValTok{6}\NormalTok{])}
+\NormalTok{complexity }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{group\_by}\NormalTok{(acro) }\SpecialCharTok{\%\textgreater{}\%}
 \NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{summarise}\NormalTok{(}
     \AttributeTok{count =} \FunctionTok{n}\NormalTok{(),}
@@ -1494,7 +1422,7 @@ Kruskal--Wallis test illustrates evidence of statistical differences.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{kruskal.test}\NormalTok{(complexity }\SpecialCharTok{\textasciitilde{}}\NormalTok{ acro, }\AttributeTok{data =}\NormalTok{ performance)}
+\FunctionTok{kruskal.test}\NormalTok{(complexity }\SpecialCharTok{\textasciitilde{}}\NormalTok{ acro, }\AttributeTok{data =}\NormalTok{ complexity)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1510,9 +1438,9 @@ Results for post-hoc Wilcoxon rank-sum test with a Bonferroni correction.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{pairwise.wilcox.test}\NormalTok{(}\AttributeTok{x =}\NormalTok{ performance}\SpecialCharTok{$}\NormalTok{complexity, }\AttributeTok{g =}\NormalTok{ performance}\SpecialCharTok{$}\NormalTok{acro,}
+\FunctionTok{pairwise.wilcox.test}\NormalTok{(}\AttributeTok{x =}\NormalTok{ complexity}\SpecialCharTok{$}\NormalTok{complexity, }\AttributeTok{g =}\NormalTok{ complexity}\SpecialCharTok{$}\NormalTok{acro,}
                      \AttributeTok{p.adjust.method =} \StringTok{"bonferroni"}\NormalTok{,}
-                     \AttributeTok{paired =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{conf.int =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"t"}\NormalTok{)}
+                     \AttributeTok{paired =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{conf.int =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"l"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1520,12 +1448,12 @@ Results for post-hoc Wilcoxon rank-sum test with a Bonferroni correction.
 ## 
 ##  Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
 ## 
-## data:  performance$complexity and performance$acro 
+## data:  complexity$complexity and complexity$acro 
 ## 
 ##       10-fold cv 90/10  70/30 
-## 90/10 0.0039     -      -     
-## 70/30 0.3185     0.1089 -     
-## 50/50 1.0000     0.0080 0.3518
+## 90/10 0.0019     -      -     
+## 70/30 0.1592     1.0000 -     
+## 50/50 1.0000     1.0000 1.0000
 ## 
 ## P value adjustment method: bonferroni
 \end{verbatim}
