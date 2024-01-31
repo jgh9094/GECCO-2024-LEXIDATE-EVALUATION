@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Complexity results | Supplemental Material for ‘Lexidate: Model Evaluation and Selection with Lexicase Selection’</title>
+  <meta name="description" content="Supplemental material" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Complexity results | Supplemental Material for ‘Lexidate: Model Evaluation and Selection with Lexicase Selection’" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Supplemental material" />
+  <meta name="github-repo" content="jgh9094/GECCO-2024-LEXIDATE-EVALUATION" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Complexity results | Supplemental Material for ‘Lexidate: Model Evaluation and Selection with Lexicase Selection’" />
+  
+  <meta name="twitter:description" content="Supplemental material" />
+  
+
+<meta name="author" content="Anonymous GECCO" />
+
+
+<meta name="date" content="2024-01-31" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="accuracy-results.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Supplemental material</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#about-our-supplemental-material"><i class="fa fa-check"></i><b>1.1</b> About our supplemental material</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="accuracy-results.html"><a href="accuracy-results.html"><i class="fa fa-check"></i><b>2</b> Accuracy results</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="accuracy-results.html"><a href="accuracy-results.html#analysis-setup"><i class="fa fa-check"></i><b>2.1</b> Analysis setup</a></li>
+<li class="chapter" data-level="2.2" data-path="accuracy-results.html"><a href="accuracy-results.html#accuracy-per-openml-task"><i class="fa fa-check"></i><b>2.2</b> Accuracy per OpenML task</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="accuracy-results.html"><a href="accuracy-results.html#task-167104"><i class="fa fa-check"></i><b>2.2.1</b> Task 167104</a></li>
+<li class="chapter" data-level="2.2.2" data-path="accuracy-results.html"><a href="accuracy-results.html#task-167184"><i class="fa fa-check"></i><b>2.2.2</b> Task 167184</a></li>
+<li class="chapter" data-level="2.2.3" data-path="accuracy-results.html"><a href="accuracy-results.html#task-167168"><i class="fa fa-check"></i><b>2.2.3</b> Task 167168</a></li>
+<li class="chapter" data-level="2.2.4" data-path="accuracy-results.html"><a href="accuracy-results.html#task-167161"><i class="fa fa-check"></i><b>2.2.4</b> Task 167161</a></li>
+<li class="chapter" data-level="2.2.5" data-path="accuracy-results.html"><a href="accuracy-results.html#task-167185"><i class="fa fa-check"></i><b>2.2.5</b> Task 167185</a></li>
+<li class="chapter" data-level="2.2.6" data-path="accuracy-results.html"><a href="accuracy-results.html#task-189905"><i class="fa fa-check"></i><b>2.2.6</b> Task 189905</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="complexity-results.html"><a href="complexity-results.html"><i class="fa fa-check"></i><b>3</b> Complexity results</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="complexity-results.html"><a href="complexity-results.html#analysis-setup-1"><i class="fa fa-check"></i><b>3.1</b> Analysis setup</a></li>
+<li class="chapter" data-level="3.2" data-path="complexity-results.html"><a href="complexity-results.html#accuracy-per-openml-task-1"><i class="fa fa-check"></i><b>3.2</b> Accuracy per OpenML task</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="complexity-results.html"><a href="complexity-results.html#task-167104-1"><i class="fa fa-check"></i><b>3.2.1</b> Task 167104</a></li>
+<li class="chapter" data-level="3.2.2" data-path="complexity-results.html"><a href="complexity-results.html#task-167184-1"><i class="fa fa-check"></i><b>3.2.2</b> Task 167184</a></li>
+<li class="chapter" data-level="3.2.3" data-path="complexity-results.html"><a href="complexity-results.html#task-167168-1"><i class="fa fa-check"></i><b>3.2.3</b> Task 167168</a></li>
+<li class="chapter" data-level="3.2.4" data-path="complexity-results.html"><a href="complexity-results.html#task-167161-1"><i class="fa fa-check"></i><b>3.2.4</b> Task 167161</a></li>
+<li class="chapter" data-level="3.2.5" data-path="complexity-results.html"><a href="complexity-results.html#task-167185-1"><i class="fa fa-check"></i><b>3.2.5</b> Task 167185</a></li>
+<li class="chapter" data-level="3.2.6" data-path="complexity-results.html"><a href="complexity-results.html#task-189905-1"><i class="fa fa-check"></i><b>3.2.6</b> Task 189905</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with ❤ and bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Supplemental Material for ‘Lexidate: Model Evaluation and Selection with Lexicase Selection’</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="complexity-results" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Complexity results<a href="complexity-results.html#complexity-results" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Here we report the complexity for <strong>final pipeline returned from a TPOT2 run</strong> on each OpenML task.
+40 replicates were conducted for each evaluation strategy explored.</p>
+<div id="analysis-setup-1" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Analysis setup<a href="complexity-results.html#analysis-setup-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="complexity-results.html#cb44-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb44-2"><a href="complexity-results.html#cb44-2" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span>
+<span id="cb44-3"><a href="complexity-results.html#cb44-3" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb44-4"><a href="complexity-results.html#cb44-4" tabindex="-1"></a><span class="fu">library</span>(PupillometryR)</span>
+<span id="cb44-5"><a href="complexity-results.html#cb44-5" tabindex="-1"></a></span>
+<span id="cb44-6"><a href="complexity-results.html#cb44-6" tabindex="-1"></a>scores <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;./complexity.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb44-7"><a href="complexity-results.html#cb44-7" tabindex="-1"></a>scores<span class="sc">$</span>acro <span class="ot">&lt;-</span> <span class="fu">factor</span>(scores<span class="sc">$</span>acro, <span class="at">levels =</span> NAMES)</span></code></pre></div>
+</div>
+<div id="accuracy-per-openml-task-1" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Accuracy per OpenML task<a href="complexity-results.html#accuracy-per-openml-task-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Accuracy of the returned pipeline from an evolutionary run.</p>
+<div id="task-167104-1" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Task 167104<a href="complexity-results.html#task-167104-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="complexity-results.html#cb45-1" tabindex="-1"></a><span class="fu">filter</span>(scores, taskid <span class="sc">==</span> task_id_lists[<span class="dv">1</span>]) <span class="sc">%&gt;%</span></span>
+<span id="cb45-2"><a href="complexity-results.html#cb45-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> acro, <span class="at">y =</span> complexity, <span class="at">color =</span> acro,</span>
+<span id="cb45-3"><a href="complexity-results.html#cb45-3" tabindex="-1"></a>                <span class="at">fill =</span> acro, <span class="at">shape =</span> acro)) <span class="sc">+</span></span>
+<span id="cb45-4"><a href="complexity-results.html#cb45-4" tabindex="-1"></a>  <span class="fu">geom_flat_violin</span>(<span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">x =</span> <span class="fl">0.1</span>, <span class="at">y =</span> <span class="dv">0</span>),</span>
+<span id="cb45-5"><a href="complexity-results.html#cb45-5" tabindex="-1"></a>                   <span class="at">scale =</span> <span class="st">&quot;width&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">width =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb45-6"><a href="complexity-results.html#cb45-6" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">width =</span> .<span class="dv">08</span>, <span class="at">outlier.shape =</span> <span class="cn">NA</span>, <span class="at">alpha =</span> <span class="fl">0.0</span>,</span>
+<span id="cb45-7"><a href="complexity-results.html#cb45-7" tabindex="-1"></a>               <span class="at">size =</span> <span class="fl">0.8</span>, <span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">x =</span> .<span class="dv">15</span>, <span class="at">y =</span> <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb45-8"><a href="complexity-results.html#cb45-8" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> .<span class="dv">015</span>, <span class="at">height =</span> .<span class="dv">0001</span>),</span>
+<span id="cb45-9"><a href="complexity-results.html#cb45-9" tabindex="-1"></a>             <span class="at">size =</span> <span class="fl">2.0</span>, <span class="at">alpha =</span> <span class="fl">1.0</span>) <span class="sc">+</span></span>
+<span id="cb45-10"><a href="complexity-results.html#cb45-10" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb45-11"><a href="complexity-results.html#cb45-11" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">&quot;Complexity&quot;</span>,</span>
+<span id="cb45-12"><a href="complexity-results.html#cb45-12" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(.<span class="dv">74</span>, .<span class="dv">78</span>, .<span class="dv">82</span>, .<span class="dv">86</span>),</span>
+<span id="cb45-13"><a href="complexity-results.html#cb45-13" tabindex="-1"></a>    <span class="at">labels =</span> scales<span class="sc">::</span>percent</span>
+<span id="cb45-14"><a href="complexity-results.html#cb45-14" tabindex="-1"></a></span>
+<span id="cb45-15"><a href="complexity-results.html#cb45-15" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb45-16"><a href="complexity-results.html#cb45-16" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(</span>
+<span id="cb45-17"><a href="complexity-results.html#cb45-17" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">&quot;Treatment&quot;</span></span>
+<span id="cb45-18"><a href="complexity-results.html#cb45-18" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb45-19"><a href="complexity-results.html#cb45-19" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> SHAPE,) <span class="sc">+</span></span>
+<span id="cb45-20"><a href="complexity-results.html#cb45-20" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> cb_palette,) <span class="sc">+</span></span>
+<span id="cb45-21"><a href="complexity-results.html#cb45-21" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> cb_palette,) <span class="sc">+</span></span>
+<span id="cb45-22"><a href="complexity-results.html#cb45-22" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Complexity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb45-23"><a href="complexity-results.html#cb45-23" tabindex="-1"></a>  p_theme <span class="sc">+</span></span>
+<span id="cb45-24"><a href="complexity-results.html#cb45-24" tabindex="-1"></a>  <span class="fu">guides</span>(</span>
+<span id="cb45-25"><a href="complexity-results.html#cb45-25" tabindex="-1"></a>    <span class="at">shape=</span><span class="fu">guide_legend</span>(<span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">title.position =</span> <span class="st">&quot;bottom&quot;</span>,</span>
+<span id="cb45-26"><a href="complexity-results.html#cb45-26" tabindex="-1"></a>                       <span class="at">title =</span> <span class="st">&quot;Evaluation strategy&quot;</span>),</span>
+<span id="cb45-27"><a href="complexity-results.html#cb45-27" tabindex="-1"></a>    <span class="at">color=</span><span class="fu">guide_legend</span>(<span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">title.position =</span> <span class="st">&quot;bottom&quot;</span>,</span>
+<span id="cb45-28"><a href="complexity-results.html#cb45-28" tabindex="-1"></a>                       <span class="at">title =</span> <span class="st">&quot;Evaluation strategy&quot;</span>),</span>
+<span id="cb45-29"><a href="complexity-results.html#cb45-29" tabindex="-1"></a>    <span class="at">fill=</span><span class="fu">guide_legend</span>(<span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">title.position =</span> <span class="st">&quot;bottom&quot;</span>,</span>
+<span id="cb45-30"><a href="complexity-results.html#cb45-30" tabindex="-1"></a>                      <span class="at">title =</span> <span class="st">&quot;Evaluation strategy&quot;</span>)</span>
+<span id="cb45-31"><a href="complexity-results.html#cb45-31" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="lexidate-validation-supplemental_files/figure-html/com-task-1-plt-1.png" width="100%" /></p>
+<p>Summary statistics for the generation a satisfactory solution is found.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="complexity-results.html#cb46-1" tabindex="-1"></a>performance <span class="ot">&lt;-</span> <span class="fu">filter</span>(scores, taskid <span class="sc">==</span> task_id_lists[<span class="dv">1</span>])</span>
+<span id="cb46-2"><a href="complexity-results.html#cb46-2" tabindex="-1"></a>performance <span class="sc">%&gt;%</span></span>
+<span id="cb46-3"><a href="complexity-results.html#cb46-3" tabindex="-1"></a>  <span class="fu">group_by</span>(acro) <span class="sc">%&gt;%</span></span>
+<span id="cb46-4"><a href="complexity-results.html#cb46-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
+<span id="cb46-5"><a href="complexity-results.html#cb46-5" tabindex="-1"></a>    <span class="at">count =</span> <span class="fu">n</span>(),</span>
+<span id="cb46-6"><a href="complexity-results.html#cb46-6" tabindex="-1"></a>    <span class="at">na_cnt =</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(complexity)),</span>
+<span id="cb46-7"><a href="complexity-results.html#cb46-7" tabindex="-1"></a>    <span class="at">min =</span> <span class="fu">min</span>(complexity, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb46-8"><a href="complexity-results.html#cb46-8" tabindex="-1"></a>    <span class="at">median =</span> <span class="fu">median</span>(complexity, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb46-9"><a href="complexity-results.html#cb46-9" tabindex="-1"></a>    <span class="at">mean =</span> <span class="fu">mean</span>(complexity, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb46-10"><a href="complexity-results.html#cb46-10" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">max</span>(complexity, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb46-11"><a href="complexity-results.html#cb46-11" tabindex="-1"></a>    <span class="at">IQR =</span> <span class="fu">IQR</span>(complexity, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb46-12"><a href="complexity-results.html#cb46-12" tabindex="-1"></a>  )</span></code></pre></div>
+<pre><code>## # A tibble: 4 × 8
+##   acro       count na_cnt   min median  mean   max    IQR
+##   &lt;fct&gt;      &lt;int&gt;  &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+## 1 10-fold cv    40      0     2  1178  9852. 49555 18698.
+## 2 90/10         40      0     6   266. 2825. 29768  3084.
+## 3 70/30         40      0     5   414. 5372. 32167  6711.
+## 4 50/50         40      0     7  2119  6275. 37256 10039.</code></pre>
+<p>Kruskal–Wallis test illustrates evidence of statistical differences.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="complexity-results.html#cb48-1" tabindex="-1"></a><span class="fu">kruskal.test</span>(complexity <span class="sc">~</span> acro, <span class="at">data =</span> performance)</span></code></pre></div>
+<pre><code>## 
+##  Kruskal-Wallis rank sum test
+## 
+## data:  complexity by acro
+## Kruskal-Wallis chi-squared = 2.4209, df = 3, p-value = 0.4898</code></pre>
+<p>Results for post-hoc Wilcoxon rank-sum test with a Bonferroni correction.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="complexity-results.html#cb50-1" tabindex="-1"></a><span class="fu">pairwise.wilcox.test</span>(<span class="at">x =</span> performance<span class="sc">$</span>complexity, <span class="at">g =</span> performance<span class="sc">$</span>acro,</span>
+<span id="cb50-2"><a href="complexity-results.html#cb50-2" tabindex="-1"></a>                     <span class="at">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>,</span>
+<span id="cb50-3"><a href="complexity-results.html#cb50-3" tabindex="-1"></a>                     <span class="at">paired =</span> <span class="cn">FALSE</span>, <span class="at">conf.int =</span> <span class="cn">FALSE</span>, <span class="at">alternative =</span> <span class="st">&quot;t&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
+## 
+## data:  performance$complexity and performance$acro 
+## 
+##       10-fold cv 90/10 70/30
+## 90/10 1.00       -     -    
+## 70/30 1.00       0.85  -    
+## 50/50 1.00       0.72  1.00 
+## 
+## P value adjustment method: bonferroni</code></pre>
+</div>
+<div id="task-167184-1" class="section level3 hasAnchor" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Task 167184<a href="complexity-results.html#task-167184-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="complexity-results.html#cb52-1" tabindex="-1"></a><span class="fu">filter</span>(scores, taskid <span class="sc">==</span> task_id_lists[<span class="dv">2</span>]) <span class="sc">%&gt;%</span></span>
+<span id="cb52-2"><a href="complexity-results.html#cb52-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> acro, <span class="at">y =</span> complexity, <span class="at">color =</span> acro,</span>
+<span id="cb52-3"><a href="complexity-results.html#cb52-3" tabindex="-1"></a>                <span class="at">fill =</span> acro, <span class="at">shape =</span> acro)) <span class="sc">+</span></span>
+<span id="cb52-4"><a href="complexity-results.html#cb52-4" tabindex="-1"></a>  <span class="fu">geom_flat_violin</span>(<span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">x =</span> <span class="fl">0.1</span>, <span class="at">y =</span> <span class="dv">0</span>),</span>
+<span id="cb52-5"><a href="complexity-results.html#cb52-5" tabindex="-1"></a>                   <span class="at">scale =</span> <span class="st">&quot;width&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">width =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb52-6"><a href="complexity-results.html#cb52-6" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">width =</span> .<span class="dv">08</span>, <span class="at">outlier.shape =</span> <span class="cn">NA</span>, <span class="at">alpha =</span> <span class="fl">0.0</span>,</span>
+<span id="cb52-7"><a href="complexity-results.html#cb52-7" tabindex="-1"></a>               <span class="at">size =</span> <span class="fl">0.8</span>, <span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">x =</span> .<span class="dv">15</span>, <span class="at">y =</span> <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb52-8"><a href="complexity-results.html#cb52-8" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> .<span class="dv">015</span>, <span class="at">height =</span> .<span class="dv">0001</span>),</span>
+<span id="cb52-9"><a href="complexity-results.html#cb52-9" tabindex="-1"></a>             <span class="at">size =</span> <span class="fl">2.0</span>, <span class="at">alpha =</span> <span class="fl">1.0</span>) <span class="sc">+</span></span>
+<span id="cb52-10"><a href="complexity-results.html#cb52-10" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb52-11"><a href="complexity-results.html#cb52-11" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">&quot;Complexity&quot;</span>,</span>
+<span id="cb52-12"><a href="complexity-results.html#cb52-12" tabindex="-1"></a>    <span class="at">limits=</span><span class="fu">c</span>(.<span class="dv">6</span>, .<span class="dv">9</span>),</span>
+<span id="cb52-13"><a href="complexity-results.html#cb52-13" tabindex="-1"></a>    <span class="at">labels =</span> scales<span class="sc">::</span>percent</span>
+<span id="cb52-14"><a href="complexity-results.html#cb52-14" tabindex="-1"></a></span>
+<span id="cb52-15"><a href="complexity-results.html#cb52-15" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb52-16"><a href="complexity-results.html#cb52-16" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(</span>
+<span id="cb52-17"><a href="complexity-results.html#cb52-17" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">&quot;Treatment&quot;</span></span>
+<span id="cb52-18"><a href="complexity-results.html#cb52-18" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb52-19"><a href="complexity-results.html#cb52-19" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> SHAPE) <span class="sc">+</span></span>
+<span id="cb52-20"><a href="complexity-results.html#cb52-20" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> cb_palette, ) <span class="sc">+</span></span>
+<span id="cb52-21"><a href="complexity-results.html#cb52-21" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> cb_palette) <span class="sc">+</span></span>
+<span id="cb52-22"><a href="complexity-results.html#cb52-22" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Complexity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb52-23"><a href="complexity-results.html#cb52-23" tabindex="-1"></a>  p_theme <span class="sc">+</span></span>
+<span id="cb52-24"><a href="complexity-results.html#cb52-24" tabindex="-1"></a>  <span class="fu">guides</span>(</span>
+<span id="cb52-25"><a href="complexity-results.html#cb52-25" tabindex="-1"></a>    <span class="at">shape=</span><span class="fu">guide_legend</span>(<span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">title.position =</span> <span class="st">&quot;bottom&quot;</span>,</span>
+<span id="cb52-26"><a href="complexity-results.html#cb52-26" tabindex="-1"></a>                       <span class="at">title =</span> <span class="st">&quot;Evaluation strategy&quot;</span>),</span>
+<span id="cb52-27"><a href="complexity-results.html#cb52-27" tabindex="-1"></a>    <span class="at">color=</span><span class="fu">guide_legend</span>(<span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">title.position =</span> <span class="st">&quot;bottom&quot;</span>,</span>
+<span id="cb52-28"><a href="complexity-results.html#cb52-28" tabindex="-1"></a>                       <span class="at">title =</span> <span class="st">&quot;Evaluation strategy&quot;</span>),</span>
+<span id="cb52-29"><a href="complexity-results.html#cb52-29" tabindex="-1"></a>    <span class="at">fill=</span><span class="fu">guide_legend</span>(<span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">title.position =</span> <span class="st">&quot;bottom&quot;</span>,</span>
+<span id="cb52-30"><a href="complexity-results.html#cb52-30" tabindex="-1"></a>                      <span class="at">title =</span> <span class="st">&quot;Evaluation strategy&quot;</span>)</span>
+<span id="cb52-31"><a href="complexity-results.html#cb52-31" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="lexidate-validation-supplemental_files/figure-html/com-task-2-plt-1.png" width="100%" /></p>
+<p>Summary statistics for the generation a satisfactory solution is found.</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="complexity-results.html#cb53-1" tabindex="-1"></a>performance <span class="ot">&lt;-</span> <span class="fu">filter</span>(scores, taskid <span class="sc">==</span> task_id_lists[<span class="dv">2</span>])</span>
+<span id="cb53-2"><a href="complexity-results.html#cb53-2" tabindex="-1"></a>performance <span class="sc">%&gt;%</span></span>
+<span id="cb53-3"><a href="complexity-results.html#cb53-3" tabindex="-1"></a>  <span class="fu">group_by</span>(acro) <span class="sc">%&gt;%</span></span>
+<span id="cb53-4"><a href="complexity-results.html#cb53-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
+<span id="cb53-5"><a href="complexity-results.html#cb53-5" tabindex="-1"></a>    <span class="at">count =</span> <span class="fu">n</span>(),</span>
+<span id="cb53-6"><a href="complexity-results.html#cb53-6" tabindex="-1"></a>    <span class="at">na_cnt =</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(complexity)),</span>
+<span id="cb53-7"><a href="complexity-results.html#cb53-7" tabindex="-1"></a>    <span class="at">min =</span> <span class="fu">min</span>(complexity, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb53-8"><a href="complexity-results.html#cb53-8" tabindex="-1"></a>    <span class="at">median =</span> <span class="fu">median</span>(complexity, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb53-9"><a href="complexity-results.html#cb53-9" tabindex="-1"></a>    <span class="at">mean =</span> <span class="fu">mean</span>(complexity, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb53-10"><a href="complexity-results.html#cb53-10" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">max</span>(complexity, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb53-11"><a href="complexity-results.html#cb53-11" tabindex="-1"></a>    <span class="at">IQR =</span> <span class="fu">IQR</span>(complexity, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb53-12"><a href="complexity-results.html#cb53-12" tabindex="-1"></a>  )</span></code></pre></div>
+<pre><code>## # A tibble: 4 × 8
+##   acro       count na_cnt   min median  mean   max    IQR
+##   &lt;fct&gt;      &lt;int&gt;  &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+## 1 10-fold cv    40      0     3  2746. 9800. 55067 17839 
+## 2 90/10         40      0     6   122  1513. 16357   985.
+## 3 70/30         40      0     6   212. 1898. 39455   594.
+## 4 50/50         40      0    10   222. 1780. 32307   235.</code></pre>
+<p>Kruskal–Wallis test illustrates evidence of statistical differences.</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="complexity-results.html#cb55-1" tabindex="-1"></a><span class="fu">kruskal.test</span>(complexity <span class="sc">~</span> acro, <span class="at">data =</span> performance)</span></code></pre></div>
+<pre><code>## 
+##  Kruskal-Wallis rank sum test
+## 
+## data:  complexity by acro
+## Kruskal-Wallis chi-squared = 19.375, df = 3, p-value = 0.0002287</code></pre>
+<p>Results for post-hoc Wilcoxon rank-sum test with a Bonferroni correction.</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="complexity-results.html#cb57-1" tabindex="-1"></a><span class="fu">pairwise.wilcox.test</span>(<span class="at">x =</span> performance<span class="sc">$</span>complexity, <span class="at">g =</span> performance<span class="sc">$</span>acro,</span>
+<span id="cb57-2"><a href="complexity-results.html#cb57-2" tabindex="-1"></a>                     <span class="at">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>,</span>
+<span id="cb57-3"><a href="complexity-results.html#cb57-3" tabindex="-1"></a>                     <span class="at">paired =</span> <span class="cn">FALSE</span>, <span class="at">conf.int =</span> <span class="cn">FALSE</span>, <span class="at">alternative =</span> <span class="st">&quot;t&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
+## 
+## data:  performance$complexity and performance$acro 
+## 
+##       10-fold cv 90/10   70/30  
+## 90/10 0.00072    -       -      
+## 70/30 0.00234    1.00000 -      
+## 50/50 0.01484    1.00000 1.00000
+## 
+## P value adjustment method: bonferroni</code></pre>
+</div>
+<div id="task-167168-1" class="section level3 hasAnchor" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> Task 167168<a href="complexity-results.html#task-167168-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="complexity-results.html#cb59-1" tabindex="-1"></a><span class="fu">filter</span>(scores, taskid <span class="sc">==</span> task_id_lists[<span class="dv">3</span>]) <span class="sc">%&gt;%</span></span>
+<span id="cb59-2"><a href="complexity-results.html#cb59-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> acro, <span class="at">y =</span> complexity, <span class="at">color =</span> acro,</span>
+<span id="cb59-3"><a href="complexity-results.html#cb59-3" tabindex="-1"></a>                <span class="at">fill =</span> acro, <span class="at">shape =</span> acro)) <span class="sc">+</span></span>
+<span id="cb59-4"><a href="complexity-results.html#cb59-4" tabindex="-1"></a>  <span class="fu">geom_flat_violin</span>(<span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">x =</span> <span class="fl">0.1</span>, <span class="at">y =</span> <span class="dv">0</span>),</span>
+<span id="cb59-5"><a href="complexity-results.html#cb59-5" tabindex="-1"></a>                   <span class="at">scale =</span> <span class="st">&quot;width&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">width =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb59-6"><a href="complexity-results.html#cb59-6" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">width =</span> .<span class="dv">08</span>, <span class="at">outlier.shape =</span> <span class="cn">NA</span>, <span class="at">alpha =</span> <span class="fl">0.0</span>,</span>
+<span id="cb59-7"><a href="complexity-results.html#cb59-7" tabindex="-1"></a>               <span class="at">size =</span> <span class="fl">0.8</span>, <span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">x =</span> .<span class="dv">15</span>, <span class="at">y =</span> <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb59-8"><a href="complexity-results.html#cb59-8" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> .<span class="dv">015</span>, <span class="at">height =</span> .<span class="dv">0001</span>),</span>
+<span id="cb59-9"><a href="complexity-results.html#cb59-9" tabindex="-1"></a>             <span class="at">size =</span> <span class="fl">2.0</span>, <span class="at">alpha =</span> <span class="fl">1.0</span>) <span class="sc">+</span></span>
+<span id="cb59-10"><a href="complexity-results.html#cb59-10" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb59-11"><a href="complexity-results.html#cb59-11" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">&quot;Complexity&quot;</span>,</span>
+<span id="cb59-12"><a href="complexity-results.html#cb59-12" tabindex="-1"></a>    <span class="at">labels =</span> scales<span class="sc">::</span>percent</span>
+<span id="cb59-13"><a href="complexity-results.html#cb59-13" tabindex="-1"></a></span>
+<span id="cb59-14"><a href="complexity-results.html#cb59-14" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb59-15"><a href="complexity-results.html#cb59-15" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(</span>
+<span id="cb59-16"><a href="complexity-results.html#cb59-16" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">&quot;Treatment&quot;</span></span>
+<span id="cb59-17"><a href="complexity-results.html#cb59-17" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb59-18"><a href="complexity-results.html#cb59-18" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> SHAPE) <span class="sc">+</span></span>
+<span id="cb59-19"><a href="complexity-results.html#cb59-19" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> cb_palette, ) <span class="sc">+</span></span>
+<span id="cb59-20"><a href="complexity-results.html#cb59-20" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> cb_palette) <span class="sc">+</span></span>
+<span id="cb59-21"><a href="complexity-results.html#cb59-21" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Complexity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb59-22"><a href="complexity-results.html#cb59-22" tabindex="-1"></a>  p_theme</span></code></pre></div>
+<p><img src="lexidate-validation-supplemental_files/figure-html/com-task-3-plt-1.png" width="100%" /></p>
+<p>Summary statistics for the generation a satisfactory solution is found.</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="complexity-results.html#cb60-1" tabindex="-1"></a>performance <span class="ot">&lt;-</span> <span class="fu">filter</span>(scores, taskid <span class="sc">==</span> task_id_lists[<span class="dv">3</span>])</span>
+<span id="cb60-2"><a href="complexity-results.html#cb60-2" tabindex="-1"></a>performance <span class="sc">%&gt;%</span></span>
+<span id="cb60-3"><a href="complexity-results.html#cb60-3" tabindex="-1"></a>  <span class="fu">group_by</span>(acro) <span class="sc">%&gt;%</span></span>
+<span id="cb60-4"><a href="complexity-results.html#cb60-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
+<span id="cb60-5"><a href="complexity-results.html#cb60-5" tabindex="-1"></a>    <span class="at">count =</span> <span class="fu">n</span>(),</span>
+<span id="cb60-6"><a href="complexity-results.html#cb60-6" tabindex="-1"></a>    <span class="at">na_cnt =</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(complexity)),</span>
+<span id="cb60-7"><a href="complexity-results.html#cb60-7" tabindex="-1"></a>    <span class="at">min =</span> <span class="fu">min</span>(complexity, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb60-8"><a href="complexity-results.html#cb60-8" tabindex="-1"></a>    <span class="at">median =</span> <span class="fu">median</span>(complexity, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb60-9"><a href="complexity-results.html#cb60-9" tabindex="-1"></a>    <span class="at">mean =</span> <span class="fu">mean</span>(complexity, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb60-10"><a href="complexity-results.html#cb60-10" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">max</span>(complexity, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb60-11"><a href="complexity-results.html#cb60-11" tabindex="-1"></a>    <span class="at">IQR =</span> <span class="fu">IQR</span>(complexity, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb60-12"><a href="complexity-results.html#cb60-12" tabindex="-1"></a>  )</span></code></pre></div>
+<pre><code>## # A tibble: 4 × 8
+##   acro       count na_cnt   min median   mean    max    IQR
+##   &lt;fct&gt;      &lt;int&gt;  &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1 10-fold cv    40      0    82   940. 21344. 176015 13874.
+## 2 90/10         40      0    19   992. 10726.  68977  8396.
+## 3 70/30         40      0   129   430.  8209.  94505  3750.
+## 4 50/50         40      0   225  2140. 11399.  94975 11698.</code></pre>
+<p>Kruskal–Wallis test illustrates evidence of statistical differences.</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="complexity-results.html#cb62-1" tabindex="-1"></a><span class="fu">kruskal.test</span>(complexity <span class="sc">~</span> acro, <span class="at">data =</span> performance)</span></code></pre></div>
+<pre><code>## 
+##  Kruskal-Wallis rank sum test
+## 
+## data:  complexity by acro
+## Kruskal-Wallis chi-squared = 3.0019, df = 3, p-value = 0.3913</code></pre>
+<p>Results for post-hoc Wilcoxon rank-sum test with a Bonferroni correction.</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="complexity-results.html#cb64-1" tabindex="-1"></a><span class="fu">pairwise.wilcox.test</span>(<span class="at">x =</span> performance<span class="sc">$</span>complexity, <span class="at">g =</span> performance<span class="sc">$</span>acro,</span>
+<span id="cb64-2"><a href="complexity-results.html#cb64-2" tabindex="-1"></a>                     <span class="at">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>,</span>
+<span id="cb64-3"><a href="complexity-results.html#cb64-3" tabindex="-1"></a>                     <span class="at">paired =</span> <span class="cn">FALSE</span>, <span class="at">conf.int =</span> <span class="cn">FALSE</span>, <span class="at">alternative =</span> <span class="st">&quot;t&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Pairwise comparisons using Wilcoxon rank sum exact test 
+## 
+## data:  performance$complexity and performance$acro 
+## 
+##       10-fold cv 90/10 70/30
+## 90/10 1.00       -     -    
+## 70/30 1.00       1.00  -    
+## 50/50 1.00       1.00  0.56 
+## 
+## P value adjustment method: bonferroni</code></pre>
+</div>
+<div id="task-167161-1" class="section level3 hasAnchor" number="3.2.4">
+<h3><span class="header-section-number">3.2.4</span> Task 167161<a href="complexity-results.html#task-167161-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="complexity-results.html#cb66-1" tabindex="-1"></a><span class="fu">filter</span>(scores, taskid <span class="sc">==</span> task_id_lists[<span class="dv">4</span>]) <span class="sc">%&gt;%</span></span>
+<span id="cb66-2"><a href="complexity-results.html#cb66-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> acro, <span class="at">y =</span> complexity, <span class="at">color =</span> acro,</span>
+<span id="cb66-3"><a href="complexity-results.html#cb66-3" tabindex="-1"></a>                <span class="at">fill =</span> acro, <span class="at">shape =</span> acro)) <span class="sc">+</span></span>
+<span id="cb66-4"><a href="complexity-results.html#cb66-4" tabindex="-1"></a>  <span class="fu">geom_flat_violin</span>(<span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">x =</span> <span class="fl">0.1</span>, <span class="at">y =</span> <span class="dv">0</span>),</span>
+<span id="cb66-5"><a href="complexity-results.html#cb66-5" tabindex="-1"></a>                   <span class="at">scale =</span> <span class="st">&quot;width&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">width =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb66-6"><a href="complexity-results.html#cb66-6" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">width =</span> .<span class="dv">08</span>, <span class="at">outlier.shape =</span> <span class="cn">NA</span>, <span class="at">alpha =</span> <span class="fl">0.0</span>,</span>
+<span id="cb66-7"><a href="complexity-results.html#cb66-7" tabindex="-1"></a>               <span class="at">size =</span> <span class="fl">0.8</span>, <span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">x =</span> .<span class="dv">15</span>, <span class="at">y =</span> <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb66-8"><a href="complexity-results.html#cb66-8" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> .<span class="dv">015</span>, <span class="at">height =</span> .<span class="dv">0001</span>),</span>
+<span id="cb66-9"><a href="complexity-results.html#cb66-9" tabindex="-1"></a>             <span class="at">size =</span> <span class="fl">2.0</span>, <span class="at">alpha =</span> <span class="fl">1.0</span>) <span class="sc">+</span></span>
+<span id="cb66-10"><a href="complexity-results.html#cb66-10" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb66-11"><a href="complexity-results.html#cb66-11" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">&quot;Complexity&quot;</span>,</span>
+<span id="cb66-12"><a href="complexity-results.html#cb66-12" tabindex="-1"></a>    <span class="at">limits=</span><span class="fu">c</span>(.<span class="dv">55</span>, .<span class="dv">80</span>),</span>
+<span id="cb66-13"><a href="complexity-results.html#cb66-13" tabindex="-1"></a>    <span class="at">breaks=</span><span class="fu">c</span>(.<span class="dv">56</span>,.<span class="dv">64</span>,.<span class="dv">72</span>,.<span class="dv">8</span>),</span>
+<span id="cb66-14"><a href="complexity-results.html#cb66-14" tabindex="-1"></a>    <span class="at">labels =</span> scales<span class="sc">::</span>percent</span>
+<span id="cb66-15"><a href="complexity-results.html#cb66-15" tabindex="-1"></a></span>
+<span id="cb66-16"><a href="complexity-results.html#cb66-16" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb66-17"><a href="complexity-results.html#cb66-17" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(</span>
+<span id="cb66-18"><a href="complexity-results.html#cb66-18" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">&quot;Treatment&quot;</span></span>
+<span id="cb66-19"><a href="complexity-results.html#cb66-19" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb66-20"><a href="complexity-results.html#cb66-20" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> SHAPE) <span class="sc">+</span></span>
+<span id="cb66-21"><a href="complexity-results.html#cb66-21" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> cb_palette, ) <span class="sc">+</span></span>
+<span id="cb66-22"><a href="complexity-results.html#cb66-22" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> cb_palette) <span class="sc">+</span></span>
+<span id="cb66-23"><a href="complexity-results.html#cb66-23" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Complexity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb66-24"><a href="complexity-results.html#cb66-24" tabindex="-1"></a>  p_theme <span class="sc">+</span></span>
+<span id="cb66-25"><a href="complexity-results.html#cb66-25" tabindex="-1"></a>  <span class="fu">guides</span>(</span>
+<span id="cb66-26"><a href="complexity-results.html#cb66-26" tabindex="-1"></a>    <span class="at">shape=</span><span class="fu">guide_legend</span>(<span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">title.position =</span> <span class="st">&quot;bottom&quot;</span>,</span>
+<span id="cb66-27"><a href="complexity-results.html#cb66-27" tabindex="-1"></a>                       <span class="at">title =</span> <span class="st">&quot;Evaluation strategy&quot;</span>),</span>
+<span id="cb66-28"><a href="complexity-results.html#cb66-28" tabindex="-1"></a>    <span class="at">color=</span><span class="fu">guide_legend</span>(<span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">title.position =</span> <span class="st">&quot;bottom&quot;</span>,</span>
+<span id="cb66-29"><a href="complexity-results.html#cb66-29" tabindex="-1"></a>                       <span class="at">title =</span> <span class="st">&quot;Evaluation strategy&quot;</span>),</span>
+<span id="cb66-30"><a href="complexity-results.html#cb66-30" tabindex="-1"></a>    <span class="at">fill=</span><span class="fu">guide_legend</span>(<span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">title.position =</span> <span class="st">&quot;bottom&quot;</span>,</span>
+<span id="cb66-31"><a href="complexity-results.html#cb66-31" tabindex="-1"></a>                      <span class="at">title =</span> <span class="st">&quot;Evaluation strategy&quot;</span>)</span>
+<span id="cb66-32"><a href="complexity-results.html#cb66-32" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="lexidate-validation-supplemental_files/figure-html/com-task-4-plt-1.png" width="100%" /></p>
+<p>Summary statistics for the generation a satisfactory solution is found.</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="complexity-results.html#cb67-1" tabindex="-1"></a>performance <span class="ot">&lt;-</span> <span class="fu">filter</span>(scores, taskid <span class="sc">==</span> task_id_lists[<span class="dv">4</span>])</span>
+<span id="cb67-2"><a href="complexity-results.html#cb67-2" tabindex="-1"></a>performance <span class="sc">%&gt;%</span></span>
+<span id="cb67-3"><a href="complexity-results.html#cb67-3" tabindex="-1"></a>  <span class="fu">group_by</span>(acro) <span class="sc">%&gt;%</span></span>
+<span id="cb67-4"><a href="complexity-results.html#cb67-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
+<span id="cb67-5"><a href="complexity-results.html#cb67-5" tabindex="-1"></a>    <span class="at">count =</span> <span class="fu">n</span>(),</span>
+<span id="cb67-6"><a href="complexity-results.html#cb67-6" tabindex="-1"></a>    <span class="at">na_cnt =</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(complexity)),</span>
+<span id="cb67-7"><a href="complexity-results.html#cb67-7" tabindex="-1"></a>    <span class="at">min =</span> <span class="fu">min</span>(complexity, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb67-8"><a href="complexity-results.html#cb67-8" tabindex="-1"></a>    <span class="at">median =</span> <span class="fu">median</span>(complexity, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb67-9"><a href="complexity-results.html#cb67-9" tabindex="-1"></a>    <span class="at">mean =</span> <span class="fu">mean</span>(complexity, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb67-10"><a href="complexity-results.html#cb67-10" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">max</span>(complexity, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb67-11"><a href="complexity-results.html#cb67-11" tabindex="-1"></a>    <span class="at">IQR =</span> <span class="fu">IQR</span>(complexity, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb67-12"><a href="complexity-results.html#cb67-12" tabindex="-1"></a>  )</span></code></pre></div>
+<pre><code>## # A tibble: 4 × 8
+##   acro       count na_cnt   min median   mean    max    IQR
+##   &lt;fct&gt;      &lt;int&gt;  &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1 10-fold cv    40      0    28 24090. 32974. 101704 57312.
+## 2 90/10         40      0     6   306. 12308. 203928  5550.
+## 3 70/30         40      0     9   600.  7058.  77688  5416 
+## 4 50/50         40      0    11  3278. 12379. 109417 11654.</code></pre>
+<p>Kruskal–Wallis test illustrates evidence of statistical differences.</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="complexity-results.html#cb69-1" tabindex="-1"></a><span class="fu">kruskal.test</span>(complexity <span class="sc">~</span> acro, <span class="at">data =</span> performance)</span></code></pre></div>
+<pre><code>## 
+##  Kruskal-Wallis rank sum test
+## 
+## data:  complexity by acro
+## Kruskal-Wallis chi-squared = 25.893, df = 3, p-value = 1.004e-05</code></pre>
+<p>Results for post-hoc Wilcoxon rank-sum test with a Bonferroni correction.</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="complexity-results.html#cb71-1" tabindex="-1"></a><span class="fu">pairwise.wilcox.test</span>(<span class="at">x =</span> performance<span class="sc">$</span>complexity, <span class="at">g =</span> performance<span class="sc">$</span>acro,</span>
+<span id="cb71-2"><a href="complexity-results.html#cb71-2" tabindex="-1"></a>                     <span class="at">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>,</span>
+<span id="cb71-3"><a href="complexity-results.html#cb71-3" tabindex="-1"></a>                     <span class="at">paired =</span> <span class="cn">FALSE</span>, <span class="at">conf.int =</span> <span class="cn">FALSE</span>, <span class="at">alternative =</span> <span class="st">&quot;t&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
+## 
+## data:  performance$complexity and performance$acro 
+## 
+##       10-fold cv 90/10   70/30  
+## 90/10 8e-05      -       -      
+## 70/30 0.00057    0.59911 -      
+## 50/50 0.01148    0.18003 1.00000
+## 
+## P value adjustment method: bonferroni</code></pre>
+</div>
+<div id="task-167185-1" class="section level3 hasAnchor" number="3.2.5">
+<h3><span class="header-section-number">3.2.5</span> Task 167185<a href="complexity-results.html#task-167185-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="complexity-results.html#cb73-1" tabindex="-1"></a><span class="fu">filter</span>(scores, taskid <span class="sc">==</span> task_id_lists[<span class="dv">5</span>]) <span class="sc">%&gt;%</span></span>
+<span id="cb73-2"><a href="complexity-results.html#cb73-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> acro, <span class="at">y =</span> complexity, <span class="at">color =</span> acro,</span>
+<span id="cb73-3"><a href="complexity-results.html#cb73-3" tabindex="-1"></a>                <span class="at">fill =</span> acro, <span class="at">shape =</span> acro)) <span class="sc">+</span></span>
+<span id="cb73-4"><a href="complexity-results.html#cb73-4" tabindex="-1"></a>  <span class="fu">geom_flat_violin</span>(<span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">x =</span> <span class="fl">0.1</span>, <span class="at">y =</span> <span class="dv">0</span>),</span>
+<span id="cb73-5"><a href="complexity-results.html#cb73-5" tabindex="-1"></a>                   <span class="at">scale =</span> <span class="st">&quot;width&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">width =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb73-6"><a href="complexity-results.html#cb73-6" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">width =</span> .<span class="dv">08</span>, <span class="at">outlier.shape =</span> <span class="cn">NA</span>, <span class="at">alpha =</span> <span class="fl">0.0</span>,</span>
+<span id="cb73-7"><a href="complexity-results.html#cb73-7" tabindex="-1"></a>               <span class="at">size =</span> <span class="fl">0.8</span>, <span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">x =</span> .<span class="dv">15</span>, <span class="at">y =</span> <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb73-8"><a href="complexity-results.html#cb73-8" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> .<span class="dv">015</span>, <span class="at">height =</span> .<span class="dv">0001</span>),</span>
+<span id="cb73-9"><a href="complexity-results.html#cb73-9" tabindex="-1"></a>             <span class="at">size =</span> <span class="fl">2.0</span>, <span class="at">alpha =</span> <span class="fl">1.0</span>) <span class="sc">+</span></span>
+<span id="cb73-10"><a href="complexity-results.html#cb73-10" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb73-11"><a href="complexity-results.html#cb73-11" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">&quot;Complexity&quot;</span>,</span>
+<span id="cb73-12"><a href="complexity-results.html#cb73-12" tabindex="-1"></a>    <span class="at">limits=</span><span class="fu">c</span>(.<span class="dv">86</span>, .<span class="dv">96</span>),</span>
+<span id="cb73-13"><a href="complexity-results.html#cb73-13" tabindex="-1"></a>    <span class="at">breaks=</span><span class="fu">c</span>(.<span class="dv">86</span>,.<span class="dv">91</span>,.<span class="dv">96</span>),</span>
+<span id="cb73-14"><a href="complexity-results.html#cb73-14" tabindex="-1"></a>    <span class="at">labels =</span> scales<span class="sc">::</span>percent</span>
+<span id="cb73-15"><a href="complexity-results.html#cb73-15" tabindex="-1"></a></span>
+<span id="cb73-16"><a href="complexity-results.html#cb73-16" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb73-17"><a href="complexity-results.html#cb73-17" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(</span>
+<span id="cb73-18"><a href="complexity-results.html#cb73-18" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">&quot;Treatment&quot;</span></span>
+<span id="cb73-19"><a href="complexity-results.html#cb73-19" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb73-20"><a href="complexity-results.html#cb73-20" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> SHAPE) <span class="sc">+</span></span>
+<span id="cb73-21"><a href="complexity-results.html#cb73-21" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> cb_palette, ) <span class="sc">+</span></span>
+<span id="cb73-22"><a href="complexity-results.html#cb73-22" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> cb_palette) <span class="sc">+</span></span>
+<span id="cb73-23"><a href="complexity-results.html#cb73-23" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Complexity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb73-24"><a href="complexity-results.html#cb73-24" tabindex="-1"></a>  p_theme <span class="sc">+</span></span>
+<span id="cb73-25"><a href="complexity-results.html#cb73-25" tabindex="-1"></a>  <span class="fu">guides</span>(</span>
+<span id="cb73-26"><a href="complexity-results.html#cb73-26" tabindex="-1"></a>    <span class="at">shape=</span><span class="fu">guide_legend</span>(<span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">title.position =</span> <span class="st">&quot;bottom&quot;</span>,</span>
+<span id="cb73-27"><a href="complexity-results.html#cb73-27" tabindex="-1"></a>                       <span class="at">title =</span> <span class="st">&quot;Evaluation strategy&quot;</span>),</span>
+<span id="cb73-28"><a href="complexity-results.html#cb73-28" tabindex="-1"></a>    <span class="at">color=</span><span class="fu">guide_legend</span>(<span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">title.position =</span> <span class="st">&quot;bottom&quot;</span>,</span>
+<span id="cb73-29"><a href="complexity-results.html#cb73-29" tabindex="-1"></a>                       <span class="at">title =</span> <span class="st">&quot;Evaluation strategy&quot;</span>),</span>
+<span id="cb73-30"><a href="complexity-results.html#cb73-30" tabindex="-1"></a>    <span class="at">fill=</span><span class="fu">guide_legend</span>(<span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">title.position =</span> <span class="st">&quot;bottom&quot;</span>,</span>
+<span id="cb73-31"><a href="complexity-results.html#cb73-31" tabindex="-1"></a>                      <span class="at">title =</span> <span class="st">&quot;Evaluation strategy&quot;</span>)</span>
+<span id="cb73-32"><a href="complexity-results.html#cb73-32" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="lexidate-validation-supplemental_files/figure-html/com-task-5-plt-1.png" width="100%" /></p>
+<p>Summary statistics for the generation a satisfactory solution is found.</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="complexity-results.html#cb74-1" tabindex="-1"></a>performance <span class="ot">&lt;-</span> <span class="fu">filter</span>(scores, taskid <span class="sc">==</span> task_id_lists[<span class="dv">5</span>])</span>
+<span id="cb74-2"><a href="complexity-results.html#cb74-2" tabindex="-1"></a>performance <span class="sc">%&gt;%</span></span>
+<span id="cb74-3"><a href="complexity-results.html#cb74-3" tabindex="-1"></a>  <span class="fu">group_by</span>(acro) <span class="sc">%&gt;%</span></span>
+<span id="cb74-4"><a href="complexity-results.html#cb74-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
+<span id="cb74-5"><a href="complexity-results.html#cb74-5" tabindex="-1"></a>    <span class="at">count =</span> <span class="fu">n</span>(),</span>
+<span id="cb74-6"><a href="complexity-results.html#cb74-6" tabindex="-1"></a>    <span class="at">na_cnt =</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(complexity)),</span>
+<span id="cb74-7"><a href="complexity-results.html#cb74-7" tabindex="-1"></a>    <span class="at">min =</span> <span class="fu">min</span>(complexity, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb74-8"><a href="complexity-results.html#cb74-8" tabindex="-1"></a>    <span class="at">median =</span> <span class="fu">median</span>(complexity, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb74-9"><a href="complexity-results.html#cb74-9" tabindex="-1"></a>    <span class="at">mean =</span> <span class="fu">mean</span>(complexity, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb74-10"><a href="complexity-results.html#cb74-10" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">max</span>(complexity, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb74-11"><a href="complexity-results.html#cb74-11" tabindex="-1"></a>    <span class="at">IQR =</span> <span class="fu">IQR</span>(complexity, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb74-12"><a href="complexity-results.html#cb74-12" tabindex="-1"></a>  )</span></code></pre></div>
+<pre><code>## # A tibble: 4 × 8
+##   acro       count na_cnt   min median   mean    max   IQR
+##   &lt;fct&gt;      &lt;int&gt;  &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+## 1 10-fold cv    40      0     1  2244   6931.  51694 8638.
+## 2 90/10         40      0    18   934.  3667.  55371 2348.
+## 3 70/30         40      0     4  2169   5487.  35738 3874.
+## 4 50/50         40      0     4  2127  12314. 369366 1675</code></pre>
+<p>Kruskal–Wallis test illustrates evidence of statistical differences.</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="complexity-results.html#cb76-1" tabindex="-1"></a><span class="fu">kruskal.test</span>(complexity <span class="sc">~</span> acro, <span class="at">data =</span> performance)</span></code></pre></div>
+<pre><code>## 
+##  Kruskal-Wallis rank sum test
+## 
+## data:  complexity by acro
+## Kruskal-Wallis chi-squared = 3.3929, df = 3, p-value = 0.3349</code></pre>
+<p>Results for post-hoc Wilcoxon rank-sum test with a Bonferroni correction.</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="complexity-results.html#cb78-1" tabindex="-1"></a><span class="fu">pairwise.wilcox.test</span>(<span class="at">x =</span> performance<span class="sc">$</span>complexity, <span class="at">g =</span> performance<span class="sc">$</span>acro,</span>
+<span id="cb78-2"><a href="complexity-results.html#cb78-2" tabindex="-1"></a>                     <span class="at">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>,</span>
+<span id="cb78-3"><a href="complexity-results.html#cb78-3" tabindex="-1"></a>                     <span class="at">paired =</span> <span class="cn">FALSE</span>, <span class="at">conf.int =</span> <span class="cn">FALSE</span>, <span class="at">alternative =</span> <span class="st">&quot;t&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
+## 
+## data:  performance$complexity and performance$acro 
+## 
+##       10-fold cv 90/10 70/30
+## 90/10 1.00       -     -    
+## 70/30 1.00       1.00  -    
+## 50/50 1.00       0.17  1.00 
+## 
+## P value adjustment method: bonferroni</code></pre>
+</div>
+<div id="task-189905-1" class="section level3 hasAnchor" number="3.2.6">
+<h3><span class="header-section-number">3.2.6</span> Task 189905<a href="complexity-results.html#task-189905-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="complexity-results.html#cb80-1" tabindex="-1"></a><span class="fu">filter</span>(scores, taskid <span class="sc">==</span> task_id_lists[<span class="dv">6</span>]) <span class="sc">%&gt;%</span></span>
+<span id="cb80-2"><a href="complexity-results.html#cb80-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> acro, <span class="at">y =</span> complexity, <span class="at">color =</span> acro,</span>
+<span id="cb80-3"><a href="complexity-results.html#cb80-3" tabindex="-1"></a>                <span class="at">fill =</span> acro, <span class="at">shape =</span> acro)) <span class="sc">+</span></span>
+<span id="cb80-4"><a href="complexity-results.html#cb80-4" tabindex="-1"></a>  <span class="fu">geom_flat_violin</span>(<span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">x =</span> <span class="fl">0.1</span>, <span class="at">y =</span> <span class="dv">0</span>),</span>
+<span id="cb80-5"><a href="complexity-results.html#cb80-5" tabindex="-1"></a>                   <span class="at">scale =</span> <span class="st">&quot;width&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">width =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb80-6"><a href="complexity-results.html#cb80-6" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">width =</span> .<span class="dv">08</span>, <span class="at">outlier.shape =</span> <span class="cn">NA</span>, <span class="at">alpha =</span> <span class="fl">0.0</span>,</span>
+<span id="cb80-7"><a href="complexity-results.html#cb80-7" tabindex="-1"></a>               <span class="at">size =</span> <span class="fl">0.8</span>, <span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">x =</span> .<span class="dv">15</span>, <span class="at">y =</span> <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb80-8"><a href="complexity-results.html#cb80-8" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> .<span class="dv">015</span>, <span class="at">height =</span> .<span class="dv">0001</span>),</span>
+<span id="cb80-9"><a href="complexity-results.html#cb80-9" tabindex="-1"></a>             <span class="at">size =</span> <span class="fl">2.0</span>, <span class="at">alpha =</span> <span class="fl">1.0</span>) <span class="sc">+</span></span>
+<span id="cb80-10"><a href="complexity-results.html#cb80-10" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb80-11"><a href="complexity-results.html#cb80-11" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">&quot;Complexity&quot;</span>,</span>
+<span id="cb80-12"><a href="complexity-results.html#cb80-12" tabindex="-1"></a>    <span class="at">limits=</span><span class="fu">c</span>(.<span class="dv">916</span>,<span class="fl">1.001</span>),</span>
+<span id="cb80-13"><a href="complexity-results.html#cb80-13" tabindex="-1"></a>    <span class="at">breaks=</span><span class="fu">c</span>(.<span class="dv">92</span>,.<span class="dv">96</span>,<span class="dv">1</span>),</span>
+<span id="cb80-14"><a href="complexity-results.html#cb80-14" tabindex="-1"></a>    <span class="at">labels =</span> scales<span class="sc">::</span>percent</span>
+<span id="cb80-15"><a href="complexity-results.html#cb80-15" tabindex="-1"></a></span>
+<span id="cb80-16"><a href="complexity-results.html#cb80-16" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb80-17"><a href="complexity-results.html#cb80-17" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(</span>
+<span id="cb80-18"><a href="complexity-results.html#cb80-18" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">&quot;Treatment&quot;</span></span>
+<span id="cb80-19"><a href="complexity-results.html#cb80-19" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb80-20"><a href="complexity-results.html#cb80-20" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> SHAPE) <span class="sc">+</span></span>
+<span id="cb80-21"><a href="complexity-results.html#cb80-21" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> cb_palette, ) <span class="sc">+</span></span>
+<span id="cb80-22"><a href="complexity-results.html#cb80-22" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> cb_palette) <span class="sc">+</span></span>
+<span id="cb80-23"><a href="complexity-results.html#cb80-23" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Complexity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb80-24"><a href="complexity-results.html#cb80-24" tabindex="-1"></a>  p_theme <span class="sc">+</span></span>
+<span id="cb80-25"><a href="complexity-results.html#cb80-25" tabindex="-1"></a>  <span class="fu">guides</span>(</span>
+<span id="cb80-26"><a href="complexity-results.html#cb80-26" tabindex="-1"></a>    <span class="at">shape=</span><span class="fu">guide_legend</span>(<span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">title.position =</span> <span class="st">&quot;bottom&quot;</span>,</span>
+<span id="cb80-27"><a href="complexity-results.html#cb80-27" tabindex="-1"></a>                       <span class="at">title =</span> <span class="st">&quot;Evaluation strategy&quot;</span>),</span>
+<span id="cb80-28"><a href="complexity-results.html#cb80-28" tabindex="-1"></a>    <span class="at">color=</span><span class="fu">guide_legend</span>(<span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">title.position =</span> <span class="st">&quot;bottom&quot;</span>,</span>
+<span id="cb80-29"><a href="complexity-results.html#cb80-29" tabindex="-1"></a>                       <span class="at">title =</span> <span class="st">&quot;Evaluation strategy&quot;</span>),</span>
+<span id="cb80-30"><a href="complexity-results.html#cb80-30" tabindex="-1"></a>    <span class="at">fill=</span><span class="fu">guide_legend</span>(<span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">title.position =</span> <span class="st">&quot;bottom&quot;</span>,</span>
+<span id="cb80-31"><a href="complexity-results.html#cb80-31" tabindex="-1"></a>                      <span class="at">title =</span> <span class="st">&quot;Evaluation strategy&quot;</span>)</span>
+<span id="cb80-32"><a href="complexity-results.html#cb80-32" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="lexidate-validation-supplemental_files/figure-html/com-task-6-plt-1.png" width="100%" /></p>
+<p>Summary statistics for the generation a satisfactory solution is found.</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="complexity-results.html#cb81-1" tabindex="-1"></a>performance <span class="ot">&lt;-</span> <span class="fu">filter</span>(scores, taskid <span class="sc">==</span> task_id_lists[<span class="dv">6</span>])</span>
+<span id="cb81-2"><a href="complexity-results.html#cb81-2" tabindex="-1"></a>performance <span class="sc">%&gt;%</span></span>
+<span id="cb81-3"><a href="complexity-results.html#cb81-3" tabindex="-1"></a>  <span class="fu">group_by</span>(acro) <span class="sc">%&gt;%</span></span>
+<span id="cb81-4"><a href="complexity-results.html#cb81-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
+<span id="cb81-5"><a href="complexity-results.html#cb81-5" tabindex="-1"></a>    <span class="at">count =</span> <span class="fu">n</span>(),</span>
+<span id="cb81-6"><a href="complexity-results.html#cb81-6" tabindex="-1"></a>    <span class="at">na_cnt =</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(complexity)),</span>
+<span id="cb81-7"><a href="complexity-results.html#cb81-7" tabindex="-1"></a>    <span class="at">min =</span> <span class="fu">min</span>(complexity, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb81-8"><a href="complexity-results.html#cb81-8" tabindex="-1"></a>    <span class="at">median =</span> <span class="fu">median</span>(complexity, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb81-9"><a href="complexity-results.html#cb81-9" tabindex="-1"></a>    <span class="at">mean =</span> <span class="fu">mean</span>(complexity, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb81-10"><a href="complexity-results.html#cb81-10" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">max</span>(complexity, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb81-11"><a href="complexity-results.html#cb81-11" tabindex="-1"></a>    <span class="at">IQR =</span> <span class="fu">IQR</span>(complexity, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb81-12"><a href="complexity-results.html#cb81-12" tabindex="-1"></a>  )</span></code></pre></div>
+<pre><code>## # A tibble: 4 × 8
+##   acro       count na_cnt   min median  mean    max   IQR
+##   &lt;fct&gt;      &lt;int&gt;  &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+## 1 10-fold cv    40      0   226   457  7771.  95634  437.
+## 2 90/10         40      0    10   230. 6579.  72557  240.
+## 3 70/30         40      0   202   274. 7736. 115088  241 
+## 4 50/50         40      0   229   429  3262.  39776  310.</code></pre>
+<p>Kruskal–Wallis test illustrates evidence of statistical differences.</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="complexity-results.html#cb83-1" tabindex="-1"></a><span class="fu">kruskal.test</span>(complexity <span class="sc">~</span> acro, <span class="at">data =</span> performance)</span></code></pre></div>
+<pre><code>## 
+##  Kruskal-Wallis rank sum test
+## 
+## data:  complexity by acro
+## Kruskal-Wallis chi-squared = 17.387, df = 3, p-value = 0.0005884</code></pre>
+<p>Results for post-hoc Wilcoxon rank-sum test with a Bonferroni correction.</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="complexity-results.html#cb85-1" tabindex="-1"></a><span class="fu">pairwise.wilcox.test</span>(<span class="at">x =</span> performance<span class="sc">$</span>complexity, <span class="at">g =</span> performance<span class="sc">$</span>acro,</span>
+<span id="cb85-2"><a href="complexity-results.html#cb85-2" tabindex="-1"></a>                     <span class="at">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>,</span>
+<span id="cb85-3"><a href="complexity-results.html#cb85-3" tabindex="-1"></a>                     <span class="at">paired =</span> <span class="cn">FALSE</span>, <span class="at">conf.int =</span> <span class="cn">FALSE</span>, <span class="at">alternative =</span> <span class="st">&quot;t&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
+## 
+## data:  performance$complexity and performance$acro 
+## 
+##       10-fold cv 90/10  70/30 
+## 90/10 0.0039     -      -     
+## 70/30 0.3185     0.1089 -     
+## 50/50 1.0000     0.0080 0.3518
+## 
+## P value adjustment method: bonferroni</code></pre>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="accuracy-results.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/amlalejini/GECCO-2024-phylogeny-informed-subsampling/tree/main/complexity.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["lexidate-validation-supplemental.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

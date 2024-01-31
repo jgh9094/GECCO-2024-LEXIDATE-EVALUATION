@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="index.html"/>
-<link rel="next" href="references.html"/>
+<link rel="next" href="complexity-results.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -179,6 +179,19 @@ div.csl-indent {
 <li class="chapter" data-level="2.2.6" data-path="accuracy-results.html"><a href="accuracy-results.html#task-189905"><i class="fa fa-check"></i><b>2.2.6</b> Task 189905</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="3" data-path="complexity-results.html"><a href="complexity-results.html"><i class="fa fa-check"></i><b>3</b> Complexity results</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="complexity-results.html"><a href="complexity-results.html#analysis-setup-1"><i class="fa fa-check"></i><b>3.1</b> Analysis setup</a></li>
+<li class="chapter" data-level="3.2" data-path="complexity-results.html"><a href="complexity-results.html#accuracy-per-openml-task-1"><i class="fa fa-check"></i><b>3.2</b> Accuracy per OpenML task</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="complexity-results.html"><a href="complexity-results.html#task-167104-1"><i class="fa fa-check"></i><b>3.2.1</b> Task 167104</a></li>
+<li class="chapter" data-level="3.2.2" data-path="complexity-results.html"><a href="complexity-results.html#task-167184-1"><i class="fa fa-check"></i><b>3.2.2</b> Task 167184</a></li>
+<li class="chapter" data-level="3.2.3" data-path="complexity-results.html"><a href="complexity-results.html#task-167168-1"><i class="fa fa-check"></i><b>3.2.3</b> Task 167168</a></li>
+<li class="chapter" data-level="3.2.4" data-path="complexity-results.html"><a href="complexity-results.html#task-167161-1"><i class="fa fa-check"></i><b>3.2.4</b> Task 167161</a></li>
+<li class="chapter" data-level="3.2.5" data-path="complexity-results.html"><a href="complexity-results.html#task-167185-1"><i class="fa fa-check"></i><b>3.2.5</b> Task 167185</a></li>
+<li class="chapter" data-level="3.2.6" data-path="complexity-results.html"><a href="complexity-results.html#task-189905-1"><i class="fa fa-check"></i><b>3.2.6</b> Task 189905</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with ❤ and bookdown</a></li>
@@ -250,7 +263,7 @@ div.csl-indent {
 <span id="cb2-29"><a href="accuracy-results.html#cb2-29" tabindex="-1"></a>    <span class="at">fill=</span><span class="fu">guide_legend</span>(<span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">title.position =</span> <span class="st">&quot;bottom&quot;</span>,</span>
 <span id="cb2-30"><a href="accuracy-results.html#cb2-30" tabindex="-1"></a>                      <span class="at">title =</span> <span class="st">&quot;Evaluation strategy&quot;</span>)</span>
 <span id="cb2-31"><a href="accuracy-results.html#cb2-31" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="lexidate-validation-supplemental_files/figure-html/task-1-plt-1.png" width="100%" /></p>
+<p><img src="lexidate-validation-supplemental_files/figure-html/acc-task-1-plt-1.png" width="100%" /></p>
 <p>Summary statistics for the generation a satisfactory solution is found.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="accuracy-results.html#cb3-1" tabindex="-1"></a>performance <span class="ot">&lt;-</span> <span class="fu">filter</span>(scores, taskid <span class="sc">==</span> task_id_lists[<span class="dv">1</span>])</span>
 <span id="cb3-2"><a href="accuracy-results.html#cb3-2" tabindex="-1"></a>performance <span class="sc">%&gt;%</span></span>
@@ -327,7 +340,7 @@ div.csl-indent {
 <span id="cb9-29"><a href="accuracy-results.html#cb9-29" tabindex="-1"></a>    <span class="at">fill=</span><span class="fu">guide_legend</span>(<span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">title.position =</span> <span class="st">&quot;bottom&quot;</span>,</span>
 <span id="cb9-30"><a href="accuracy-results.html#cb9-30" tabindex="-1"></a>                      <span class="at">title =</span> <span class="st">&quot;Evaluation strategy&quot;</span>)</span>
 <span id="cb9-31"><a href="accuracy-results.html#cb9-31" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="lexidate-validation-supplemental_files/figure-html/task-2-plt-1.png" width="100%" /></p>
+<p><img src="lexidate-validation-supplemental_files/figure-html/acc-task-2-plt-1.png" width="100%" /></p>
 <p>Summary statistics for the generation a satisfactory solution is found.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="accuracy-results.html#cb10-1" tabindex="-1"></a>performance <span class="ot">&lt;-</span> <span class="fu">filter</span>(scores, taskid <span class="sc">==</span> task_id_lists[<span class="dv">2</span>])</span>
 <span id="cb10-2"><a href="accuracy-results.html#cb10-2" tabindex="-1"></a>performance <span class="sc">%&gt;%</span></span>
@@ -395,7 +408,7 @@ div.csl-indent {
 <span id="cb16-20"><a href="accuracy-results.html#cb16-20" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> cb_palette) <span class="sc">+</span></span>
 <span id="cb16-21"><a href="accuracy-results.html#cb16-21" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Accuracy&quot;</span>) <span class="sc">+</span></span>
 <span id="cb16-22"><a href="accuracy-results.html#cb16-22" tabindex="-1"></a>  p_theme</span></code></pre></div>
-<p><img src="lexidate-validation-supplemental_files/figure-html/task-3-plt-1.png" width="100%" /></p>
+<p><img src="lexidate-validation-supplemental_files/figure-html/acc-task-3-plt-1.png" width="100%" /></p>
 <p>Summary statistics for the generation a satisfactory solution is found.</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="accuracy-results.html#cb17-1" tabindex="-1"></a>performance <span class="ot">&lt;-</span> <span class="fu">filter</span>(scores, taskid <span class="sc">==</span> task_id_lists[<span class="dv">3</span>])</span>
 <span id="cb17-2"><a href="accuracy-results.html#cb17-2" tabindex="-1"></a>performance <span class="sc">%&gt;%</span></span>
@@ -473,7 +486,7 @@ div.csl-indent {
 <span id="cb23-30"><a href="accuracy-results.html#cb23-30" tabindex="-1"></a>    <span class="at">fill=</span><span class="fu">guide_legend</span>(<span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">title.position =</span> <span class="st">&quot;bottom&quot;</span>,</span>
 <span id="cb23-31"><a href="accuracy-results.html#cb23-31" tabindex="-1"></a>                      <span class="at">title =</span> <span class="st">&quot;Evaluation strategy&quot;</span>)</span>
 <span id="cb23-32"><a href="accuracy-results.html#cb23-32" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="lexidate-validation-supplemental_files/figure-html/task-4-plt-1.png" width="100%" /></p>
+<p><img src="lexidate-validation-supplemental_files/figure-html/acc-task-4-plt-1.png" width="100%" /></p>
 <p>Summary statistics for the generation a satisfactory solution is found.</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="accuracy-results.html#cb24-1" tabindex="-1"></a>performance <span class="ot">&lt;-</span> <span class="fu">filter</span>(scores, taskid <span class="sc">==</span> task_id_lists[<span class="dv">4</span>])</span>
 <span id="cb24-2"><a href="accuracy-results.html#cb24-2" tabindex="-1"></a>performance <span class="sc">%&gt;%</span></span>
@@ -551,7 +564,7 @@ div.csl-indent {
 <span id="cb30-30"><a href="accuracy-results.html#cb30-30" tabindex="-1"></a>    <span class="at">fill=</span><span class="fu">guide_legend</span>(<span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">title.position =</span> <span class="st">&quot;bottom&quot;</span>,</span>
 <span id="cb30-31"><a href="accuracy-results.html#cb30-31" tabindex="-1"></a>                      <span class="at">title =</span> <span class="st">&quot;Evaluation strategy&quot;</span>)</span>
 <span id="cb30-32"><a href="accuracy-results.html#cb30-32" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="lexidate-validation-supplemental_files/figure-html/task-5-plt-1.png" width="100%" /></p>
+<p><img src="lexidate-validation-supplemental_files/figure-html/acc-task-5-plt-1.png" width="100%" /></p>
 <p>Summary statistics for the generation a satisfactory solution is found.</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="accuracy-results.html#cb31-1" tabindex="-1"></a>performance <span class="ot">&lt;-</span> <span class="fu">filter</span>(scores, taskid <span class="sc">==</span> task_id_lists[<span class="dv">5</span>])</span>
 <span id="cb31-2"><a href="accuracy-results.html#cb31-2" tabindex="-1"></a>performance <span class="sc">%&gt;%</span></span>
@@ -629,7 +642,7 @@ div.csl-indent {
 <span id="cb37-30"><a href="accuracy-results.html#cb37-30" tabindex="-1"></a>    <span class="at">fill=</span><span class="fu">guide_legend</span>(<span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">title.position =</span> <span class="st">&quot;bottom&quot;</span>,</span>
 <span id="cb37-31"><a href="accuracy-results.html#cb37-31" tabindex="-1"></a>                      <span class="at">title =</span> <span class="st">&quot;Evaluation strategy&quot;</span>)</span>
 <span id="cb37-32"><a href="accuracy-results.html#cb37-32" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="lexidate-validation-supplemental_files/figure-html/task-6-plt-1.png" width="100%" /></p>
+<p><img src="lexidate-validation-supplemental_files/figure-html/acc-task-6-plt-1.png" width="100%" /></p>
 <p>Summary statistics for the generation a satisfactory solution is found.</p>
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="accuracy-results.html#cb38-1" tabindex="-1"></a>performance <span class="ot">&lt;-</span> <span class="fu">filter</span>(scores, taskid <span class="sc">==</span> task_id_lists[<span class="dv">6</span>])</span>
 <span id="cb38-2"><a href="accuracy-results.html#cb38-2" tabindex="-1"></a>performance <span class="sc">%&gt;%</span></span>
@@ -682,7 +695,7 @@ div.csl-indent {
         </div>
       </div>
 <a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="complexity-results.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
