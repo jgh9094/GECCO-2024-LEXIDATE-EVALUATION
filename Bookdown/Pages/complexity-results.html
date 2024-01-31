@@ -224,15 +224,15 @@ div.csl-indent {
 <span id="cb45-3"><a href="complexity-results.html#cb45-3" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb45-4"><a href="complexity-results.html#cb45-4" tabindex="-1"></a><span class="fu">library</span>(PupillometryR)</span>
 <span id="cb45-5"><a href="complexity-results.html#cb45-5" tabindex="-1"></a></span>
-<span id="cb45-6"><a href="complexity-results.html#cb45-6" tabindex="-1"></a>scores <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;./complexity.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb45-7"><a href="complexity-results.html#cb45-7" tabindex="-1"></a>scores<span class="sc">$</span>acro <span class="ot">&lt;-</span> <span class="fu">factor</span>(scores<span class="sc">$</span>acro, <span class="at">levels =</span> NAMES)</span></code></pre></div>
+<span id="cb45-6"><a href="complexity-results.html#cb45-6" tabindex="-1"></a>comps <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;./complexity.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb45-7"><a href="complexity-results.html#cb45-7" tabindex="-1"></a>comps<span class="sc">$</span>acro <span class="ot">&lt;-</span> <span class="fu">factor</span>(comps<span class="sc">$</span>acro, <span class="at">levels =</span> NAMES)</span></code></pre></div>
 </div>
 <div id="accuracy-per-openml-task-1" class="section level2 hasAnchor" number="3.2">
 <h2><span class="header-section-number">3.2</span> Accuracy per OpenML task<a href="complexity-results.html#accuracy-per-openml-task-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Accuracy of the returned pipeline from an evolutionary run.</p>
 <div id="task-167104-1" class="section level3 hasAnchor" number="3.2.1">
 <h3><span class="header-section-number">3.2.1</span> Task 167104<a href="complexity-results.html#task-167104-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="complexity-results.html#cb46-1" tabindex="-1"></a><span class="fu">filter</span>(scores, taskid <span class="sc">==</span> task_id_lists[<span class="dv">1</span>]) <span class="sc">%&gt;%</span></span>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="complexity-results.html#cb46-1" tabindex="-1"></a><span class="fu">filter</span>(comps, taskid <span class="sc">==</span> task_id_lists[<span class="dv">1</span>]) <span class="sc">%&gt;%</span></span>
 <span id="cb46-2"><a href="complexity-results.html#cb46-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> acro, <span class="at">y =</span> complexity, <span class="at">color =</span> acro,</span>
 <span id="cb46-3"><a href="complexity-results.html#cb46-3" tabindex="-1"></a>                <span class="at">fill =</span> acro, <span class="at">shape =</span> acro)) <span class="sc">+</span></span>
 <span id="cb46-4"><a href="complexity-results.html#cb46-4" tabindex="-1"></a>  <span class="fu">geom_flat_violin</span>(<span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">x =</span> <span class="fl">0.1</span>, <span class="at">y =</span> <span class="dv">0</span>),</span>
@@ -264,7 +264,7 @@ div.csl-indent {
 <span id="cb46-30"><a href="complexity-results.html#cb46-30" tabindex="-1"></a>  )</span></code></pre></div>
 <p><img src="lexidate-validation-supplemental_files/figure-html/com-task-1-plt-1.png" width="100%" /></p>
 <p>Summary statistics for the generation a satisfactory solution is found.</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="complexity-results.html#cb47-1" tabindex="-1"></a>performance <span class="ot">&lt;-</span> <span class="fu">filter</span>(scores, taskid <span class="sc">==</span> task_id_lists[<span class="dv">1</span>])</span>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="complexity-results.html#cb47-1" tabindex="-1"></a>performance <span class="ot">&lt;-</span> <span class="fu">filter</span>(comps, taskid <span class="sc">==</span> task_id_lists[<span class="dv">1</span>])</span>
 <span id="cb47-2"><a href="complexity-results.html#cb47-2" tabindex="-1"></a>performance <span class="sc">%&gt;%</span></span>
 <span id="cb47-3"><a href="complexity-results.html#cb47-3" tabindex="-1"></a>  <span class="fu">group_by</span>(acro) <span class="sc">%&gt;%</span></span>
 <span id="cb47-4"><a href="complexity-results.html#cb47-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
@@ -308,7 +308,7 @@ div.csl-indent {
 </div>
 <div id="task-167184-1" class="section level3 hasAnchor" number="3.2.2">
 <h3><span class="header-section-number">3.2.2</span> Task 167184<a href="complexity-results.html#task-167184-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="complexity-results.html#cb53-1" tabindex="-1"></a><span class="fu">filter</span>(scores, taskid <span class="sc">==</span> task_id_lists[<span class="dv">2</span>]) <span class="sc">%&gt;%</span></span>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="complexity-results.html#cb53-1" tabindex="-1"></a><span class="fu">filter</span>(comps, taskid <span class="sc">==</span> task_id_lists[<span class="dv">2</span>]) <span class="sc">%&gt;%</span></span>
 <span id="cb53-2"><a href="complexity-results.html#cb53-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> acro, <span class="at">y =</span> complexity, <span class="at">color =</span> acro,</span>
 <span id="cb53-3"><a href="complexity-results.html#cb53-3" tabindex="-1"></a>                <span class="at">fill =</span> acro, <span class="at">shape =</span> acro)) <span class="sc">+</span></span>
 <span id="cb53-4"><a href="complexity-results.html#cb53-4" tabindex="-1"></a>  <span class="fu">geom_flat_violin</span>(<span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">x =</span> <span class="fl">0.1</span>, <span class="at">y =</span> <span class="dv">0</span>),</span>
@@ -341,7 +341,7 @@ div.csl-indent {
 <span id="cb53-31"><a href="complexity-results.html#cb53-31" tabindex="-1"></a>  )</span></code></pre></div>
 <p><img src="lexidate-validation-supplemental_files/figure-html/com-task-2-plt-1.png" width="100%" /></p>
 <p>Summary statistics for the generation a satisfactory solution is found.</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="complexity-results.html#cb54-1" tabindex="-1"></a>performance <span class="ot">&lt;-</span> <span class="fu">filter</span>(scores, taskid <span class="sc">==</span> task_id_lists[<span class="dv">2</span>])</span>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="complexity-results.html#cb54-1" tabindex="-1"></a>performance <span class="ot">&lt;-</span> <span class="fu">filter</span>(comps, taskid <span class="sc">==</span> task_id_lists[<span class="dv">2</span>])</span>
 <span id="cb54-2"><a href="complexity-results.html#cb54-2" tabindex="-1"></a>performance <span class="sc">%&gt;%</span></span>
 <span id="cb54-3"><a href="complexity-results.html#cb54-3" tabindex="-1"></a>  <span class="fu">group_by</span>(acro) <span class="sc">%&gt;%</span></span>
 <span id="cb54-4"><a href="complexity-results.html#cb54-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
@@ -385,7 +385,7 @@ div.csl-indent {
 </div>
 <div id="task-167168-1" class="section level3 hasAnchor" number="3.2.3">
 <h3><span class="header-section-number">3.2.3</span> Task 167168<a href="complexity-results.html#task-167168-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="complexity-results.html#cb60-1" tabindex="-1"></a><span class="fu">filter</span>(scores, taskid <span class="sc">==</span> task_id_lists[<span class="dv">3</span>]) <span class="sc">%&gt;%</span></span>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="complexity-results.html#cb60-1" tabindex="-1"></a><span class="fu">filter</span>(comps, taskid <span class="sc">==</span> task_id_lists[<span class="dv">3</span>]) <span class="sc">%&gt;%</span></span>
 <span id="cb60-2"><a href="complexity-results.html#cb60-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> acro, <span class="at">y =</span> complexity, <span class="at">color =</span> acro,</span>
 <span id="cb60-3"><a href="complexity-results.html#cb60-3" tabindex="-1"></a>                <span class="at">fill =</span> acro, <span class="at">shape =</span> acro)) <span class="sc">+</span></span>
 <span id="cb60-4"><a href="complexity-results.html#cb60-4" tabindex="-1"></a>  <span class="fu">geom_flat_violin</span>(<span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">x =</span> <span class="fl">0.1</span>, <span class="at">y =</span> <span class="dv">0</span>),</span>
@@ -409,7 +409,7 @@ div.csl-indent {
 <span id="cb60-22"><a href="complexity-results.html#cb60-22" tabindex="-1"></a>  p_theme</span></code></pre></div>
 <p><img src="lexidate-validation-supplemental_files/figure-html/com-task-3-plt-1.png" width="100%" /></p>
 <p>Summary statistics for the generation a satisfactory solution is found.</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="complexity-results.html#cb61-1" tabindex="-1"></a>performance <span class="ot">&lt;-</span> <span class="fu">filter</span>(scores, taskid <span class="sc">==</span> task_id_lists[<span class="dv">3</span>])</span>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="complexity-results.html#cb61-1" tabindex="-1"></a>performance <span class="ot">&lt;-</span> <span class="fu">filter</span>(comps, taskid <span class="sc">==</span> task_id_lists[<span class="dv">3</span>])</span>
 <span id="cb61-2"><a href="complexity-results.html#cb61-2" tabindex="-1"></a>performance <span class="sc">%&gt;%</span></span>
 <span id="cb61-3"><a href="complexity-results.html#cb61-3" tabindex="-1"></a>  <span class="fu">group_by</span>(acro) <span class="sc">%&gt;%</span></span>
 <span id="cb61-4"><a href="complexity-results.html#cb61-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
@@ -453,7 +453,7 @@ div.csl-indent {
 </div>
 <div id="task-167161-1" class="section level3 hasAnchor" number="3.2.4">
 <h3><span class="header-section-number">3.2.4</span> Task 167161<a href="complexity-results.html#task-167161-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="complexity-results.html#cb67-1" tabindex="-1"></a><span class="fu">filter</span>(scores, taskid <span class="sc">==</span> task_id_lists[<span class="dv">4</span>]) <span class="sc">%&gt;%</span></span>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="complexity-results.html#cb67-1" tabindex="-1"></a><span class="fu">filter</span>(comps, taskid <span class="sc">==</span> task_id_lists[<span class="dv">4</span>]) <span class="sc">%&gt;%</span></span>
 <span id="cb67-2"><a href="complexity-results.html#cb67-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> acro, <span class="at">y =</span> complexity, <span class="at">color =</span> acro,</span>
 <span id="cb67-3"><a href="complexity-results.html#cb67-3" tabindex="-1"></a>                <span class="at">fill =</span> acro, <span class="at">shape =</span> acro)) <span class="sc">+</span></span>
 <span id="cb67-4"><a href="complexity-results.html#cb67-4" tabindex="-1"></a>  <span class="fu">geom_flat_violin</span>(<span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">x =</span> <span class="fl">0.1</span>, <span class="at">y =</span> <span class="dv">0</span>),</span>
@@ -486,7 +486,7 @@ div.csl-indent {
 <span id="cb67-31"><a href="complexity-results.html#cb67-31" tabindex="-1"></a>  )</span></code></pre></div>
 <p><img src="lexidate-validation-supplemental_files/figure-html/com-task-4-plt-1.png" width="100%" /></p>
 <p>Summary statistics for the generation a satisfactory solution is found.</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="complexity-results.html#cb68-1" tabindex="-1"></a>performance <span class="ot">&lt;-</span> <span class="fu">filter</span>(scores, taskid <span class="sc">==</span> task_id_lists[<span class="dv">4</span>])</span>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="complexity-results.html#cb68-1" tabindex="-1"></a>performance <span class="ot">&lt;-</span> <span class="fu">filter</span>(comps, taskid <span class="sc">==</span> task_id_lists[<span class="dv">4</span>])</span>
 <span id="cb68-2"><a href="complexity-results.html#cb68-2" tabindex="-1"></a>performance <span class="sc">%&gt;%</span></span>
 <span id="cb68-3"><a href="complexity-results.html#cb68-3" tabindex="-1"></a>  <span class="fu">group_by</span>(acro) <span class="sc">%&gt;%</span></span>
 <span id="cb68-4"><a href="complexity-results.html#cb68-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
@@ -530,7 +530,7 @@ div.csl-indent {
 </div>
 <div id="task-167185-1" class="section level3 hasAnchor" number="3.2.5">
 <h3><span class="header-section-number">3.2.5</span> Task 167185<a href="complexity-results.html#task-167185-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="complexity-results.html#cb74-1" tabindex="-1"></a><span class="fu">filter</span>(scores, taskid <span class="sc">==</span> task_id_lists[<span class="dv">5</span>]) <span class="sc">%&gt;%</span></span>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="complexity-results.html#cb74-1" tabindex="-1"></a><span class="fu">filter</span>(comps, taskid <span class="sc">==</span> task_id_lists[<span class="dv">5</span>]) <span class="sc">%&gt;%</span></span>
 <span id="cb74-2"><a href="complexity-results.html#cb74-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> acro, <span class="at">y =</span> complexity, <span class="at">color =</span> acro,</span>
 <span id="cb74-3"><a href="complexity-results.html#cb74-3" tabindex="-1"></a>                <span class="at">fill =</span> acro, <span class="at">shape =</span> acro)) <span class="sc">+</span></span>
 <span id="cb74-4"><a href="complexity-results.html#cb74-4" tabindex="-1"></a>  <span class="fu">geom_flat_violin</span>(<span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">x =</span> <span class="fl">0.1</span>, <span class="at">y =</span> <span class="dv">0</span>),</span>
@@ -562,7 +562,7 @@ div.csl-indent {
 <span id="cb74-30"><a href="complexity-results.html#cb74-30" tabindex="-1"></a>  )</span></code></pre></div>
 <p><img src="lexidate-validation-supplemental_files/figure-html/com-task-5-plt-1.png" width="100%" /></p>
 <p>Summary statistics for the generation a satisfactory solution is found.</p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="complexity-results.html#cb75-1" tabindex="-1"></a>performance <span class="ot">&lt;-</span> <span class="fu">filter</span>(scores, taskid <span class="sc">==</span> task_id_lists[<span class="dv">5</span>])</span>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="complexity-results.html#cb75-1" tabindex="-1"></a>performance <span class="ot">&lt;-</span> <span class="fu">filter</span>(comps, taskid <span class="sc">==</span> task_id_lists[<span class="dv">5</span>])</span>
 <span id="cb75-2"><a href="complexity-results.html#cb75-2" tabindex="-1"></a>performance <span class="sc">%&gt;%</span></span>
 <span id="cb75-3"><a href="complexity-results.html#cb75-3" tabindex="-1"></a>  <span class="fu">group_by</span>(acro) <span class="sc">%&gt;%</span></span>
 <span id="cb75-4"><a href="complexity-results.html#cb75-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
@@ -606,7 +606,7 @@ div.csl-indent {
 </div>
 <div id="task-189905-1" class="section level3 hasAnchor" number="3.2.6">
 <h3><span class="header-section-number">3.2.6</span> Task 189905<a href="complexity-results.html#task-189905-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="complexity-results.html#cb81-1" tabindex="-1"></a><span class="fu">filter</span>(scores, taskid <span class="sc">==</span> task_id_lists[<span class="dv">6</span>]) <span class="sc">%&gt;%</span></span>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="complexity-results.html#cb81-1" tabindex="-1"></a><span class="fu">filter</span>(comps, taskid <span class="sc">==</span> task_id_lists[<span class="dv">6</span>]) <span class="sc">%&gt;%</span></span>
 <span id="cb81-2"><a href="complexity-results.html#cb81-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> acro, <span class="at">y =</span> complexity, <span class="at">color =</span> acro,</span>
 <span id="cb81-3"><a href="complexity-results.html#cb81-3" tabindex="-1"></a>                <span class="at">fill =</span> acro, <span class="at">shape =</span> acro)) <span class="sc">+</span></span>
 <span id="cb81-4"><a href="complexity-results.html#cb81-4" tabindex="-1"></a>  <span class="fu">geom_flat_violin</span>(<span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">x =</span> <span class="fl">0.1</span>, <span class="at">y =</span> <span class="dv">0</span>),</span>
@@ -639,7 +639,7 @@ div.csl-indent {
 <span id="cb81-31"><a href="complexity-results.html#cb81-31" tabindex="-1"></a>  )</span></code></pre></div>
 <p><img src="lexidate-validation-supplemental_files/figure-html/com-task-6-plt-1.png" width="100%" /></p>
 <p>Summary statistics for the generation a satisfactory solution is found.</p>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="complexity-results.html#cb82-1" tabindex="-1"></a>performance <span class="ot">&lt;-</span> <span class="fu">filter</span>(scores, taskid <span class="sc">==</span> task_id_lists[<span class="dv">6</span>])</span>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="complexity-results.html#cb82-1" tabindex="-1"></a>performance <span class="ot">&lt;-</span> <span class="fu">filter</span>(comps, taskid <span class="sc">==</span> task_id_lists[<span class="dv">6</span>])</span>
 <span id="cb82-2"><a href="complexity-results.html#cb82-2" tabindex="-1"></a>performance <span class="sc">%&gt;%</span></span>
 <span id="cb82-3"><a href="complexity-results.html#cb82-3" tabindex="-1"></a>  <span class="fu">group_by</span>(acro) <span class="sc">%&gt;%</span></span>
 <span id="cb82-4"><a href="complexity-results.html#cb82-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
