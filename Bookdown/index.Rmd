@@ -16,6 +16,33 @@ description: "Supplemental material"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r setup, include=TRUE}
+library(ggplot2)
+library(cowplot)
+library(dplyr)
+library(PupillometryR)
+
+NAMES <- c("10-fold cv","90/10","70/30","50/50")
+SHAPE <- c(21,24,22,25)
+cb_palette <- c('#D81B60','#1E88E5','#FFC107','#004D40')
+TSIZE <- 22
+task_id_lists <- c(167104, 167184, 167168, 167161, 167185, 189905)
+
+p_theme <- theme(
+  plot.title = element_text( face = "bold", size = 22, hjust=0.5),
+  panel.border = element_blank(),
+  panel.grid.minor = element_blank(),
+  legend.title=element_text(size=22),
+  legend.text=element_text(size=23),
+  axis.title = element_text(size=23),
+  axis.text = element_text(size=19),
+  legend.position="bottom",
+  panel.background = element_rect(fill = "#f1f2f5",
+                                  colour = "white",
+                                  size = 0.5, linetype = "solid")
+)
+```
+
 # Introduction
 
 This is not intended as a stand-alone document, but as a companion to our manuscript.

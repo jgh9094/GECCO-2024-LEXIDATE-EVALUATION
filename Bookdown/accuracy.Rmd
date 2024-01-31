@@ -11,11 +11,6 @@ library(cowplot)
 library(dplyr)
 library(PupillometryR)
 
-NAMES <- c("10-fold cv","90/10","70/30","50/50")
-TSIZE <- 22
-data_dir <- "./"
-task_id_lists <- c(167104, 167184, 167168, 167161, 167185, 189905)
-
 scores <- read.csv("./scores.csv", header = TRUE, stringsAsFactors = FALSE)
 scores$acro <- factor(scores$acro, levels = NAMES)
 ```

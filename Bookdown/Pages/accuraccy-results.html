@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Accuraccy results | Supplemental Material for ‘Lexidate: Model Evaluation and Selection with Lexicase Selection’</title>
+  <meta name="description" content="Supplemental material" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Accuraccy results | Supplemental Material for ‘Lexidate: Model Evaluation and Selection with Lexicase Selection’" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Supplemental material" />
+  <meta name="github-repo" content="jgh9094/GECCO-2024-LEXIDATE-EVALUATION" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Accuraccy results | Supplemental Material for ‘Lexidate: Model Evaluation and Selection with Lexicase Selection’" />
+  
+  <meta name="twitter:description" content="Supplemental material" />
+  
+
+<meta name="author" content="Anonymous GECCO" />
+
+
+<meta name="date" content="2024-01-31" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Supplemental material</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#about-our-supplemental-material"><i class="fa fa-check"></i><b>1.1</b> About our supplemental material</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="accuraccy-results.html"><a href="accuraccy-results.html"><i class="fa fa-check"></i><b>2</b> Accuraccy results</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="accuraccy-results.html"><a href="accuraccy-results.html#analysis-setup"><i class="fa fa-check"></i><b>2.1</b> Analysis setup</a></li>
+<li class="chapter" data-level="2.2" data-path="accuraccy-results.html"><a href="accuraccy-results.html#accuracy-per-openml-task"><i class="fa fa-check"></i><b>2.2</b> Accuracy per OpenML task</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="accuraccy-results.html"><a href="accuraccy-results.html#task-167104"><i class="fa fa-check"></i><b>2.2.1</b> Task 167104</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with ❤ and bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Supplemental Material for ‘Lexidate: Model Evaluation and Selection with Lexicase Selection’</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="accuraccy-results" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Accuraccy results<a href="accuraccy-results.html#accuraccy-results" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Here we report the accuracy for <strong>final pipeline returned from a TPOT2 run</strong> on each OpenML task.
+40 replicates were conducted for each evaluation strategy explored.</p>
+<div id="analysis-setup" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Analysis setup<a href="accuraccy-results.html#analysis-setup" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="accuraccy-results.html#cb2-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-2"><a href="accuraccy-results.html#cb2-2" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span>
+<span id="cb2-3"><a href="accuraccy-results.html#cb2-3" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb2-4"><a href="accuraccy-results.html#cb2-4" tabindex="-1"></a><span class="fu">library</span>(PupillometryR)</span>
+<span id="cb2-5"><a href="accuraccy-results.html#cb2-5" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="accuraccy-results.html#cb2-6" tabindex="-1"></a>scores <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;./scores.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-7"><a href="accuraccy-results.html#cb2-7" tabindex="-1"></a>scores<span class="sc">$</span>acro <span class="ot">&lt;-</span> <span class="fu">factor</span>(scores<span class="sc">$</span>acro, <span class="at">levels =</span> NAMES)</span></code></pre></div>
+</div>
+<div id="accuracy-per-openml-task" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Accuracy per OpenML task<a href="accuraccy-results.html#accuracy-per-openml-task" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Accuracy of the returned pipeline from an evolutionary run.</p>
+<div id="task-167104" class="section level3 hasAnchor" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Task 167104<a href="accuraccy-results.html#task-167104" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="accuraccy-results.html#cb3-1" tabindex="-1"></a><span class="fu">filter</span>(scores, taskid <span class="sc">==</span> task_id_lists[<span class="dv">1</span>]) <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="accuraccy-results.html#cb3-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> acro, <span class="at">y =</span> accuracy, <span class="at">color =</span> acro,</span>
+<span id="cb3-3"><a href="accuraccy-results.html#cb3-3" tabindex="-1"></a>                <span class="at">fill =</span> acro, <span class="at">shape =</span> acro)) <span class="sc">+</span></span>
+<span id="cb3-4"><a href="accuraccy-results.html#cb3-4" tabindex="-1"></a>  <span class="fu">geom_flat_violin</span>(<span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">x =</span> <span class="fl">0.1</span>, <span class="at">y =</span> <span class="dv">0</span>),</span>
+<span id="cb3-5"><a href="accuraccy-results.html#cb3-5" tabindex="-1"></a>                   <span class="at">scale =</span> <span class="st">&quot;width&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">width =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb3-6"><a href="accuraccy-results.html#cb3-6" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">width =</span> .<span class="dv">08</span>, <span class="at">outlier.shape =</span> <span class="cn">NA</span>, <span class="at">alpha =</span> <span class="fl">0.0</span>,</span>
+<span id="cb3-7"><a href="accuraccy-results.html#cb3-7" tabindex="-1"></a>               <span class="at">size =</span> <span class="fl">0.8</span>, <span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">x =</span> .<span class="dv">15</span>, <span class="at">y =</span> <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb3-8"><a href="accuraccy-results.html#cb3-8" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> .<span class="dv">015</span>, <span class="at">height =</span> .<span class="dv">0001</span>),</span>
+<span id="cb3-9"><a href="accuraccy-results.html#cb3-9" tabindex="-1"></a>             <span class="at">size =</span> <span class="fl">2.0</span>, <span class="at">alpha =</span> <span class="fl">1.0</span>) <span class="sc">+</span></span>
+<span id="cb3-10"><a href="accuraccy-results.html#cb3-10" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb3-11"><a href="accuraccy-results.html#cb3-11" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">&quot;Accuracy %&quot;</span>,</span>
+<span id="cb3-12"><a href="accuraccy-results.html#cb3-12" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(.<span class="dv">74</span>, .<span class="dv">78</span>, .<span class="dv">82</span>, .<span class="dv">86</span>),</span>
+<span id="cb3-13"><a href="accuraccy-results.html#cb3-13" tabindex="-1"></a>    <span class="at">labels =</span> scales<span class="sc">::</span>percent</span>
+<span id="cb3-14"><a href="accuraccy-results.html#cb3-14" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="accuraccy-results.html#cb3-15" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-16"><a href="accuraccy-results.html#cb3-16" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(</span>
+<span id="cb3-17"><a href="accuraccy-results.html#cb3-17" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">&quot;Treatment&quot;</span></span>
+<span id="cb3-18"><a href="accuraccy-results.html#cb3-18" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-19"><a href="accuraccy-results.html#cb3-19" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> SHAPE) <span class="sc">+</span></span>
+<span id="cb3-20"><a href="accuraccy-results.html#cb3-20" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> cb_palette, ) <span class="sc">+</span></span>
+<span id="cb3-21"><a href="accuraccy-results.html#cb3-21" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> cb_palette) <span class="sc">+</span></span>
+<span id="cb3-22"><a href="accuraccy-results.html#cb3-22" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Accuracy&quot;</span>) <span class="sc">+</span></span>
+<span id="cb3-23"><a href="accuraccy-results.html#cb3-23" tabindex="-1"></a>  p_theme</span></code></pre></div>
+<p><img src="lexidate-validation-supplemental_files/figure-html/task-1-plt-1.png" width="100%" /></p>
+<p>Summary statistics for the generation a satisfactory solution is found.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="accuraccy-results.html#cb4-1" tabindex="-1"></a>performance <span class="ot">&lt;-</span> <span class="fu">filter</span>(scores, taskid <span class="sc">==</span> task_id_lists[<span class="dv">1</span>])</span>
+<span id="cb4-2"><a href="accuraccy-results.html#cb4-2" tabindex="-1"></a>performance <span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a href="accuraccy-results.html#cb4-3" tabindex="-1"></a>  <span class="fu">group_by</span>(acro) <span class="sc">%&gt;%</span></span>
+<span id="cb4-4"><a href="accuraccy-results.html#cb4-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
+<span id="cb4-5"><a href="accuraccy-results.html#cb4-5" tabindex="-1"></a>    <span class="at">count =</span> <span class="fu">n</span>(),</span>
+<span id="cb4-6"><a href="accuraccy-results.html#cb4-6" tabindex="-1"></a>    <span class="at">na_cnt =</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(accuracy)),</span>
+<span id="cb4-7"><a href="accuraccy-results.html#cb4-7" tabindex="-1"></a>    <span class="at">min =</span> <span class="fu">min</span>(accuracy, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb4-8"><a href="accuraccy-results.html#cb4-8" tabindex="-1"></a>    <span class="at">median =</span> <span class="fu">median</span>(accuracy, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb4-9"><a href="accuraccy-results.html#cb4-9" tabindex="-1"></a>    <span class="at">mean =</span> <span class="fu">mean</span>(accuracy, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb4-10"><a href="accuraccy-results.html#cb4-10" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">max</span>(accuracy, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb4-11"><a href="accuraccy-results.html#cb4-11" tabindex="-1"></a>    <span class="at">IQR =</span> <span class="fu">IQR</span>(accuracy, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb4-12"><a href="accuraccy-results.html#cb4-12" tabindex="-1"></a>  )</span></code></pre></div>
+<pre><code>## # A tibble: 4 × 8
+##   acro       count na_cnt   min median  mean   max    IQR
+##   &lt;fct&gt;      &lt;int&gt;  &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+## 1 10-fold cv    40      0 0.815  0.837 0.838 0.868 0.0143
+## 2 90/10         40      0 0.740  0.824 0.819 0.855 0.0264
+## 3 70/30         40      0 0.749  0.833 0.831 0.877 0.0187
+## 4 50/50         40      0 0.802  0.837 0.836 0.863 0.0132</code></pre>
+<p>Kruskal–Wallis test illustrates evidence of statistical differences.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="accuraccy-results.html#cb6-1" tabindex="-1"></a><span class="fu">kruskal.test</span>(accuracy <span class="sc">~</span> acro, <span class="at">data =</span> performance)</span></code></pre></div>
+<pre><code>## 
+##  Kruskal-Wallis rank sum test
+## 
+## data:  accuracy by acro
+## Kruskal-Wallis chi-squared = 21.695, df = 3, p-value = 7.55e-05</code></pre>
+<p>Results for post-hoc Wilcoxon rank-sum test with a Bonferroni correction.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="accuraccy-results.html#cb8-1" tabindex="-1"></a><span class="fu">pairwise.wilcox.test</span>(<span class="at">x =</span> performance<span class="sc">$</span>accuracy, <span class="at">g =</span> performance<span class="sc">$</span>acro,</span>
+<span id="cb8-2"><a href="accuraccy-results.html#cb8-2" tabindex="-1"></a>                     <span class="at">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>,</span>
+<span id="cb8-3"><a href="accuraccy-results.html#cb8-3" tabindex="-1"></a>                     <span class="at">paired =</span> <span class="cn">FALSE</span>, <span class="at">conf.int =</span> <span class="cn">FALSE</span>, <span class="at">alternative =</span> <span class="st">&quot;t&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning in wilcox.test.default(xi, xj, paired = paired, ...): cannot
+## compute exact p-value with ties
+
+## Warning in wilcox.test.default(xi, xj, paired = paired, ...): cannot
+## compute exact p-value with ties
+
+## Warning in wilcox.test.default(xi, xj, paired = paired, ...): cannot
+## compute exact p-value with ties
+
+## Warning in wilcox.test.default(xi, xj, paired = paired, ...): cannot
+## compute exact p-value with ties
+
+## Warning in wilcox.test.default(xi, xj, paired = paired, ...): cannot
+## compute exact p-value with ties
+
+## Warning in wilcox.test.default(xi, xj, paired = paired, ...): cannot
+## compute exact p-value with ties</code></pre>
+<pre><code>## 
+##  Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
+## 
+## data:  performance$accuracy and performance$acro 
+## 
+##       10-fold cv 90/10   70/30  
+## 90/10 0.00016    -       -      
+## 70/30 0.41651    0.08840 -      
+## 50/50 1.00000    0.00111 1.00000
+## 
+## P value adjustment method: bonferroni</code></pre>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/amlalejini/GECCO-2024-phylogeny-informed-subsampling/tree/main/accuracy.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["lexidate-validation-supplemental.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
