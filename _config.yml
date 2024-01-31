@@ -1,3 +1,3 @@
 theme: jekyll-theme-slate
 title: Phylogeny-informed subsampling
-exculde: ['./tpot2-base', './tpot2-sel-obj']
+exculde: ['./tpot2-base/', './tpot2-sel-ob/j']
