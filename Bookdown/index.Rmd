@@ -16,7 +16,7 @@ description: "Supplemental material"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r setup, include=TRUE}
+```{r setup, include=FALSE, echo=TRUE}
 library(ggplot2)
 library(cowplot)
 library(dplyr)
