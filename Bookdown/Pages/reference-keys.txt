@@ -4,3 +4,8 @@ accuraccy-results
 analysis-setup
 accuracy-per-openml-task
 task-167104
+task
+task-1
+task-2
+task-3
+task-4
