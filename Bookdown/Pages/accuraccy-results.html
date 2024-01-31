@@ -201,56 +201,56 @@ div.csl-indent {
 40 replicates were conducted for each evaluation strategy explored.</p>
 <div id="analysis-setup" class="section level2 hasAnchor" number="2.1">
 <h2><span class="header-section-number">2.1</span> Analysis setup<a href="accuraccy-results.html#analysis-setup" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="accuraccy-results.html#cb2-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb2-2"><a href="accuraccy-results.html#cb2-2" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span>
-<span id="cb2-3"><a href="accuraccy-results.html#cb2-3" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb2-4"><a href="accuraccy-results.html#cb2-4" tabindex="-1"></a><span class="fu">library</span>(PupillometryR)</span>
-<span id="cb2-5"><a href="accuraccy-results.html#cb2-5" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="accuraccy-results.html#cb2-6" tabindex="-1"></a>scores <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;./scores.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb2-7"><a href="accuraccy-results.html#cb2-7" tabindex="-1"></a>scores<span class="sc">$</span>acro <span class="ot">&lt;-</span> <span class="fu">factor</span>(scores<span class="sc">$</span>acro, <span class="at">levels =</span> NAMES)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="accuraccy-results.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-2"><a href="accuraccy-results.html#cb1-2" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span>
+<span id="cb1-3"><a href="accuraccy-results.html#cb1-3" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-4"><a href="accuraccy-results.html#cb1-4" tabindex="-1"></a><span class="fu">library</span>(PupillometryR)</span>
+<span id="cb1-5"><a href="accuraccy-results.html#cb1-5" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="accuraccy-results.html#cb1-6" tabindex="-1"></a>scores <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;./scores.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-7"><a href="accuraccy-results.html#cb1-7" tabindex="-1"></a>scores<span class="sc">$</span>acro <span class="ot">&lt;-</span> <span class="fu">factor</span>(scores<span class="sc">$</span>acro, <span class="at">levels =</span> NAMES)</span></code></pre></div>
 </div>
 <div id="accuracy-per-openml-task" class="section level2 hasAnchor" number="2.2">
 <h2><span class="header-section-number">2.2</span> Accuracy per OpenML task<a href="accuraccy-results.html#accuracy-per-openml-task" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Accuracy of the returned pipeline from an evolutionary run.</p>
 <div id="task-167104" class="section level3 hasAnchor" number="2.2.1">
 <h3><span class="header-section-number">2.2.1</span> Task 167104<a href="accuraccy-results.html#task-167104" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="accuraccy-results.html#cb3-1" tabindex="-1"></a><span class="fu">filter</span>(scores, taskid <span class="sc">==</span> task_id_lists[<span class="dv">1</span>]) <span class="sc">%&gt;%</span></span>
-<span id="cb3-2"><a href="accuraccy-results.html#cb3-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> acro, <span class="at">y =</span> accuracy, <span class="at">color =</span> acro,</span>
-<span id="cb3-3"><a href="accuraccy-results.html#cb3-3" tabindex="-1"></a>                <span class="at">fill =</span> acro, <span class="at">shape =</span> acro)) <span class="sc">+</span></span>
-<span id="cb3-4"><a href="accuraccy-results.html#cb3-4" tabindex="-1"></a>  <span class="fu">geom_flat_violin</span>(<span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">x =</span> <span class="fl">0.1</span>, <span class="at">y =</span> <span class="dv">0</span>),</span>
-<span id="cb3-5"><a href="accuraccy-results.html#cb3-5" tabindex="-1"></a>                   <span class="at">scale =</span> <span class="st">&quot;width&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">width =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
-<span id="cb3-6"><a href="accuraccy-results.html#cb3-6" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">width =</span> .<span class="dv">08</span>, <span class="at">outlier.shape =</span> <span class="cn">NA</span>, <span class="at">alpha =</span> <span class="fl">0.0</span>,</span>
-<span id="cb3-7"><a href="accuraccy-results.html#cb3-7" tabindex="-1"></a>               <span class="at">size =</span> <span class="fl">0.8</span>, <span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">x =</span> .<span class="dv">15</span>, <span class="at">y =</span> <span class="dv">0</span>)) <span class="sc">+</span></span>
-<span id="cb3-8"><a href="accuraccy-results.html#cb3-8" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> .<span class="dv">015</span>, <span class="at">height =</span> .<span class="dv">0001</span>),</span>
-<span id="cb3-9"><a href="accuraccy-results.html#cb3-9" tabindex="-1"></a>             <span class="at">size =</span> <span class="fl">2.0</span>, <span class="at">alpha =</span> <span class="fl">1.0</span>) <span class="sc">+</span></span>
-<span id="cb3-10"><a href="accuraccy-results.html#cb3-10" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
-<span id="cb3-11"><a href="accuraccy-results.html#cb3-11" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">&quot;Accuracy %&quot;</span>,</span>
-<span id="cb3-12"><a href="accuraccy-results.html#cb3-12" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(.<span class="dv">74</span>, .<span class="dv">78</span>, .<span class="dv">82</span>, .<span class="dv">86</span>),</span>
-<span id="cb3-13"><a href="accuraccy-results.html#cb3-13" tabindex="-1"></a>    <span class="at">labels =</span> scales<span class="sc">::</span>percent</span>
-<span id="cb3-14"><a href="accuraccy-results.html#cb3-14" tabindex="-1"></a></span>
-<span id="cb3-15"><a href="accuraccy-results.html#cb3-15" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb3-16"><a href="accuraccy-results.html#cb3-16" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(</span>
-<span id="cb3-17"><a href="accuraccy-results.html#cb3-17" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">&quot;Treatment&quot;</span></span>
-<span id="cb3-18"><a href="accuraccy-results.html#cb3-18" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb3-19"><a href="accuraccy-results.html#cb3-19" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> SHAPE) <span class="sc">+</span></span>
-<span id="cb3-20"><a href="accuraccy-results.html#cb3-20" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> cb_palette, ) <span class="sc">+</span></span>
-<span id="cb3-21"><a href="accuraccy-results.html#cb3-21" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> cb_palette) <span class="sc">+</span></span>
-<span id="cb3-22"><a href="accuraccy-results.html#cb3-22" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Accuracy&quot;</span>) <span class="sc">+</span></span>
-<span id="cb3-23"><a href="accuraccy-results.html#cb3-23" tabindex="-1"></a>  p_theme</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="accuraccy-results.html#cb2-1" tabindex="-1"></a><span class="fu">filter</span>(scores, taskid <span class="sc">==</span> task_id_lists[<span class="dv">1</span>]) <span class="sc">%&gt;%</span></span>
+<span id="cb2-2"><a href="accuraccy-results.html#cb2-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> acro, <span class="at">y =</span> accuracy, <span class="at">color =</span> acro,</span>
+<span id="cb2-3"><a href="accuraccy-results.html#cb2-3" tabindex="-1"></a>                <span class="at">fill =</span> acro, <span class="at">shape =</span> acro)) <span class="sc">+</span></span>
+<span id="cb2-4"><a href="accuraccy-results.html#cb2-4" tabindex="-1"></a>  <span class="fu">geom_flat_violin</span>(<span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">x =</span> <span class="fl">0.1</span>, <span class="at">y =</span> <span class="dv">0</span>),</span>
+<span id="cb2-5"><a href="accuraccy-results.html#cb2-5" tabindex="-1"></a>                   <span class="at">scale =</span> <span class="st">&quot;width&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">width =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb2-6"><a href="accuraccy-results.html#cb2-6" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">width =</span> .<span class="dv">08</span>, <span class="at">outlier.shape =</span> <span class="cn">NA</span>, <span class="at">alpha =</span> <span class="fl">0.0</span>,</span>
+<span id="cb2-7"><a href="accuraccy-results.html#cb2-7" tabindex="-1"></a>               <span class="at">size =</span> <span class="fl">0.8</span>, <span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">x =</span> .<span class="dv">15</span>, <span class="at">y =</span> <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb2-8"><a href="accuraccy-results.html#cb2-8" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> .<span class="dv">015</span>, <span class="at">height =</span> .<span class="dv">0001</span>),</span>
+<span id="cb2-9"><a href="accuraccy-results.html#cb2-9" tabindex="-1"></a>             <span class="at">size =</span> <span class="fl">2.0</span>, <span class="at">alpha =</span> <span class="fl">1.0</span>) <span class="sc">+</span></span>
+<span id="cb2-10"><a href="accuraccy-results.html#cb2-10" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb2-11"><a href="accuraccy-results.html#cb2-11" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">&quot;Accuracy %&quot;</span>,</span>
+<span id="cb2-12"><a href="accuraccy-results.html#cb2-12" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(.<span class="dv">74</span>, .<span class="dv">78</span>, .<span class="dv">82</span>, .<span class="dv">86</span>),</span>
+<span id="cb2-13"><a href="accuraccy-results.html#cb2-13" tabindex="-1"></a>    <span class="at">labels =</span> scales<span class="sc">::</span>percent</span>
+<span id="cb2-14"><a href="accuraccy-results.html#cb2-14" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="accuraccy-results.html#cb2-15" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb2-16"><a href="accuraccy-results.html#cb2-16" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(</span>
+<span id="cb2-17"><a href="accuraccy-results.html#cb2-17" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">&quot;Treatment&quot;</span></span>
+<span id="cb2-18"><a href="accuraccy-results.html#cb2-18" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb2-19"><a href="accuraccy-results.html#cb2-19" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> SHAPE) <span class="sc">+</span></span>
+<span id="cb2-20"><a href="accuraccy-results.html#cb2-20" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> cb_palette, ) <span class="sc">+</span></span>
+<span id="cb2-21"><a href="accuraccy-results.html#cb2-21" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> cb_palette) <span class="sc">+</span></span>
+<span id="cb2-22"><a href="accuraccy-results.html#cb2-22" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Accuracy&quot;</span>) <span class="sc">+</span></span>
+<span id="cb2-23"><a href="accuraccy-results.html#cb2-23" tabindex="-1"></a>  p_theme</span></code></pre></div>
 <p><img src="lexidate-validation-supplemental_files/figure-html/task-1-plt-1.png" width="100%" /></p>
 <p>Summary statistics for the generation a satisfactory solution is found.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="accuraccy-results.html#cb4-1" tabindex="-1"></a>performance <span class="ot">&lt;-</span> <span class="fu">filter</span>(scores, taskid <span class="sc">==</span> task_id_lists[<span class="dv">1</span>])</span>
-<span id="cb4-2"><a href="accuraccy-results.html#cb4-2" tabindex="-1"></a>performance <span class="sc">%&gt;%</span></span>
-<span id="cb4-3"><a href="accuraccy-results.html#cb4-3" tabindex="-1"></a>  <span class="fu">group_by</span>(acro) <span class="sc">%&gt;%</span></span>
-<span id="cb4-4"><a href="accuraccy-results.html#cb4-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
-<span id="cb4-5"><a href="accuraccy-results.html#cb4-5" tabindex="-1"></a>    <span class="at">count =</span> <span class="fu">n</span>(),</span>
-<span id="cb4-6"><a href="accuraccy-results.html#cb4-6" tabindex="-1"></a>    <span class="at">na_cnt =</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(accuracy)),</span>
-<span id="cb4-7"><a href="accuraccy-results.html#cb4-7" tabindex="-1"></a>    <span class="at">min =</span> <span class="fu">min</span>(accuracy, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb4-8"><a href="accuraccy-results.html#cb4-8" tabindex="-1"></a>    <span class="at">median =</span> <span class="fu">median</span>(accuracy, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb4-9"><a href="accuraccy-results.html#cb4-9" tabindex="-1"></a>    <span class="at">mean =</span> <span class="fu">mean</span>(accuracy, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb4-10"><a href="accuraccy-results.html#cb4-10" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">max</span>(accuracy, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb4-11"><a href="accuraccy-results.html#cb4-11" tabindex="-1"></a>    <span class="at">IQR =</span> <span class="fu">IQR</span>(accuracy, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb4-12"><a href="accuraccy-results.html#cb4-12" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="accuraccy-results.html#cb3-1" tabindex="-1"></a>performance <span class="ot">&lt;-</span> <span class="fu">filter</span>(scores, taskid <span class="sc">==</span> task_id_lists[<span class="dv">1</span>])</span>
+<span id="cb3-2"><a href="accuraccy-results.html#cb3-2" tabindex="-1"></a>performance <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="accuraccy-results.html#cb3-3" tabindex="-1"></a>  <span class="fu">group_by</span>(acro) <span class="sc">%&gt;%</span></span>
+<span id="cb3-4"><a href="accuraccy-results.html#cb3-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
+<span id="cb3-5"><a href="accuraccy-results.html#cb3-5" tabindex="-1"></a>    <span class="at">count =</span> <span class="fu">n</span>(),</span>
+<span id="cb3-6"><a href="accuraccy-results.html#cb3-6" tabindex="-1"></a>    <span class="at">na_cnt =</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(accuracy)),</span>
+<span id="cb3-7"><a href="accuraccy-results.html#cb3-7" tabindex="-1"></a>    <span class="at">min =</span> <span class="fu">min</span>(accuracy, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-8"><a href="accuraccy-results.html#cb3-8" tabindex="-1"></a>    <span class="at">median =</span> <span class="fu">median</span>(accuracy, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-9"><a href="accuraccy-results.html#cb3-9" tabindex="-1"></a>    <span class="at">mean =</span> <span class="fu">mean</span>(accuracy, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-10"><a href="accuraccy-results.html#cb3-10" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">max</span>(accuracy, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-11"><a href="accuraccy-results.html#cb3-11" tabindex="-1"></a>    <span class="at">IQR =</span> <span class="fu">IQR</span>(accuracy, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-12"><a href="accuraccy-results.html#cb3-12" tabindex="-1"></a>  )</span></code></pre></div>
 <pre><code>## # A tibble: 4 × 8
 ##   acro       count na_cnt   min median  mean   max    IQR
 ##   &lt;fct&gt;      &lt;int&gt;  &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
@@ -259,16 +259,16 @@ div.csl-indent {
 ## 3 70/30         40      0 0.749  0.833 0.831 0.877 0.0187
 ## 4 50/50         40      0 0.802  0.837 0.836 0.863 0.0132</code></pre>
 <p>Kruskal–Wallis test illustrates evidence of statistical differences.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="accuraccy-results.html#cb6-1" tabindex="-1"></a><span class="fu">kruskal.test</span>(accuracy <span class="sc">~</span> acro, <span class="at">data =</span> performance)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="accuraccy-results.html#cb5-1" tabindex="-1"></a><span class="fu">kruskal.test</span>(accuracy <span class="sc">~</span> acro, <span class="at">data =</span> performance)</span></code></pre></div>
 <pre><code>## 
 ##  Kruskal-Wallis rank sum test
 ## 
 ## data:  accuracy by acro
 ## Kruskal-Wallis chi-squared = 21.695, df = 3, p-value = 7.55e-05</code></pre>
 <p>Results for post-hoc Wilcoxon rank-sum test with a Bonferroni correction.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="accuraccy-results.html#cb8-1" tabindex="-1"></a><span class="fu">pairwise.wilcox.test</span>(<span class="at">x =</span> performance<span class="sc">$</span>accuracy, <span class="at">g =</span> performance<span class="sc">$</span>acro,</span>
-<span id="cb8-2"><a href="accuraccy-results.html#cb8-2" tabindex="-1"></a>                     <span class="at">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>,</span>
-<span id="cb8-3"><a href="accuraccy-results.html#cb8-3" tabindex="-1"></a>                     <span class="at">paired =</span> <span class="cn">FALSE</span>, <span class="at">conf.int =</span> <span class="cn">FALSE</span>, <span class="at">alternative =</span> <span class="st">&quot;t&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="accuraccy-results.html#cb7-1" tabindex="-1"></a><span class="fu">pairwise.wilcox.test</span>(<span class="at">x =</span> performance<span class="sc">$</span>accuracy, <span class="at">g =</span> performance<span class="sc">$</span>acro,</span>
+<span id="cb7-2"><a href="accuraccy-results.html#cb7-2" tabindex="-1"></a>                     <span class="at">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>,</span>
+<span id="cb7-3"><a href="accuraccy-results.html#cb7-3" tabindex="-1"></a>                     <span class="at">paired =</span> <span class="cn">FALSE</span>, <span class="at">conf.int =</span> <span class="cn">FALSE</span>, <span class="at">alternative =</span> <span class="st">&quot;t&quot;</span>)</span></code></pre></div>
 <pre><code>## Warning in wilcox.test.default(xi, xj, paired = paired, ...): cannot
 ## compute exact p-value with ties
 
