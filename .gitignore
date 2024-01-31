@@ -6,9 +6,4 @@ Experiments/Splits/Hpc/50/slurm-*
 Experiments/Splits_Complexity/Hpc/10/slurm-*
 Experiments/Splits_Complexity/Hpc/30/slurm-*
 Experiments/Splits_Complexity/Hpc/50/slurm-*
-Source/debug.py
-Source/runner.sh
-Source/data
-Source/debug.ipynb
-Data-Tools/Vizualizer
 Bookdown/_book
