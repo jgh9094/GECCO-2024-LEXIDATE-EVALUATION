@@ -77,7 +77,6 @@ def Scores():
     print('SCORES')
     # data holders
     SCORES_DF = []
-    OVER_TIME_DF = []
 
     for cur_dir,seed, proportion in zip(exp_dirs,seeds, proportions):
 
@@ -116,16 +115,6 @@ def Scores():
             scores_df['acro'] = acro
             SCORES_DF.append(scores_df)
 
-            # over time data
-            data_df = pkl.load(open(subdir + data_pkl,'rb'))
-            data_df['taskid'] = scores_dict['taskid']
-            data_df['proportion'] = proportion
-            data_df['acro'] = acro
-            data_df['seed'] = subdir.split('/')[-1].split('-')[0]
-            OVER_TIME_DF.append(data_df)
-
-
-    pd.concat(OVER_TIME_DF).to_csv(path_or_buf='ot_data.csv', index=False)
     pd.concat(SCORES_DF).to_csv(path_or_buf='scores.csv', index=False)
 
 def main():

@@ -8,7 +8,6 @@ library(PupillometryR)
 library(scales) # to access break formatting functions
 
 
-setwd('~/Desktop/Repositories/GECCO-2024-TPOT2-Selection-Objectives/Data-Tools/Vizualizer/')
 NAMES = c('10-fold cv','90/10','70/30','50/50')
 SHAPE <- c(21,24,22,25)
 cb_palette <- c('#D81B60','#1E88E5','#FFC107','#004D40')
@@ -119,8 +118,8 @@ task_4 = filter(comp, taskid == task_id_lists[4]) %>%
     breaks = trans_breaks("log10", function(x) 10^x),
     labels = trans_format("log10", math_format(10^.x)),
     position = 'right',
-    sec.axis = dup_axis()    
-    
+    sec.axis = dup_axis()
+
   ) +
   scale_x_discrete(
     name="Treatment"
@@ -168,8 +167,8 @@ task_6 = filter(comp, taskid == task_id_lists[6]) %>%
     breaks = trans_breaks("log10", function(x) 10^x),
     labels = trans_format("log10", math_format(10^.x)),
     position = 'right',
-    sec.axis = dup_axis()    
-    
+    sec.axis = dup_axis()
+
   ) +
   scale_x_discrete(
     name="Treatment"
@@ -186,7 +185,7 @@ task_6 = filter(comp, taskid == task_id_lists[6]) %>%
         axis.title.x.bottom = element_blank(), # remove titles
         axis.title.y.left = element_blank())
 
-# legend 
+# legend
 legend <- cowplot::get_legend(
   task_1 +
     guides(
@@ -203,10 +202,10 @@ legend <- cowplot::get_legend(
 
 row1 = plot_grid(
   task_1 + ggtitle("Task 167104") +
-    theme(legend.position = "none", axis.title.x=element_blank(),axis.title.y=element_blank(), 
+    theme(legend.position = "none", axis.title.x=element_blank(),axis.title.y=element_blank(),
           axis.ticks.x = element_blank(), axis.text.x = element_blank(), axis.text.y = element_text(angle = 90, hjust = 0.5)),
   task_2 + ggtitle("Task 167184") +
-    theme(legend.position = "none", axis.title.x=element_blank(), axis.ticks.x = element_blank(), axis.text.x = element_blank(), 
+    theme(legend.position = "none", axis.title.x=element_blank(), axis.ticks.x = element_blank(), axis.text.x = element_blank(),
           axis.text.y = element_text(angle = 90, hjust = 0.5)),
   ncol=2,
   rel_widths = c(1.2,1.1),
@@ -216,10 +215,10 @@ row1 = plot_grid(
 
 row2 = plot_grid(
   task_3 + ggtitle("Task 167168") +
-    theme(legend.position = "none", axis.title.x=element_blank(),axis.title.y=element_blank(), 
+    theme(legend.position = "none", axis.title.x=element_blank(),axis.title.y=element_blank(),
           axis.ticks.x = element_blank(), axis.text.x = element_blank(), axis.text.y = element_text(angle = 90, hjust = 0.5)),
   task_4 + ggtitle("Task 167161") +
-    theme(legend.position = "none", axis.title.x=element_blank(), axis.ticks.x = element_blank(), axis.text.x = element_blank(), 
+    theme(legend.position = "none", axis.title.x=element_blank(), axis.ticks.x = element_blank(), axis.text.x = element_blank(),
           axis.text.y = element_text(angle = 90, hjust = 0.5)),
   ncol=2,
   rel_widths = c(1.2,1.1),
@@ -229,10 +228,10 @@ row2 = plot_grid(
 
 row3 = plot_grid(
   task_5 + ggtitle("Task 167185") +
-    theme(legend.position = "none", axis.title.x=element_blank(),axis.title.y=element_blank(), 
+    theme(legend.position = "none", axis.title.x=element_blank(),axis.title.y=element_blank(),
           axis.ticks.x = element_blank(), axis.text.x = element_blank(), axis.text.y = element_text(angle = 90, hjust = 0.5)),
   task_6 + ggtitle("Task 189905") +
-    theme(legend.position = "none", axis.title.x=element_blank(), axis.ticks.x = element_blank(), axis.text.x = element_blank(), 
+    theme(legend.position = "none", axis.title.x=element_blank(), axis.ticks.x = element_blank(), axis.text.x = element_blank(),
           axis.text.y = element_text(angle = 90, hjust = 0.5)),
   ncol=2,
   rel_widths = c(1.2,1.1),
@@ -257,6 +256,3 @@ save_plot(
   base_width=10,
   base_height=17
 )
-
-
-
