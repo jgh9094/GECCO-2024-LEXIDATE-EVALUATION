@@ -1,6 +1,6 @@
 ---
 title: "Supplemental Material for 'Lexidate: Model Evaluation and Selection with Lexicase Selection'"
-author: "Anonymous GECCO"
+author: "Jose Guadalupe Hernandez, Anil Kumar Saini, Jason H. Moore"
 date: "`r Sys.Date()`"
 output: bookdown::gitbook
 documentclass: book
