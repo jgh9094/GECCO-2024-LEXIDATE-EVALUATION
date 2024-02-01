@@ -3,6 +3,7 @@
 ## Overview
 
 Link to all supplementary material: [here](https://jgh9094.github.io/GECCO-2024-LEXIDATE-EVALUATION/Bookdown/Pages/).
+All data is availale on the Open Science Framework [here](https://osf.io/mnzjg/)
 
 ### Abstract
 
