@@ -5,6 +5,6 @@ language:
 delete_merged_file: true
 rmd_files: ["index.Rmd",
             "accuracy.Rmd",
+            "complexity.Rmd",
             "tail.Rmd"
            ]
-# new_session: yes

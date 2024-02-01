@@ -1,18 +1,18 @@
-# Accuracy results
+# Complexity results
 
-Here we report the accuracy for **final pipeline returned from a TPOT2 run** on each OpenML task.
+Here we report the complexity for **final pipeline returned from a TPOT2 run** on each OpenML task.
 40 replicates were conducted for each evaluation strategy explored.
 
 ## Analysis setup
 
-```{r acc-data-setup, message=FALSE}
+```{r com-data-setup, message=FALSE}
 library(ggplot2)
 library(cowplot)
 library(dplyr)
 library(PupillometryR)
 
-scores <- read.csv("./scores.csv", header = TRUE, stringsAsFactors = FALSE)
-scores$acro <- factor(scores$acro, levels = NAMES)
+comps <- read.csv("./complexity.csv", header = TRUE, stringsAsFactors = FALSE)
+comps$acro <- factor(comps$acro, levels = NAMES)
 ```
 
 ## Accuracy per OpenML task
@@ -22,9 +22,9 @@ Accuracy of the returned pipeline from an evolutionary run.
 ### Task 167104
 
 
-```{r acc-task-1-plt, warning=FALSE, out.width="100%"}
-filter(scores, taskid == task_id_lists[1]) %>%
-  ggplot(., aes(x = acro, y = accuracy, color = acro,
+```{r com-task-1-plt, warning=FALSE, out.width="100%"}
+filter(comps, taskid == task_id_lists[1]) %>%
+  ggplot(., aes(x = acro, y = complexity, color = acro,
                 fill = acro, shape = acro)) +
   geom_flat_violin(position = position_nudge(x = 0.1, y = 0),
                    scale = "width", alpha = 0.2, width = 1.5) +
@@ -32,11 +32,10 @@ filter(scores, taskid == task_id_lists[1]) %>%
                size = 0.8, position = position_nudge(x = .15, y = 0)) +
   geom_point(position = position_jitter(width = .015, height = .0001),
              size = 2.0, alpha = 1.0) +
-  scale_y_continuous(
-    name = "Accuracy %",
-    breaks = c(.74, .78, .82, .86),
-    labels = scales::percent
-
+  scale_y_log10(
+    name = "Complexity",
+    breaks = trans_breaks("log10", function(x) 10^x),
+    labels = trans_format("log10", math_format(10^.x))
   ) +
   scale_x_discrete(
     name = "Treatment"
@@ -44,7 +43,7 @@ filter(scores, taskid == task_id_lists[1]) %>%
   scale_shape_manual(values = SHAPE,) +
   scale_colour_manual(values = cb_palette,) +
   scale_fill_manual(values = cb_palette,) +
-  ggtitle("Accuracy") +
+  ggtitle("Complexity") +
   p_theme +
   guides(
     shape=guide_legend(nrow = 1, title.position = "bottom",
@@ -59,41 +58,33 @@ filter(scores, taskid == task_id_lists[1]) %>%
 
 Summary statistics for the generation a satisfactory solution is found.
 
-```{r acc-task-1-sum}
-performance <- filter(scores, taskid == task_id_lists[1])
-performance %>%
+```{r com-task-1-sum}
+complexity <- filter(comps, taskid == task_id_lists[1])
+complexity %>%
   group_by(acro) %>%
   dplyr::summarise(
     count = n(),
-    na_cnt = sum(is.na(accuracy)),
-    min = min(accuracy, na.rm = TRUE),
-    median = median(accuracy, na.rm = TRUE),
-    mean = mean(accuracy, na.rm = TRUE),
-    max = max(accuracy, na.rm = TRUE),
-    IQR = IQR(accuracy, na.rm = TRUE)
+    na_cnt = sum(is.na(complexity)),
+    min = min(complexity, na.rm = TRUE),
+    median = median(complexity, na.rm = TRUE),
+    mean = mean(complexity, na.rm = TRUE),
+    max = max(complexity, na.rm = TRUE),
+    IQR = IQR(complexity, na.rm = TRUE)
   )
 ```
 
-Kruskal–Wallis test illustrates evidence of statistical differences.
+Kruskal–Wallis test illustrates evidence of no statistical differences.
 
-```{r acc-task-1-kru}
-kruskal.test(accuracy ~ acro, data = performance)
+```{r com-task-1-kru}
+kruskal.test(complexity ~ acro, data = complexity)
 ```
 
-Results for post-hoc Wilcoxon rank-sum test with a Bonferroni correction.
-
-```{r acc-task-1-wil, warning=FALSE}
-pairwise.wilcox.test(x = performance$accuracy, g = performance$acro,
-                     p.adjust.method = "bonferroni",
-                     paired = FALSE, conf.int = FALSE, alternative = "t")
-
-```
 ### Task 167184
 
 
-```{r acc-task-2-plt, warning=FALSE, out.width="100%"}
-filter(scores, taskid == task_id_lists[2]) %>%
-  ggplot(., aes(x = acro, y = accuracy, color = acro,
+```{r com-task-2-plt, warning=FALSE, out.width="100%"}
+filter(comps, taskid == task_id_lists[2]) %>%
+  ggplot(., aes(x = acro, y = complexity, color = acro,
                 fill = acro, shape = acro)) +
   geom_flat_violin(position = position_nudge(x = 0.1, y = 0),
                    scale = "width", alpha = 0.2, width = 1.5) +
@@ -101,10 +92,10 @@ filter(scores, taskid == task_id_lists[2]) %>%
                size = 0.8, position = position_nudge(x = .15, y = 0)) +
   geom_point(position = position_jitter(width = .015, height = .0001),
              size = 2.0, alpha = 1.0) +
-  scale_y_continuous(
-    name = "Accuracy %",
-    limits=c(.6, .9),
-    labels = scales::percent
+  scale_y_log10(
+    name = "Complexity",
+    breaks = trans_breaks("log10", function(x) 10^x),
+    labels = trans_format("log10", math_format(10^.x)),
 
   ) +
   scale_x_discrete(
@@ -113,7 +104,7 @@ filter(scores, taskid == task_id_lists[2]) %>%
   scale_shape_manual(values = SHAPE) +
   scale_colour_manual(values = cb_palette, ) +
   scale_fill_manual(values = cb_palette) +
-  ggtitle("Accuracy") +
+  ggtitle("Complexity") +
   p_theme +
   guides(
     shape=guide_legend(nrow = 1, title.position = "bottom",
@@ -127,42 +118,42 @@ filter(scores, taskid == task_id_lists[2]) %>%
 
 Summary statistics for the generation a satisfactory solution is found.
 
-```{r acc-task-2-sum}
-performance <- filter(scores, taskid == task_id_lists[2])
-performance %>%
+```{r com-task-2-sum}
+complexity <- filter(comps, taskid == task_id_lists[2])
+complexity %>%
   group_by(acro) %>%
   dplyr::summarise(
     count = n(),
-    na_cnt = sum(is.na(accuracy)),
-    min = min(accuracy, na.rm = TRUE),
-    median = median(accuracy, na.rm = TRUE),
-    mean = mean(accuracy, na.rm = TRUE),
-    max = max(accuracy, na.rm = TRUE),
-    IQR = IQR(accuracy, na.rm = TRUE)
+    na_cnt = sum(is.na(complexity)),
+    min = min(complexity, na.rm = TRUE),
+    median = median(complexity, na.rm = TRUE),
+    mean = mean(complexity, na.rm = TRUE),
+    max = max(complexity, na.rm = TRUE),
+    IQR = IQR(complexity, na.rm = TRUE)
   )
 ```
 
 Kruskal–Wallis test illustrates evidence of statistical differences.
 
-```{r acc-task-2-kru}
-kruskal.test(accuracy ~ acro, data = performance)
+```{r com-task-2-kru}
+kruskal.test(complexity ~ acro, data = complexity)
 ```
 
 Results for post-hoc Wilcoxon rank-sum test with a Bonferroni correction.
 
-```{r acc-task-2-wil, warning=FALSE}
-pairwise.wilcox.test(x = performance$accuracy, g = performance$acro,
+```{r com-task-2-wil, warning=FALSE}
+pairwise.wilcox.test(x = complexity$complexity, g = complexity$acro,
                      p.adjust.method = "bonferroni",
-                     paired = FALSE, conf.int = FALSE, alternative = "t")
+                     paired = FALSE, conf.int = FALSE, alternative = "l")
 
 ```
 
 ### Task 167168
 
 
-```{r acc-task-3-plt, warning=FALSE, out.width="100%"}
-filter(scores, taskid == task_id_lists[3]) %>%
-  ggplot(., aes(x = acro, y = accuracy, color = acro,
+```{r com-task-3-plt, warning=FALSE, out.width="100%"}
+filter(comps, taskid == task_id_lists[3]) %>%
+  ggplot(., aes(x = acro, y = complexity, color = acro,
                 fill = acro, shape = acro)) +
   geom_flat_violin(position = position_nudge(x = 0.1, y = 0),
                    scale = "width", alpha = 0.2, width = 1.5) +
@@ -170,10 +161,10 @@ filter(scores, taskid == task_id_lists[3]) %>%
                size = 0.8, position = position_nudge(x = .15, y = 0)) +
   geom_point(position = position_jitter(width = .015, height = .0001),
              size = 2.0, alpha = 1.0) +
-  scale_y_continuous(
-    name = "Accuracy %",
-    labels = scales::percent
-
+  scale_y_log10(
+    name = "Complexity",
+    breaks = trans_breaks("log10", function(x) 10^x),
+    labels = trans_format("log10", math_format(10^.x)),
   ) +
   scale_x_discrete(
     name = "Treatment"
@@ -181,48 +172,39 @@ filter(scores, taskid == task_id_lists[3]) %>%
   scale_shape_manual(values = SHAPE) +
   scale_colour_manual(values = cb_palette, ) +
   scale_fill_manual(values = cb_palette) +
-  ggtitle("Accuracy") +
+  ggtitle("Complexity") +
   p_theme
 ```
 
 Summary statistics for the generation a satisfactory solution is found.
 
-```{r acc-task-3-sum}
-performance <- filter(scores, taskid == task_id_lists[3])
-performance %>%
+```{r com-task-3-sum}
+complexity <- filter(comps, taskid == task_id_lists[3])
+complexity %>%
   group_by(acro) %>%
   dplyr::summarise(
     count = n(),
-    na_cnt = sum(is.na(accuracy)),
-    min = min(accuracy, na.rm = TRUE),
-    median = median(accuracy, na.rm = TRUE),
-    mean = mean(accuracy, na.rm = TRUE),
-    max = max(accuracy, na.rm = TRUE),
-    IQR = IQR(accuracy, na.rm = TRUE)
+    na_cnt = sum(is.na(complexity)),
+    min = min(complexity, na.rm = TRUE),
+    median = median(complexity, na.rm = TRUE),
+    mean = mean(complexity, na.rm = TRUE),
+    max = max(complexity, na.rm = TRUE),
+    IQR = IQR(complexity, na.rm = TRUE)
   )
 ```
 
-Kruskal–Wallis test illustrates evidence of statistical differences.
+Kruskal–Wallis test illustrates evidence of no statistical differences.
 
-```{r acc-task-3-kru}
-kruskal.test(accuracy ~ acro, data = performance)
-```
-
-Results for post-hoc Wilcoxon rank-sum test with a Bonferroni correction.
-
-```{r acc-task-3-wil, warning=FALSE}
-pairwise.wilcox.test(x = performance$accuracy, g = performance$acro,
-                     p.adjust.method = "bonferroni",
-                     paired = FALSE, conf.int = FALSE, alternative = "t")
-
+```{r com-task-3-kru}
+kruskal.test(complexity ~ acro, data = complexity)
 ```
 
 ### Task 167161
 
 
-```{r acc-task-4-plt, warning=FALSE, out.width="100%"}
-filter(scores, taskid == task_id_lists[4]) %>%
-  ggplot(., aes(x = acro, y = accuracy, color = acro,
+```{r com-task-4-plt, warning=FALSE, out.width="100%"}
+filter(comps, taskid == task_id_lists[4]) %>%
+  ggplot(., aes(x = acro, y = complexity, color = acro,
                 fill = acro, shape = acro)) +
   geom_flat_violin(position = position_nudge(x = 0.1, y = 0),
                    scale = "width", alpha = 0.2, width = 1.5) +
@@ -230,11 +212,10 @@ filter(scores, taskid == task_id_lists[4]) %>%
                size = 0.8, position = position_nudge(x = .15, y = 0)) +
   geom_point(position = position_jitter(width = .015, height = .0001),
              size = 2.0, alpha = 1.0) +
-  scale_y_continuous(
-    name = "Accuracy %",
-    limits=c(.55, .80),
-    breaks=c(.56,.64,.72,.8),
-    labels = scales::percent
+  scale_y_log10(
+    name = "Complexity",
+    breaks = trans_breaks("log10", function(x) 10^x),
+    labels = trans_format("log10", math_format(10^.x)),
 
   ) +
   scale_x_discrete(
@@ -243,7 +224,7 @@ filter(scores, taskid == task_id_lists[4]) %>%
   scale_shape_manual(values = SHAPE) +
   scale_colour_manual(values = cb_palette, ) +
   scale_fill_manual(values = cb_palette) +
-  ggtitle("Accuracy") +
+  ggtitle("Complexity") +
   p_theme +
   guides(
     shape=guide_legend(nrow = 1, title.position = "bottom",
@@ -257,42 +238,42 @@ filter(scores, taskid == task_id_lists[4]) %>%
 
 Summary statistics for the generation a satisfactory solution is found.
 
-```{r acc-task-4-sum}
-performance <- filter(scores, taskid == task_id_lists[4])
-performance %>%
+```{r com-task-4-sum}
+complexity <- filter(comps, taskid == task_id_lists[4])
+complexity %>%
   group_by(acro) %>%
   dplyr::summarise(
     count = n(),
-    na_cnt = sum(is.na(accuracy)),
-    min = min(accuracy, na.rm = TRUE),
-    median = median(accuracy, na.rm = TRUE),
-    mean = mean(accuracy, na.rm = TRUE),
-    max = max(accuracy, na.rm = TRUE),
-    IQR = IQR(accuracy, na.rm = TRUE)
+    na_cnt = sum(is.na(complexity)),
+    min = min(complexity, na.rm = TRUE),
+    median = median(complexity, na.rm = TRUE),
+    mean = mean(complexity, na.rm = TRUE),
+    max = max(complexity, na.rm = TRUE),
+    IQR = IQR(complexity, na.rm = TRUE)
   )
 ```
 
 Kruskal–Wallis test illustrates evidence of statistical differences.
 
-```{r acc-task-4-kru}
-kruskal.test(accuracy ~ acro, data = performance)
+```{r com-task-4-kru}
+kruskal.test(complexity ~ acro, data = complexity)
 ```
 
 Results for post-hoc Wilcoxon rank-sum test with a Bonferroni correction.
 
-```{r acc-task-4-wil, warning=FALSE}
-pairwise.wilcox.test(x = performance$accuracy, g = performance$acro,
+```{r com-task-4-wil, warning=FALSE}
+pairwise.wilcox.test(x = complexity$complexity, g = complexity$acro,
                      p.adjust.method = "bonferroni",
-                     paired = FALSE, conf.int = FALSE, alternative = "t")
+                     paired = FALSE, conf.int = FALSE, alternative = "l")
 
 ```
 
 ### Task 167185
 
 
-```{r acc-task-5-plt, warning=FALSE, out.width="100%"}
-filter(scores, taskid == task_id_lists[5]) %>%
-  ggplot(., aes(x = acro, y = accuracy, color = acro,
+```{r com-task-5-plt, warning=FALSE, out.width="100%"}
+filter(comps, taskid == task_id_lists[5]) %>%
+  ggplot(., aes(x = acro, y = complexity, color = acro,
                 fill = acro, shape = acro)) +
   geom_flat_violin(position = position_nudge(x = 0.1, y = 0),
                    scale = "width", alpha = 0.2, width = 1.5) +
@@ -300,12 +281,10 @@ filter(scores, taskid == task_id_lists[5]) %>%
                size = 0.8, position = position_nudge(x = .15, y = 0)) +
   geom_point(position = position_jitter(width = .015, height = .0001),
              size = 2.0, alpha = 1.0) +
-  scale_y_continuous(
-    name = "Accuracy %",
-    limits=c(.86, .96),
-    breaks=c(.86,.91,.96),
-    labels = scales::percent
-
+  scale_y_log10(
+    name = "Complexity",
+    breaks = trans_breaks("log10", function(x) 10^x),
+    labels = trans_format("log10", math_format(10^.x)),
   ) +
   scale_x_discrete(
     name = "Treatment"
@@ -313,7 +292,7 @@ filter(scores, taskid == task_id_lists[5]) %>%
   scale_shape_manual(values = SHAPE) +
   scale_colour_manual(values = cb_palette, ) +
   scale_fill_manual(values = cb_palette) +
-  ggtitle("Accuracy") +
+  ggtitle("Complexity") +
   p_theme +
   guides(
     shape=guide_legend(nrow = 1, title.position = "bottom",
@@ -327,42 +306,33 @@ filter(scores, taskid == task_id_lists[5]) %>%
 
 Summary statistics for the generation a satisfactory solution is found.
 
-```{r acc-task-5-sum}
-performance <- filter(scores, taskid == task_id_lists[5])
-performance %>%
+```{r com-task-5-sum}
+complexity <- filter(comps, taskid == task_id_lists[5])
+complexity %>%
   group_by(acro) %>%
   dplyr::summarise(
     count = n(),
-    na_cnt = sum(is.na(accuracy)),
-    min = min(accuracy, na.rm = TRUE),
-    median = median(accuracy, na.rm = TRUE),
-    mean = mean(accuracy, na.rm = TRUE),
-    max = max(accuracy, na.rm = TRUE),
-    IQR = IQR(accuracy, na.rm = TRUE)
+    na_cnt = sum(is.na(complexity)),
+    min = min(complexity, na.rm = TRUE),
+    median = median(complexity, na.rm = TRUE),
+    mean = mean(complexity, na.rm = TRUE),
+    max = max(complexity, na.rm = TRUE),
+    IQR = IQR(complexity, na.rm = TRUE)
   )
 ```
 
-Kruskal–Wallis test illustrates evidence of statistical differences.
+Kruskal–Wallis test illustrates evidence of no statistical differences.
 
-```{r acc-task-5-kru}
-kruskal.test(accuracy ~ acro, data = performance)
-```
-
-Results for post-hoc Wilcoxon rank-sum test with a Bonferroni correction.
-
-```{r acc-task-5-wil, warning=FALSE}
-pairwise.wilcox.test(x = performance$accuracy, g = performance$acro,
-                     p.adjust.method = "bonferroni",
-                     paired = FALSE, conf.int = FALSE, alternative = "t")
-
+```{r com-task-5-kru}
+kruskal.test(complexity ~ acro, data = complexity)
 ```
 
 ### Task 189905
 
 
-```{r acc-task-6-plt, warning=FALSE, out.width="100%"}
-filter(scores, taskid == task_id_lists[6]) %>%
-  ggplot(., aes(x = acro, y = accuracy, color = acro,
+```{r com-task-6-plt, warning=FALSE, out.width="100%"}
+filter(comps, taskid == task_id_lists[6]) %>%
+  ggplot(., aes(x = acro, y = complexity, color = acro,
                 fill = acro, shape = acro)) +
   geom_flat_violin(position = position_nudge(x = 0.1, y = 0),
                    scale = "width", alpha = 0.2, width = 1.5) +
@@ -370,11 +340,10 @@ filter(scores, taskid == task_id_lists[6]) %>%
                size = 0.8, position = position_nudge(x = .15, y = 0)) +
   geom_point(position = position_jitter(width = .015, height = .0001),
              size = 2.0, alpha = 1.0) +
-  scale_y_continuous(
-    name = "Accuracy %",
-    limits=c(.916,1.001),
-    breaks=c(.92,.96,1),
-    labels = scales::percent
+  scale_y_log10(
+    name = "Complexity",
+    breaks = trans_breaks("log10", function(x) 10^x),
+    labels = trans_format("log10", math_format(10^.x)),
 
   ) +
   scale_x_discrete(
@@ -383,7 +352,7 @@ filter(scores, taskid == task_id_lists[6]) %>%
   scale_shape_manual(values = SHAPE) +
   scale_colour_manual(values = cb_palette, ) +
   scale_fill_manual(values = cb_palette) +
-  ggtitle("Accuracy") +
+  ggtitle("Complexity") +
   p_theme +
   guides(
     shape=guide_legend(nrow = 1, title.position = "bottom",
@@ -397,32 +366,31 @@ filter(scores, taskid == task_id_lists[6]) %>%
 
 Summary statistics for the generation a satisfactory solution is found.
 
-```{r acc-task-6-sum}
-performance <- filter(scores, taskid == task_id_lists[6])
-performance %>%
+```{r com-task-6-sum}
+complexity <- filter(comps, taskid == task_id_lists[6])
+complexity %>%
   group_by(acro) %>%
   dplyr::summarise(
     count = n(),
-    na_cnt = sum(is.na(accuracy)),
-    min = min(accuracy, na.rm = TRUE),
-    median = median(accuracy, na.rm = TRUE),
-    mean = mean(accuracy, na.rm = TRUE),
-    max = max(accuracy, na.rm = TRUE),
-    IQR = IQR(accuracy, na.rm = TRUE)
+    na_cnt = sum(is.na(complexity)),
+    min = min(complexity, na.rm = TRUE),
+    median = median(complexity, na.rm = TRUE),
+    mean = mean(complexity, na.rm = TRUE),
+    max = max(complexity, na.rm = TRUE),
+    IQR = IQR(complexity, na.rm = TRUE)
   )
 ```
 
 Kruskal–Wallis test illustrates evidence of statistical differences.
 
-```{r acc-task-6-kru}
-kruskal.test(accuracy ~ acro, data = performance)
+```{r com-task-6-kru}
+kruskal.test(complexity ~ acro, data = complexity)
 ```
 
 Results for post-hoc Wilcoxon rank-sum test with a Bonferroni correction.
 
-```{r acc-task-6-wil, warning=FALSE}
-pairwise.wilcox.test(x = performance$accuracy, g = performance$acro,
+```{r com-task-6-wil, warning=FALSE}
+pairwise.wilcox.test(x = complexity$complexity, g = complexity$acro,
                      p.adjust.method = "bonferroni",
-                     paired = FALSE, conf.int = FALSE, alternative = "t")
-
+                     paired = FALSE, conf.int = FALSE, alternative = "l")
 ```

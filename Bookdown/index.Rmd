@@ -1,7 +1,7 @@
 ---
 title: "Supplemental Material for 'Lexidate: Model Evaluation and Selection with Lexicase Selection'"
 author: "Anonymous GECCO"
-date: "`r Sys.Date()`"    
+date: "`r Sys.Date()`"
 output: bookdown::gitbook
 documentclass: book
 bibliography: ["packages.bib", "supplemental.bib"]
@@ -16,11 +16,13 @@ description: "Supplemental material"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r setup, include=FALSE, echo=TRUE}
+```{r setup, echo=TRUE}
 library(ggplot2)
 library(cowplot)
 library(dplyr)
 library(PupillometryR)
+library(scales) # to access break formatting functions
+
 
 NAMES <- c("10-fold cv","90/10","70/30","50/50")
 SHAPE <- c(21,24,22,25)
@@ -52,21 +54,15 @@ This is not intended as a stand-alone document, but as a companion to our manusc
 As you may have noticed (unless you're reading a pdf version of this), our supplemental material is hosted using [GitHub pages](https://pages.github.com/).
 We compiled our data analyses and supplemental documentation into this nifty web-accessible book using [bookdown](https://bookdown.org).
 
-<!-- The source code/configuration files for this supplemental material can be found in [this GitHub repository](https://github.com/amlalejini/GECCO-2024-phylogeny-informed-subsampling). -->
+The code used for this supplemental material can be found in [this GitHub repository](https://github.com/jgh9094/GECCO-2024-LEXIDATE-EVALUATION).
 
 Our supplemental material includes the following:
 
-Hello world
+- Accuracy results (Section \@ref(accuracy-results))
+- Complexity results (Section \@ref(complexity-results))
 
-<!-- - Data availability (Section \@ref(data-availability)) -->
-<!-- - Local compilation (Section \@ref(local-compilation)) -->
-<!-- - GP instruction set (Section \@ref(signalgp-instruction-set)) -->
-  <!-- - Selection scheme diagnostics (Section \@ref(selection-scheme-diagnostic-experiments))
-  - Program synthesis problems (Section \@ref(program-synthesis-experiments)) -->
+## Contributing authors
 
-<!-- ## Contributing authors -->
-
-<!-- - Alexander Lalejini -->
-<!-- - Marcos Sanson -->
-<!-- - Jack Garbus -->
-<!-- - Emily Dolson -->
+- [Jose Guadalupe Hernandez](https://jgh9094.github.io/)
+- [Anil Kumar Saini](https://theaksaini.github.io/)
+- [Jason H. Moore](https://jasonhmoore.org/)
