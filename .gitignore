@@ -1,7 +1,3 @@
 Bookdown/*.csv
-Source/debug.py
-Source/runner.sh
-Source/data
-Source/debug.ipynb
-Data-Tools/Vizualizer
 Bookdown/_book
+Bookdown/_bookdown_files
