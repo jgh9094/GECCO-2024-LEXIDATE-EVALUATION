@@ -2,6 +2,7 @@
 
 Here we report the accuracy for **final pipeline returned from a TPOT2 run** on each OpenML task.
 40 replicates were conducted for each evaluation strategy explored.
+Accuracy is proportion of correct predictions on the final, unseen test set per OpenML task.
 
 ## Analysis setup
 

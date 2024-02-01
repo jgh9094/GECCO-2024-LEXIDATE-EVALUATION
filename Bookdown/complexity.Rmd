@@ -2,6 +2,7 @@
 
 Here we report the complexity for **final pipeline returned from a TPOT2 run** on each OpenML task.
 40 replicates were conducted for each evaluation strategy explored.
+Complexity is the number of learned parameters of the final model.
 
 ## Analysis setup
 
@@ -15,7 +16,7 @@ comps <- read.csv("./complexity.csv", header = TRUE, stringsAsFactors = FALSE)
 comps$acro <- factor(comps$acro, levels = NAMES)
 ```
 
-## Accuracy per OpenML task
+## Complexity per OpenML task
 
 Accuracy of the returned pipeline from an evolutionary run.
 
