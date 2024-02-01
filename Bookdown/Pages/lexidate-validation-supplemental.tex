@@ -120,7 +120,7 @@
 
 \title{Supplemental Material for `Lexidate: Model Evaluation and Selection with Lexicase Selection'}
 \author{Jose Guadalupe Hernandez, Anil Kumar Saini, Jason H. Moore}
-\date{2024-01-31}
+\date{2024-02-01}
 
 \begin{document}
 \maketitle
@@ -201,6 +201,7 @@ Our supplemental material includes the following:
 
 Here we report the accuracy for \textbf{final pipeline returned from a TPOT2 run} on each OpenML task.
 40 replicates were conducted for each evaluation strategy explored.
+Accuracy is proportion of correct predictions on the final, unseen test set per OpenML task.
 
 \hypertarget{analysis-setup}{%
 \section{Analysis setup}\label{analysis-setup}}
@@ -881,6 +882,7 @@ Results for post-hoc Wilcoxon rank-sum test with a Bonferroni correction.
 
 Here we report the complexity for \textbf{final pipeline returned from a TPOT2 run} on each OpenML task.
 40 replicates were conducted for each evaluation strategy explored.
+Complexity is the number of learned parameters of the final model.
 
 \hypertarget{analysis-setup-1}{%
 \section{Analysis setup}\label{analysis-setup-1}}
@@ -897,8 +899,8 @@ Here we report the complexity for \textbf{final pipeline returned from a TPOT2 r
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{accuracy-per-openml-task-1}{%
-\section{Accuracy per OpenML task}\label{accuracy-per-openml-task-1}}
+\hypertarget{complexity-per-openml-task}{%
+\section{Complexity per OpenML task}\label{complexity-per-openml-task}}
 
 Accuracy of the returned pipeline from an evolutionary run.
 
