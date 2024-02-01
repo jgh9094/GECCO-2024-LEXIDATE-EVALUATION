@@ -24,6 +24,7 @@ For all three lexidate configurations studied here, similar or less complex fina
   - `Visualize/`: scripts for making plots
 - `Experiments/`: all scripts to run experiments on HPC
   - `Base/`: runs related to 10-fold cross-validation with TPOT2
+    - `HPC/`: scripts for HPC
   - `Splits/`: runs related to lexidate validation with TPOT2
     - `HPC/`: scripts for HPC
 - `Source/`: contains all Python scripts to run experiments.
