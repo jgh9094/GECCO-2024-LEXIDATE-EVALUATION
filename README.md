@@ -29,4 +29,4 @@ For all three lexidate configurations studied here, similar or less complex fina
     - `HPC/`: scripts for HPC
 - `Source/`: contains all Python scripts to run experiments.
 - `tpot2-base`: TPOT2 implementation for 10-fold cross-validation runs
-- `tpot2-sol-obj`: TPOT2 implemenation for lexidate validation implementation runs
+- `tpot2-sol-obj`: TPOT2 implementation for lexidate validation implementation runs
