@@ -2,6 +2,8 @@
 
 ## Overview
 
+Link to all supplementary material: [here](https://jgh9094.github.io/GECCO-2024-LEXIDATE-EVALUATION/Bookdown/Pages/).
+
 ### Abstract
 
 > Automated machine learning (AutoML) aims to streamline the process of finding effective machine learning pipelines by automating model training, evaluation, and selection.
