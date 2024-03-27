@@ -48,6 +48,17 @@ Datasets used in the experiments. The `Task ID' refers to the identifier used to
 | cnae-9                  | 167185  | 1080 | 857     | 9       |
 | car                     | 189905  | 1728 | 7       | 4       |
 
+## TPOT2 configurations
+
+| Parameter                | Values        |
+|--------------------------|---------------|
+| Population size          | 48            |
+| Number of generations    | 200           |
+| Mutation operators       | See below     |
+| Mutation rate            | 100%          |
+| Number of runs per condition | 40        |
+
+
 ## TPOT2 muation operators
 
 - mutate_hyperparameters: Vary the encoded hyperparameters of a random node.
