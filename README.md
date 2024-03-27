@@ -47,3 +47,12 @@ Datasets used in the experiments. The `Task ID' refers to the identifier used to
 | credit-g                | 167161  | 1000 | 21      | 2       |
 | cnae-9                  | 167185  | 1080 | 857     | 9       |
 | car                     | 189905  | 1728 | 7       | 4       |
+
+## TPOT2 muation operators
+
+- mutate_hyperparameters: Vary the encoded hyperparameters of a random node.
+- mutate_replace_node: Assign a new ML method and hyperparameters to a random node.
+- mutate_remove_node: Remove a random leaf or inner node, and connect all its children nodes to all its parent nodes.
+- mutate_remove_edge: Remove an outgoing edge of a random node with more than one outgoing edge.
+- mutate_add_edge: Add an edge between two random nodes.
+- mutate_insert_leaf: Connect a new leaf node to a random node.
