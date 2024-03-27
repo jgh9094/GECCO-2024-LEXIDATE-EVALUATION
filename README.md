@@ -33,3 +33,15 @@ For all three lexidate configurations studied here, similar or less complex fina
 - `Source/`: contains all Python scripts to run experiments.
 - `tpot2-base`: TPOT2 implementation for 10-fold cross-validation runs
 - `tpot2-sol-obj`: TPOT2 implementation for lexidate validation implementation runs
+
+
+## OpenML classification tasks
+
+| Name                    | Task ID | Rows | Columns | Classes |
+|-------------------------|---------|------|---------|---------|
+| australian              | 167104  | 690  | 15      | 2       |
+| blood-transfusion...    | 167184  | 748  | 5       | 2       |
+| vehicle                 | 167168  | 846  | 19      | 4       |
+| credit-g                | 167161  | 1000 | 21      | 2       |
+| cnae-9                  | 167185  | 1080 | 857     | 9       |
+| car                     | 189905  | 1728 | 7       | 4       |
