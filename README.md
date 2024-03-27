@@ -21,6 +21,8 @@ For all three lexidate configurations studied here, similar or less complex fina
 
 ## Repository guide
 
+Datasets used in the experiments. The `Task ID' refers to the identifier used to extract the dataset from OpenML. The other columns denote the number of rows, columns, and classes for each dataset.
+
 - `Data-Tools/`: all scripts related to data checking, collecting, and visualizing
   - `Check/`: scripts for checking data
   - `Collect/`: scripts for collecting data
